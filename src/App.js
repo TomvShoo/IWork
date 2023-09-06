@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
 import "./App.css";
 // import "primereact/resources/primereact.min.css";
-import { Login } from "./components/Login";
+import { Login } from "./Pages/Login";
 import { Routes, Route } from "react-router-dom";
-import { Perfil } from "./components/Perfil";
+import { Perfil } from "./Pages/Perfil";
 import { Registro } from "./components/Registro";
-import { Menu } from "./components/Menu";
+import { Menu } from "./Pages/Menu";
 
 function App() {
   return (

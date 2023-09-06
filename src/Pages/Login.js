@@ -6,7 +6,7 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 // import { Button } from "primereact/button";
 import { Password } from "primereact/password";
-import SwitchButton from "./SwitchButton";
+import SwitchButton from "../components/SwitchButton";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
