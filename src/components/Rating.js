@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Rating } from 'primereact/rating';
+import React, { Component } from "react";
+import { Rating } from "primereact/rating";
 
 class Calificacion extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class Calificacion extends Component {
         <Rating
           value={this.state.ratingValue}
           onChange={(e) => this.setState({ ratingValue: e.value })}
-          cancel = {false}
+          cancel={false}
         />
         <div>Valor seleccionado: {this.state.ratingValue}</div>
       </div>
