@@ -12,16 +12,17 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 
 const Estilo = {
-  card: {
+  container: {
     display: "flex",
     flexDirection: "column",
+    margin: "3rem 0rem",
   },
   inputs: {
     display: "flex",
     flexDirection: "column",
   },
   input: {
-    margin: "1rem 0rem",
+    margin: "1rem 2rem",
   },
   cuentas: {
     display: "flex",
@@ -41,40 +42,38 @@ const Estilo = {
 
 export const Registro = () => {
   return (
-    <container>
-      <Card style={Estilo.card}>
-        <div style={Estilo.inputs}>
-          <InputText placeholder="Nombre" style={Estilo.input}></InputText>
-          <InputText placeholder="Correo" style={Estilo.input}></InputText>
-          <InputText placeholder="Contraseña" style={Estilo.input}></InputText>
-          <InputText
-            placeholder="Verificar contraseña"
-            style={Estilo.input}
-          ></InputText>
-        </div>
+    <container style={Estilo.container}>
+      <div style={Estilo.inputs}>
+        <InputText placeholder="Nombre" style={Estilo.input}></InputText>
+        <InputText placeholder="Correo" style={Estilo.input}></InputText>
+        <InputText placeholder="Contraseña" style={Estilo.input}></InputText>
+        <InputText
+          placeholder="Verificar contraseña"
+          style={Estilo.input}
+        ></InputText>
+      </div>
 
-        <div style={Estilo.cuentas}>
-          <p>Tipo de cuenta:</p>
-          <div style={Estilo.cuenta}>
-            <SelectButton />
-            <RadioButton mame="profesional" />
-            <label>Profesional</label>
-          </div>
-          <div style={Estilo.cuenta}>
-            <RadioButton mame="Cliente" />
-            <label>Cliente</label>
-          </div>
+      <div style={Estilo.cuentas}>
+        <p>Tipo de cuenta:</p>
+        <div style={Estilo.cuenta}>
+          <SelectButton />
+          <RadioButton mame="profesional" />
+          <label>Profesional</label>
         </div>
+        <div style={Estilo.cuenta}>
+          <RadioButton mame="Cliente" />
+          <label>Cliente</label>
+        </div>
+      </div>
 
-        <div style={Estilo.button}>
-          <Link to="/Login">
-            <Button severity="danger">Cancelar</Button>
-          </Link>
-          <Link to="/Login">
-            <Button>Aceptar</Button>
-          </Link>
-        </div>
-      </Card>
+      <div style={Estilo.button}>
+        <Link to="/Login">
+          <Button severity="danger">Cancelar</Button>
+        </Link>
+        <Link to="/Login">
+          <Button>Aceptar</Button>
+        </Link>
+      </div>
     </container>
   );
 };

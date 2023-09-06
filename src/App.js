@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import "./App.css";
-import "primereact/resources/primereact.min.css";
+// import "primereact/resources/primereact.min.css";
 import { Login } from "./components/Login";
 import { Routes, Route } from "react-router-dom";
 import { Perfil } from "./components/Perfil";

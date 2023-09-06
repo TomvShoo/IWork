@@ -27,7 +27,7 @@ export const Menu = () => {
           <h2>Sidebar</h2>
           <ul>
             <li>
-              <Link to="/">Menú principal</Link>
+              <Link to="/Menu">Menú principal</Link>
             </li>
             <li>
               <Link to="/Perfil">Perfil</Link>
