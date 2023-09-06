@@ -4,7 +4,7 @@ import "./App.css";
 import { Login } from "./Pages/Login";
 import { Routes, Route } from "react-router-dom";
 import { Perfil } from "./Pages/Perfil";
-import { Registro } from "./components/Registro";
+import { Registro } from "./Pages/Registro";
 import { Menu } from "./Pages/Menu";
 
 function App() {
