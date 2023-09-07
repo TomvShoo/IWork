@@ -3,7 +3,6 @@ import { Card } from "primereact/card";
 import foto from "../Images/Shesho.jpeg";
 import Calificacion from "../components/Rating";
 import { Avatar } from "primereact/avatar";
-// import Carrusel from "./Carrusel";
 
 const Estilo = {
   card: {

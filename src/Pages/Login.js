@@ -17,28 +17,31 @@ const Estilo = {
     margin: "1rem",
   },
   inputs: {
-    margin: "0rem 0rem",
+    margin: "2.5rem 0rem",
   },
   input: {
     display: "flex",
     flexDirection: "column",
-    margin: "0rem 0rem"
+    margin: "0rem 0rem",
   },
   h4: {
     margin: "1rem",
   },
   inputText: {
-    margin: "1rem 3rem",
+    margin: "0.25rem 3rem",
   },
   button: {
-    padding: "0.85rem 5rem",
+    padding: "0.85rem 1.25rem",
+    margin: "1.25rem 0rem",
+  },
+  registrar: {
     margin: "2rem 0rem",
   },
 };
 
 export const Login = () => {
   return (
-    <container>
+    <div>
       <h1 style={Estilo.tittle}>I Work</h1>
 
       <div style={Estilo.switchButton}>
@@ -54,7 +57,6 @@ export const Login = () => {
           <h4>Contraseña</h4>
           <InputText style={Estilo.inputText}></InputText>
         </div>
-        {/* <Password style={Estilo.input}></Password> */}
       </div>
 
       <div>
@@ -62,17 +64,15 @@ export const Login = () => {
           <Button variant="contained" style={Estilo.button}>
             Iniciar Sesión
           </Button>
-          {/* <Button style={Estilo.button} label="Iniciar Sesión"></Button> */}
         </Link>
       </div>
 
-      <div>
+      <div style={Estilo.registrar}>
         <p>¿No tienes una cuenta?</p>
         <Link to="/Registro">
-          <Button>Registrarse</Button>
-          {/* <Button label="Regístrate aquí" link /> */}
+          <Button >Registrarse</Button>
         </Link>
       </div>
-    </container>
+    </div>
   );
 };

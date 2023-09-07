@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
@@ -11,7 +11,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 
 const Estilo = {
-  container: {
+  divContainer: {
     display: "flex",
     flexDirection: "column",
     margin: "3rem 0rem",
@@ -41,7 +41,7 @@ const Estilo = {
 
 export const Registro = () => {
   return (
-    <container style={Estilo.container}>
+    <div style={Estilo.divContainer}>
       <div style={Estilo.inputs}>
         <InputText placeholder="Nombre" style={Estilo.input}></InputText>
         <InputText placeholder="Correo" style={Estilo.input}></InputText>
@@ -73,6 +73,6 @@ export const Registro = () => {
           <Button>Aceptar</Button>
         </Link>
       </div>
-    </container>
+    </div>
   );
 };

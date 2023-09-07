@@ -1,21 +1,21 @@
 // import logo from './logo.svg';
 import "./App.css";
 // import "primereact/resources/primereact.min.css";
-import { Login } from "./Pages/Login";
 import { Routes, Route } from "react-router-dom";
-import { Perfil } from "./Pages/Perfil";
+import { Login } from "./Pages/Login";
 import { Registro } from "./Pages/Registro";
 import { Menu } from "./Pages/Menu";
+import { Perfil } from "./Pages/Perfil";
 
 function App() {
   return (
     <div className="App">
       <header>
-        <Menu />
         <Routes>
           <Route path="/Perfil" element={<Perfil />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Registro" element={<Registro />}></Route>
+          <Route path="/Menu" element={<Menu />}></Route>
         </Routes>
       </header>
     </div>
