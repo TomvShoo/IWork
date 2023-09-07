@@ -6,11 +6,17 @@ import { Avatar } from "primereact/avatar";
 // import Carrusel from "./Carrusel";
 
 const Estilo = {
-  Imagen: {
+  card: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    margin: "1rem 1rem",
+  },
+  imagen: {
     width: "50%",
     height: "50%",
   },
-  card: {
+  rating: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -19,16 +25,14 @@ const Estilo = {
 
 export const Perfil = () => {
   return (
-    <div>
-      <Card style={Estilo.card}>
-        <p>
-          <Avatar style={Estilo.Imagen} image={foto} size="xlarge" />
-        </p>
-        <p>
-          <Calificacion />
-        </p>
-        <h1>Nombre</h1>
-      </Card>
-    </div>
+    <Card style={Estilo.card}>
+      <p>
+        <Avatar style={Estilo.imagen} image={foto} size="xlarge" />
+      </p>
+      <p style={Estilo.rating}>
+        <Calificacion />
+      </p>
+      <h3>Nombre</h3>
+    </Card>
   );
 };

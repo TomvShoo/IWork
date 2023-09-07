@@ -2,7 +2,6 @@ import { Outlet, Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
-import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 
 const Estilos = {

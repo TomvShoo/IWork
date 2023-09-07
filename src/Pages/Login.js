@@ -1,11 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
-// import React from "react";
 import * as React from "react";
-import Alert from "@mui/material/Alert";
-import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-// import { Button } from "primereact/button";
-import { Password } from "primereact/password";
 import SwitchButton from "../components/SwitchButton";
 
 //theme
@@ -22,19 +17,22 @@ const Estilo = {
     margin: "1rem",
   },
   inputs: {
-    margin: "2rem 0rem",
+    margin: "0rem 0rem",
   },
   input: {
     display: "flex",
     flexDirection: "column",
-    margin: "1rem 0rem"
+    margin: "0rem 0rem"
+  },
+  h4: {
+    margin: "1rem",
   },
   inputText: {
-    margin: "0rem 3rem",
+    margin: "1rem 3rem",
   },
   button: {
-    padding: "0.75rem",
-    margin: "1rem 0rem",
+    padding: "0.85rem 5rem",
+    margin: "2rem 0rem",
   },
 };
 

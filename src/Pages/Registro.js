@@ -1,6 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import React from "react";
-import { Card } from "primereact/card";
+import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";

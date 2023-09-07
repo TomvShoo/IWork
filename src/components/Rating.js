@@ -17,7 +17,7 @@ class Calificacion extends Component {
           onChange={(e) => this.setState({ ratingValue: e.value })}
           cancel={false}
         />
-        <div>Valor seleccionado: {this.state.ratingValue}</div>
+        <div>Calificación {this.state.ratingValue}</div>
       </div>
     );
   }
