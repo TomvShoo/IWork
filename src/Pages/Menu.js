@@ -1,8 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
 import React, { useState } from "react";
-import { Sidebar } from "primereact/sidebar";
+//import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
+import { Card } from "primereact/card";
+import { Avatar } from "primereact/avatar"
+import foto from "../Images/Shesho.jpeg";
+import Calificacion from "../components/Rating";
+import Carrusel from "../components/Carrusel";
+//import { InputText } from "primereact/inputtext";
+//import { BarraMenu } from "../components/Sidebar";
 
 const Estilos = {
   navbar: {
@@ -13,35 +19,53 @@ const Estilos = {
   div: {
     margin: "1rem",
   },
-  sidebar: {},
+  imagen: {
+    width: "50%",
+    height: "50%",
+  },
+  rating: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  carta: {
+    display: "flex",
+    justifyContent: "Space-around",
+    alingItems: "center",
+  },
 };
 
 export const Menu = () => {
-  const [visible, setVisible] = useState(false);
 
   return (
-    <header style={Estilos.navbar}>
-      <div style={Estilos.div}>
-        <Sidebar visible={visible} onHide={() => setVisible(false)}>
-          <h2>Sidebar</h2>
-          <ul>
-            <li>
-              <Link to="/Menu">Menú principal</Link>
-            </li>
-            <li>
-              <Link to="/Perfil">Perfil</Link>
-            </li>
-            <li>
-              <Link to="/Login">Cerrar Sesión</Link>
-            </li>
-          </ul>
-        </Sidebar>
-        <Button icon="pi pi-arrow-right" onClick={() => setVisible(true)} />
+    <div>
+      <div>
+        <Link>
+          <Button>Cercanos a ti</Button>
+          <Button>Filtrar</Button>
+        </Link>
       </div>
-      <div style={Estilos.div}>
-        <InputText placeholder="Buscar" />
-      </div>
-      <Outlet />
-    </header>
+      <Card>
+        <div style={Estilos.carta}>
+          <div>
+            <p>
+              <Avatar label="P" shape="circle" />
+            </p>
+          </div>
+          <div>
+            <h3>Nombre Apellido</h3>
+            <h4>Profesion</h4>
+          </div>
+          <div>
+            <p style={Estilos.rating}>
+              <Calificacion />
+            </p>
+          </div>
+        </div>
+        <div>
+          <Carrusel/>
+        </div>
+      </Card>
+    </div>
   );
 };

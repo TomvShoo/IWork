@@ -6,12 +6,14 @@ import { Login } from "./Pages/Login";
 import { Registro } from "./Pages/Registro";
 import { Menu } from "./Pages/Menu";
 import { Perfil } from "./Pages/Perfil";
+import { BarraMenu } from "./components/BarraMenu";
+
 
 function App() {
   return (
     <div className="App">
       <header>
-        <Menu/>
+        <BarraMenu/>
         <Routes>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Registro" element={<Registro />}></Route>
