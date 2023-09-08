@@ -18,9 +18,6 @@ const Estilos = {
     justifyContent: "Space-evenly",
     margin: "1rem",
   },
-  linkButton: {
-    margin: "0rem 1rem",
-  },
   div: {
     margin: "rem 0rem",
   },
@@ -46,8 +43,10 @@ export const Menu = () => {
       <BarraMenu />
       <div style={Estilos.divLinks}>
         <Link>
-          <Button style={Estilos.linkButton}>Cercanos a ti</Button>
-          <Button style={Estilos.linkButton}>Filtrar</Button>
+          <Button>Cercanos a ti</Button>
+        </Link>
+        <Link>
+          <Button>Filtrar</Button>
         </Link>
       </div>
       <Card>
