@@ -70,7 +70,7 @@ export const Login = () => {
       <div style={Estilo.registrar}>
         <p>¿No tienes una cuenta?</p>
         <Link to="/Registro">
-          <Button >Registrarse</Button>
+          <Button>Registrarse</Button>
         </Link>
       </div>
     </div>

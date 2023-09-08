@@ -8,15 +8,12 @@ import { Menu } from "./Pages/Menu";
 import { Perfil } from "./Pages/Perfil";
 import { EditarPerfil } from "./Pages/EditarPerfil";
 
-
-
 function App() {
   return (
     <div className="App">
       <header>
-        
         <Routes>
-          <Route path="/Login" element={<Login />}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/Registro" element={<Registro />}></Route>
           <Route path="/Menu" element={<Menu />}></Route>
           <Route path="/Perfil" element={<Perfil />}></Route>

@@ -66,10 +66,10 @@ export const Registro = () => {
       </div>
 
       <div style={Estilo.button}>
-        <Link to="/Login">
+        <Link to="/">
           <Button severity="danger">Cancelar</Button>
         </Link>
-        <Link to="/Login">
+        <Link to="/">
           <Button>Aceptar</Button>
         </Link>
       </div>
