@@ -8,6 +8,10 @@ const start = <img alt="logo" src="https://cdn-icons-png.flaticon.com/512/2880/2
 const end = <InputText placeholder="Search" type="text" className="w-full" />;
 const items = [
   {
+    label: <Link to="/Menu">Menu</Link>,
+    icon: 'pi pi-fw pi-home'
+  },
+  {
     label: 'Perfil',
     icon: 'pi pi-fw pi-user',
     items: [
@@ -20,10 +24,6 @@ const items = [
         icon: 'pi pi-fw pi-user-edit'
       },
     ]
-  },
-  {
-    label: <Link to="/Menu">Menu</Link>,
-    icon: 'pi pi-fw pi-home'
   },
   {
     label: <Link to="/Login">Cerrar Sesion</Link>,

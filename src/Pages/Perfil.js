@@ -5,6 +5,7 @@ import Calificacion from "../components/Rating";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Outlet, Link } from "react-router-dom";
+import { BarraMenu } from "../components/BarraMenu";
 
 const Estilo = {
   card: {
@@ -31,6 +32,9 @@ const Estilo = {
 export const Perfil = () => {
   return (
     <div>
+      <div>
+        <BarraMenu/>
+      </div>
       <div><Card style={Estilo.card}>
         <p>
           <Avatar style={Estilo.imagen} image={foto} size="xlarge" />

@@ -7,6 +7,7 @@ import { Avatar } from "primereact/avatar"
 import foto from "../Images/Shesho.jpeg";
 import Calificacion from "../components/Rating";
 import Carrusel from "../components/Carrusel";
+import { BarraMenu } from "../components/BarraMenu";
 //import { InputText } from "primereact/inputtext";
 //import { BarraMenu } from "../components/Sidebar";
 
@@ -39,6 +40,9 @@ export const Menu = () => {
 
   return (
     <div>
+      <div>
+        <BarraMenu/>
+      </div>
       <div>
         <Link>
           <Button>Cercanos a ti</Button>

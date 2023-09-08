@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { BarraMenu } from "../components/BarraMenu";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -37,24 +38,27 @@ const Estilo = {
   },
 };
 
-export const Registro = () => {
+export const EditarPerfil = () => {
   return (
-    <div style={Estilo.divContainer}>
-      <div style={Estilo.inputs}>
-        <InputText placeholder="Cambiar Nombre" style={Estilo.input}></InputText>
-        <InputText placeholder="Nueva Contraseña" style={Estilo.input}></InputText>
-        <InputText
-          placeholder="Verificar contraseña"
-          style={Estilo.input}
-        ></InputText>
-      </div>
-      <div style={Estilo.button}>
-        <Link to="/Login">
-          <Button severity="danger">Cancelar</Button>
-        </Link>
-        <Link to="/Login">
-          <Button>Aceptar</Button>
-        </Link>
+    <div>
+      <BarraMenu/>
+      <div style={Estilo.divContainer}>
+        <div style={Estilo.inputs}>
+          <InputText placeholder="Cambiar Nombre" style={Estilo.input}></InputText>
+          <InputText placeholder="Nueva Contraseña" style={Estilo.input}></InputText>
+          <InputText
+            placeholder="Verificar contraseña"
+            style={Estilo.input}
+          ></InputText>
+        </div>
+        <div style={Estilo.button}>
+          <Link to="/Login">
+            <Button severity="danger">Cancelar</Button>
+          </Link>
+          <Link to="/Login">
+            <Button>Aceptar</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
