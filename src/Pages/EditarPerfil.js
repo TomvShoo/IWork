@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { BarraMenu } from "../components/BarraMenu";
+import BarraMenu from "../components/BarraMenu";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -52,10 +52,10 @@ export const EditarPerfil = () => {
           ></InputText>
         </div>
         <div style={Estilo.button}>
-          <Link to="/Login">
+          <Link to="/Perfil">
             <Button severity="danger">Cancelar</Button>
           </Link>
-          <Link to="/Login">
+          <Link to="/Perfil">
             <Button>Aceptar</Button>
           </Link>
         </div>

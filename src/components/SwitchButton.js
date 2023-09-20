@@ -5,7 +5,7 @@ class SwitchButton extends Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: null,
+      selectedOption: "cliente",
     };
   }
 
