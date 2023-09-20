@@ -1,15 +1,15 @@
-import React from 'react';
-import { Carousel } from 'primereact/carousel';
-import 'primereact/resources/themes/saga-blue/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
+import React from "react";
+import { Carousel } from "primereact/carousel";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const ImageCarousel = () => {
   const images = [
-    { source: 'imagen1.jpg', alt: 'Imagen 1' },
-    { source: 'imagen2.jpg', alt: 'Imagen 2' },
-    { source: 'imagen3.jpg', alt: 'Imagen 3' },
-    { source: 'imagen4.jpg', alt: 'Imagen 4' },
+    { source: "imagen1.jpg", alt: "Imagen 1" },
+    { source: "imagen2.jpg", alt: "Imagen 2" },
+    { source: "imagen3.jpg", alt: "Imagen 3" },
+    { source: "imagen4.jpg", alt: "Imagen 4" },
   ];
 
   const itemTemplate = (image) => {
@@ -24,7 +24,7 @@ const ImageCarousel = () => {
 
   return (
     <div className="carousel-demo">
-      <h2>Carousel</h2>
+      <h2>Muro</h2>
       <Carousel
         value={images}
         itemTemplate={itemTemplate}
@@ -32,12 +32,12 @@ const ImageCarousel = () => {
         numScroll={1}
         responsiveOptions={[
           {
-            breakpoint: '1024px',
+            breakpoint: "1024px",
             numVisible: 2,
             numScroll: 1,
           },
           {
-            breakpoint: '768px',
+            breakpoint: "768px",
             numVisible: 1,
             numScroll: 1,
           },

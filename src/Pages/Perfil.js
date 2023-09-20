@@ -24,18 +24,16 @@ const Estilo = {
     justifyContent: "center",
   },
   button: {
-    padding: "0.85rem 1.25rem",
-    margin: "1.25rem 0rem",
+    padding: "0.75rem 1rem",
+    margin: "0.5rem 0rem",
   },
 };
 
 export const Perfil = () => {
   return (
     <div>
-      <div>
-        <BarraMenu/>
-      </div>
-      <div><Card style={Estilo.card}>
+      <BarraMenu />
+      <Card style={Estilo.card}>
         <p>
           <Avatar style={Estilo.imagen} image={foto} size="xlarge" />
         </p>
@@ -43,17 +41,12 @@ export const Perfil = () => {
           <Calificacion />
         </p>
         <h3>Nombre</h3>
-      </Card>
-      </div>
-      <div>
-      <div>
         <Link to="/EditarPerfil">
           <Button variant="contained" style={Estilo.button}>
             Editar Perfil
           </Button>
         </Link>
-      </div>
-      </div>
+      </Card>
     </div>
   );
 };

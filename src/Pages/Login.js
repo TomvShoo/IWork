@@ -22,7 +22,6 @@ const Estilo = {
   input: {
     display: "flex",
     flexDirection: "column",
-    margin: "0rem 0rem",
   },
   h4: {
     margin: "1rem",

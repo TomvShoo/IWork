@@ -3,8 +3,8 @@ import React, { useState } from "react";
 //import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
-import { Avatar } from "primereact/avatar"
-import foto from "../Images/Shesho.jpeg";
+import { Avatar } from "primereact/avatar";
+// import foto from "../Images/Shesho.jpeg";
 import Calificacion from "../components/Rating";
 import Carrusel from "../components/Carrusel";
 import BarraMenu  from "../components/BarraMenu";
@@ -12,13 +12,14 @@ import BarraMenu  from "../components/BarraMenu";
 //import { BarraMenu } from "../components/Sidebar";
 
 const Estilos = {
-  navbar: {
+  divLinks: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "#005694",
+    justifyContent: "Space-evenly",
+    margin: "1rem",
   },
   div: {
-    margin: "1rem",
+    margin: "rem 0rem",
   },
   imagen: {
     width: "50%",
@@ -37,37 +38,32 @@ const Estilos = {
 };
 
 export const Menu = () => {
-
   return (
     <div>
-      <div>
-        <BarraMenu/>
-      </div>
-      <div>
+      <BarraMenu />
+      <div style={Estilos.divLinks}>
         <Link>
           <Button>Cercanos a ti</Button>
+        </Link>
+        <Link>
           <Button>Filtrar</Button>
         </Link>
       </div>
       <Card>
         <div style={Estilos.carta}>
           <div>
-            <p>
-              <Avatar label="P" shape="circle" />
-            </p>
+            <Avatar label="P" shape="circle" />
           </div>
           <div>
             <h3>Nombre Apellido</h3>
-            <h4>Profesion</h4>
+            <h4>Profesión</h4>
           </div>
           <div>
-            <p style={Estilos.rating}>
-              <Calificacion />
-            </p>
+            <Calificacion />
           </div>
         </div>
         <div>
-          <Carrusel/>
+          <Carrusel />
         </div>
       </Card>
     </div>
