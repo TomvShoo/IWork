@@ -37,41 +37,48 @@ const Estilo = {
   registrar: {
     margin: "2rem 0rem",
   },
+  fondo: {
+    background: "",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    minHeight: "100vh"
+  },
 };
 
 export const Login = () => {
   return (
-    <div>
-      <h1 style={Estilo.tittle}>I Work</h1>
-
-      <div style={Estilo.switchButton}>
-        <SwitchButton />
-      </div>
-
-      <div style={Estilo.inputs}>
-        <div style={Estilo.input}>
-          <h4>Correo</h4>
-          <InputText style={Estilo.inputText}></InputText>
-        </div>
-        <div style={Estilo.input}>
-          <h4>Contraseña</h4>
-          <InputText style={Estilo.inputText}></InputText>
-        </div>
-      </div>
-
+    <div style={Estilo.fondo}> 
       <div>
-        <Link to="/Menu">
-          <Button variant="contained" style={Estilo.button}>
-            Iniciar Sesión
-          </Button>
-        </Link>
-      </div>
+        <h1 style={Estilo.tittle}>I Work</h1>
 
-      <div style={Estilo.registrar}>
-        <p>¿No tienes una cuenta?</p>
-        <Link to="/Registro">
-          <Button >Registrarse</Button>
-        </Link>
+        <div style={Estilo.switchButton}>
+          <SwitchButton />
+        </div>
+
+        <div style={Estilo.inputs}>
+          <div style={Estilo.input}>
+            <InputText style={Estilo.inputText} placeholder="Correo electronico"></InputText>
+          </div>
+          <div style={Estilo.input}>
+            <InputText style={Estilo.inputText} placeholder="Contraseña"></InputText>
+          </div>
+        </div>
+
+        <div>
+          <Link to="/Menu">
+            <Button variant="contained" style={Estilo.button}>
+              Iniciar Sesión
+            </Button>
+          </Link>
+        </div>
+
+        <div style={Estilo.registrar}>
+          <p>¿No tienes una cuenta?</p>
+          <Link to="/Registro">
+            <Button >Registrarse</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
