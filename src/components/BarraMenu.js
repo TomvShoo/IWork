@@ -10,7 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
-function BarraMenu() {
+const BarraMenu = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-3">
       <Container fluid>
@@ -34,11 +34,11 @@ function BarraMenu() {
                 id="offcanvasNavbarDropdown-expand-lg"
                 
               >
-                <NavDropdown.Item href="/Perfil"><PersonIcon color="primary"/> Mi Perfil</NavDropdown.Item> 
+                <NavDropdown.Item href="/PerfilProfesional"><PersonIcon color="primary"/> Mi Perfil</NavDropdown.Item> 
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/EditarPerfil"><ModeEditIcon color="primary"/>Editar Perfil</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/Login"><HighlightOffIcon color="primary"/> Cerrar Sesión</Nav.Link>
+              <Nav.Link href="/"><HighlightOffIcon color="primary"/> Cerrar Sesión</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control

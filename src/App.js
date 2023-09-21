@@ -5,8 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import { Login } from "./Pages/Login";
 import { Registro } from "./Pages/Registro";
 import { Menu } from "./Pages/Menu";
-import { Perfil } from "./Pages/Perfil";
+import { Perfil } from "./Pages/PerfilProfesional";
 import { EditarPerfil } from "./Pages/EditarPerfil";
+import PerfilCliente from "./Pages/PerfilCliente";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/" element={<Login />}></Route>
           <Route path="/Registro" element={<Registro />}></Route>
           <Route path="/Menu" element={<Menu />}></Route>
-          <Route path="/Perfil" element={<Perfil />}></Route>
+          <Route path="/PerfilProfesional" element={<Perfil />}></Route>
+          <Route path="/PerfilCliente" element={<PerfilCliente />}></Route>
           <Route path="/EditarPerfil" element={<EditarPerfil />}></Route>
         </Routes>
       </header>

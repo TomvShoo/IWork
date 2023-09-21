@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import SwitchButton from "../components/SwitchButton";
@@ -60,7 +60,8 @@ export const Login = () => {
             <InputText style={Estilo.inputText} placeholder="Correo electronico"></InputText>
           </div>
           <div style={Estilo.input}>
-            <InputText style={Estilo.inputText} placeholder="Contraseña"></InputText>
+            <InputText style={Estilo.inputText} placeholder="Contraseña" type="password"></InputText>
+            
           </div>
         </div>
 
