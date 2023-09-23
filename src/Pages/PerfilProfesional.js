@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "primereact/card";
-import foto from "../images/Shesho.jpeg";
+import foto from "../Images/Shesho.jpeg";
 import Calificacion from "../components/Rating";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";

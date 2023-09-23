@@ -1,11 +1,11 @@
 // import "primereact/resources/primereact.min.css";
 import { Routes, Route } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Registro } from "./pages/Registro";
-import { Menu } from "./pages/Menu";
-import { Perfil } from "./pages/PerfilProfesional";
-import { EditarPerfil } from "./pages/EditarPerfil";
-import PerfilCliente from "./pages/PerfilCliente";
+import { Login } from "./Pages/Login";
+import { Registro } from "./Pages/Registro";
+import { Menu } from "./Pages/Menu";
+import { Perfil } from "./Pages/PerfilProfesional";
+import { EditarPerfil } from "./Pages/EditarPerfil";
+import PerfilCliente from "./Pages/PerfilCliente";
 // Estilos
 // import "./index.css";
 
