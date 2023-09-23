@@ -52,10 +52,10 @@ export const EditarPerfil = () => {
           ></InputText>
         </div>
         <div style={Estilo.button}>
-          <Link to="/Perfil">
+          <Link to="/PerfilProfesional">
             <Button severity="danger">Cancelar</Button>
           </Link>
-          <Link to="/Perfil">
+          <Link to="/PerfilProfesional">
             <Button>Aceptar</Button>
           </Link>
         </div>

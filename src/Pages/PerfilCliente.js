@@ -7,26 +7,26 @@ import { Link } from "react-router-dom";
 import BarraMenu from "../components/BarraMenu";
 
 const Estilo = {
-    card: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      margin: "1rem 1rem",
-    },
-    imagen: {
-      width: "20%",
-      height: "20%",
-    },
-    rating: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-    },
-    button: {
-      padding: "0.75rem 1rem",
-      margin: "0.5rem 0rem",
-    },
-  };
+  card: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    margin: "1rem 1rem",
+  },
+  imagen: {
+    width: "20%",
+    height: "20%",
+  },
+  rating: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  button: {
+    padding: "0.75rem 1rem",
+    margin: "0.5rem 0rem",
+  },
+};
 
 const PerfilCliente = () => {
   return (
@@ -47,7 +47,7 @@ const PerfilCliente = () => {
         </Link>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default PerfilCliente        
+export default PerfilCliente;
