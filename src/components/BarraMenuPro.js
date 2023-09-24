@@ -10,11 +10,11 @@ import PersonIcon from "@mui/icons-material/Person";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
-const BarraMenu = () => {
+const BarraMenuPro = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-3">
       <Container fluid>
-        <Navbar.Brand href="/Menu">
+        <Navbar.Brand href="/MenuPro">
           <EngineeringIcon color="primary" />
           IWork
         </Navbar.Brand>
@@ -40,7 +40,7 @@ const BarraMenu = () => {
               <Button variant="outline-success">Buscar</Button>
             </Form>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/Menu">Menu Principal</Nav.Link>
+              <Nav.Link href="/MenuPro">Menu Principal</Nav.Link>
               <NavDropdown
                 title="Perfil"
                 id="offcanvasNavbarDropdown-expand-lg"
@@ -49,7 +49,7 @@ const BarraMenu = () => {
                   <PersonIcon color="primary" /> Mi Perfil
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/EditarPerfil">
+                <NavDropdown.Item href="/EditarPerfilPro">
                   <ModeEditIcon color="primary" />
                   Editar Perfil
                 </NavDropdown.Item>
@@ -65,4 +65,4 @@ const BarraMenu = () => {
   );
 };
 
-export default BarraMenu;
+export default BarraMenuPro;

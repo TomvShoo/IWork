@@ -1,15 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import React, { useState } from "react";
-//import { Sidebar } from "primereact/sidebar";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
-// import foto from "../Images/Shesho.jpeg";
-import Calificacion from "../components/Rating";
-import Carrusel from "../components/Carrusel";
-import BarraMenu  from "../components/BarraMenu";
-//import { InputText } from "primereact/inputtext";
-//import { BarraMenu } from "../components/Sidebar";
+import Calificacion from "../../components/Rating";
+import Carrusel from "../../components/Carrusel";
+import BarraMenuCli  from "../../components/BarraMenuCli";
+
 
 const Estilos = {
   divLinks: {
@@ -37,10 +34,10 @@ const Estilos = {
   },
 };
 
-export const Menu = () => {
+export const MenuCli = () => {
   return (
     <div>
-      <BarraMenu />
+      <BarraMenuCli />
       <div style={Estilos.divLinks}>
         <Link>
           <Button>Cercanos a ti</Button>

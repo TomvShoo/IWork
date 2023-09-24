@@ -64,7 +64,7 @@ export const Login = () => {
       </div>
 
       <div>
-        <Link to="/Menu">
+        <Link to="/MenuPro">
           <Button variant="contained" style={Estilo.button}>
             Iniciar Sesión
           </Button>

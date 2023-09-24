@@ -5,7 +5,7 @@ import Calificacion from "../components/Rating";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-import BarraMenu from "../components/BarraMenu";
+import BarraMenu from "../components/BarraMenuPro";
 
 const Estilo = {
   card: {
@@ -41,7 +41,7 @@ export const Perfil = () => {
           <Calificacion />
         </p>
         <h3>Nombre</h3>
-        <Link to="/EditarPerfil">
+        <Link to="/EditarPerfilPro">
           <Button variant="contained" style={Estilo.button}>
             Editar Perfil
           </Button>

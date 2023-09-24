@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import BarraMenu from "../components/BarraMenu";
+import BarraMenuCli from "../../components/BarraMenuCli";
 
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -38,10 +38,10 @@ const Estilo = {
   },
 };
 
-export const EditarPerfil = () => {
+export const EditarPerfilCli = () => {
   return (
     <div>
-      <BarraMenu/>
+      <BarraMenuCli/>
       <div style={Estilo.divContainer}>
         <div style={Estilo.inputs}>
           <InputText placeholder="Cambiar Nombre" style={Estilo.input}></InputText>
@@ -52,10 +52,10 @@ export const EditarPerfil = () => {
           ></InputText>
         </div>
         <div style={Estilo.button}>
-          <Link to="/PerfilProfesional">
+          <Link to="/PerfilCliente">
             <Button severity="danger">Cancelar</Button>
           </Link>
-          <Link to="/PerfilProfesional">
+          <Link to="/PerfilCliente">
             <Button>Aceptar</Button>
           </Link>
         </div>

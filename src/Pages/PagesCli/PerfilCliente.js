@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "primereact/card";
-import Calificacion from "../components/Rating";
+import Calificacion from "../../components/Rating";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-import BarraMenu from "../components/BarraMenu";
+import BarraMenuCli from "../../components/BarraMenuCli";
 
 const Estilo = {
   card: {
@@ -31,7 +31,7 @@ const Estilo = {
 const PerfilCliente = () => {
   return (
     <div>
-      <BarraMenu />
+      <BarraMenuCli />
       <Card style={Estilo.card}>
         <p>
           <Avatar style={Estilo.imagen} size="xlarge" />
@@ -40,7 +40,7 @@ const PerfilCliente = () => {
           <Calificacion />
         </p>
         <h3>Nombre</h3>
-        <Link to="/EditarPerfil">
+        <Link to="/EditarPerfilCli">
           <Button variant="contained" style={Estilo.button}>
             Editar Perfil
           </Button>
