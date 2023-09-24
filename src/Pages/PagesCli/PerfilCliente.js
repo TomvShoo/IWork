@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import BarraMenuCli from "../../components/BarraMenuCli";
 
+
 const Estilo = {
   card: {
     display: "flex",
@@ -46,6 +47,7 @@ const PerfilCliente = () => {
           </Button>
         </Link>
       </Card>
+
     </div>
   );
 };

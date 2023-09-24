@@ -16,7 +16,7 @@ const BarraMenuPro = () => {
       <Container fluid>
         <Navbar.Brand href="/MenuPro">
           <EngineeringIcon color="primary" />
-          IWork
+          IWork Pro
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
         <Navbar.Offcanvas

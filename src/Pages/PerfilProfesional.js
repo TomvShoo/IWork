@@ -6,6 +6,8 @@ import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import BarraMenu from "../components/BarraMenuPro";
+import BotonesRedes from "../components/BotonesRedes";
+
 
 const Estilo = {
   card: {
@@ -47,6 +49,7 @@ export const Perfil = () => {
           </Button>
         </Link>
       </Card>
+      <BotonesRedes />
     </div>
   );
 };

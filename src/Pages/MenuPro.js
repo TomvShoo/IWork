@@ -1,11 +1,13 @@
 import { Outlet, Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import Calificacion from "../components/Rating";
 import Carrusel from "../components/Carrusel";
-import BarraMenuPro  from "../components/BarraMenuPro";
+import BarraMenuPro from "../components/BarraMenuPro";
+import AdvertenciaPro from "../components/AdvertenciaPro";
+
 
 
 const Estilos = {
@@ -38,6 +40,7 @@ export const MenuPro = () => {
   return (
     <div>
       <BarraMenuPro />
+      <AdvertenciaPro/>
       <div style={Estilos.divLinks}>
         <Link>
           <Button>Cercanos a ti</Button>
