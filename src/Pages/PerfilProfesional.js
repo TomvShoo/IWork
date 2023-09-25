@@ -31,7 +31,7 @@ const Estilo = {
   },
 };
 
-export const Perfil = () => {
+export const PerfilPro = () => {
   return (
     <div>
       <BarraMenu />
