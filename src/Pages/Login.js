@@ -11,70 +11,58 @@ import { Button } from "@mui/material";
 import "../style.css";
 
 const Estilo = {
-  switchButton: {
-    margin: "2rem 0rem",
-  },
-  inputs: {
-    margin: "2.5rem 0rem",
-  },
-  input: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  h4: {
-    margin: "1rem",
-  },
-  inputText: {
-    margin: "0.25rem 3rem",
-  },
-  button: {
-    padding: "0.85rem 1.25rem",
-    margin: "1.25rem 0rem",
-  },
-  registrar: {
-    margin: "2rem 0rem",
-  },
+  // inputs: {
+  //   margin: "2.5rem 0rem",
+  // },
+  // input: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  // },
+  // h4: {
+  //   margin: "1rem",
+  // },
+  // inputText: {
+  //   margin: "0.25rem 3rem",
+  // },
+  // button: {
+  //   padding: "0.85rem 1.25rem",
+  //   margin: "1.25rem 0rem",
+  // },
+  // registrar: {
+  //   margin: "2rem 0rem",
+  // },
 };
 
 export const Login = () => {
   return (
-    <div style={Estilo.fondo} className="fondo">
+    <div className="containerLogin">
       <div>
-        <h1 style={Estilo.tittle} className="tittle">I Work</h1>
+        <h1 className="tittle">I Work</h1>
       </div>
 
-      <div style={Estilo.switchButton}>
+      <div className="switchButton">
         <SwitchButton />
       </div>
 
-      <div style={Estilo.inputs}>
-        <div style={Estilo.input}>
-          <InputText
-            style={Estilo.inputText}
-            placeholder="Correo electrónico"
-          ></InputText>
+      <div>
+        <div className="input">
+          <InputText placeholder="Correo electrónico"></InputText>
         </div>
-        <div style={Estilo.input}>
-          <InputText
-            style={Estilo.inputText}
-            placeholder="Contraseña"
-            type="password"
-          ></InputText>
+        <div className="input">
+          <InputText placeholder="Contraseña" type="password"></InputText>
         </div>
       </div>
 
-      <div>
+      <div className="loginContainer">
         <Link to="/MenuPro">
-          <Button variant="contained" style={Estilo.button}>
-            Iniciar Sesión
-          </Button>
+          <Button variant="contained" size="large">Iniciar sesión</Button>
         </Link>
       </div>
 
-      <div style={Estilo.registrar}>
-        <p>¿No tienes una cuenta?</p>
+      <div className="registerContainer">
+        <p className="registerText">¿No tienes una cuenta?</p>
         <Link to="/Registro">
-          <Button>Registrarse</Button>
+          <Button size="small">Crear cuenta</Button>
         </Link>
       </div>
     </div>
