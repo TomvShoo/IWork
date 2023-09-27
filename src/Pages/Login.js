@@ -60,8 +60,9 @@ export const Login = () => {
       
       // manejo de respuesta exitosa
       if(response.data.success) {
-        console.log('inicio de sesion the real exitoso :D');
+        console.log('inicio de sesion exitoso :D');
         console.log('Respuesta del servidor:', response.data);
+        localStorage.setItem('token', response.data.data);
         return navigate('/MenuPro')
       } else {
         console.log('alguna wea');
