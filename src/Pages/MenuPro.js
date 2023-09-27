@@ -1,5 +1,5 @@
-import { Outlet, Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
