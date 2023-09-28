@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { InputText } from "primereact/inputtext";
-import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 
@@ -88,6 +87,7 @@ export const Registro = () => {
     } catch (error) {
       if(error.response && error.response.status === 400) {
         console.log('Solicitud incorrecta: Verifica los datos ingresados');
+        console.log('error en el registro', error);
       } else {
         console.log('error en el registro', error);
       }
