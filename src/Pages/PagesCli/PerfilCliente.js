@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "primereact/card";
-import Calificacion from "../../components/Rating";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";

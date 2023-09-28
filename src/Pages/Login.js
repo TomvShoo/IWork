@@ -65,10 +65,10 @@ export const Login = () => {
         localStorage.setItem('token', response.data.data);
         return navigate('/MenuPro')
       } else {
-        console.log('alguna wea');
+        console.log('Error en el inicio de sesion');
         // return navigate('/MenuPro')
       }
-      const token = response.data.token;
+      // const token = response.data.token;
       
 
     } catch (error) {

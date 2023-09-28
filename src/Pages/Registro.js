@@ -49,7 +49,7 @@ export const Registro = () => {
     correo: '',
     contrasena: '',
     confirmarContrasena: '',
-    // agregar tipo de cuenta!!!
+    tipoCuenta: '',
   })
 
   const navigate = useNavigate();
@@ -74,7 +74,8 @@ export const Registro = () => {
         apellido: formData.apellido,
         nroTelefono: formData.nroTelefono,
         correo: formData.correo,
-        contrasena: formData.contrasena
+        contrasena: formData.contrasena,
+        tipoCuenta: formData.tipoCuenta,
       });
 
       if(response.data.success) {
@@ -144,18 +145,17 @@ export const Registro = () => {
         ></InputText>
       </div>
 
-      {/* <div style={Estilo.cuentas}>
+      <div style={Estilo.cuentas}>
         <p>Tipo de cuenta:</p>
-        <div style={Estilo.cuenta}>
-          <SelectButton />
-          <RadioButton mame="profesional" />
-          <label>Profesional</label>
-        </div>
-        <div style={Estilo.cuenta}>
-          <RadioButton mame="Cliente" />
-          <label>Cliente</label>
-        </div>
-      </div> */}
+        <SelectButton
+            options={[
+              { label: "Cliente", value: "cliente" },
+              { label: "Profesional", value: "profesional" },
+            ]}
+            value={formData.tipoCuenta}
+            onChange={(e) => setformData({ ...formData, tipoCuenta: e.value })}
+          />
+      </div>
 
       <div style={Estilo.button}>
         <Link to="/">
