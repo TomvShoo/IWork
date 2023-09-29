@@ -9,6 +9,7 @@ import "primereact/resources/primereact.min.css";
 import { ToggleButton } from 'primereact/togglebutton';
 import Modal from 'react-bootstrap/Modal';
 
+
 const Estilo = {
   divContainer: {
     display: "flex",
