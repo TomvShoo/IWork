@@ -9,6 +9,12 @@ class SwitchButton extends Component {
     };
   }
 
+  handleOptionChange = (option) => {
+    if (this.state.selectedOption !== option) {
+      this.setState({ selectedOption: option });
+    }
+  };
+
   render() {
     const options = [
       { label: "Cliente", value: "cliente" },
@@ -20,7 +26,7 @@ class SwitchButton extends Component {
         <SelectButton
           value={this.state.selectedOption}
           options={options}
-          onChange={(e) => this.setState({ selectedOption: e.value })}
+          onChange={(e) => this.handleOptionChange(e.value)}
         />
       </div>
     );

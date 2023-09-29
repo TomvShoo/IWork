@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
-import * as React from "react";
+import { Link, useNavigate  } from "react-router-dom";
+import React, { useState } from 'react';
 import { InputText } from "primereact/inputtext";
 import SwitchButton from "../components/SwitchButton";
+import axios from 'axios';
+
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
@@ -10,71 +12,111 @@ import { Button } from "@mui/material";
 // Estilos
 import "../style.css";
 
-const Estilo = {
-  switchButton: {
-    margin: "2rem 0rem",
-  },
-  inputs: {
-    margin: "2.5rem 0rem",
-  },
-  input: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  h4: {
-    margin: "1rem",
-  },
-  inputText: {
-    margin: "0.25rem 3rem",
-  },
-  button: {
-    padding: "0.85rem 1.25rem",
-    margin: "1.25rem 0rem",
-  },
-  registrar: {
-    margin: "2rem 0rem",
-  },
-};
+// const Estilo = {
+//   // inputs: {
+//   //   margin: "2.5rem 0rem",
+//   // },
+//   // input: {
+//   //   display: "flex",
+//   //   flexDirection: "column",
+//   // },
+//   // h4: {
+//   //   margin: "1rem",
+//   // },
+//   // inputText: {
+//   //   margin: "0.25rem 3rem",
+//   // },
+//   // button: {
+//   //   padding: "0.85rem 1.25rem",
+//   //   margin: "1.25rem 0rem",
+//   // },
+//   // registrar: {
+//   //   margin: "2rem 0rem",
+//   // },
+// };
 
 export const Login = () => {
+  const [formData, setFormData] = useState({
+    correo: '',
+    contrasena: '',
+  });
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value  });
+  }
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+
+    // inicio de sesion con axios
+    try {
+      const response = await axios.post('http://localhost:4000/auth/login', {
+        correo: formData.correo,
+        contrasena: formData.contrasena,
+      });
+      
+      // manejo de respuesta exitosa
+      if(response.data.success) {
+        console.log('inicio de sesion exitoso :D');
+        console.log('Respuesta del servidor:', response.data);
+        localStorage.setItem('token', response.data.data);
+        return navigate('/MenuPro')
+      } else {
+        console.log('Error en el inicio de sesion');
+        // return navigate('/MenuPro')
+      }
+      // const token = response.data.token;
+      
+
+    } catch (error) {
+      // manejo de errores
+      console.error('error en el inicio de sesion', error);
+    }
+  };
+
   return (
-    <div style={Estilo.fondo} className="fondo">
+    <div className="containerLogin">
       <div>
-        <h1 style={Estilo.tittle} className="tittle">I Work</h1>
+        <h1 className="tittle">I Work</h1>
       </div>
 
-      <div style={Estilo.switchButton}>
+      <div className="switchButton">
         <SwitchButton />
       </div>
 
-      <div style={Estilo.inputs}>
-        <div style={Estilo.input}>
+      <form onSubmit={ handlesubmit }>
+        <div className="input">
           <InputText
-            style={Estilo.inputText}
             placeholder="Correo electrónico"
+            name="correo"
+            value={formData.correo}
+            onChange={handleInputChange}  
           ></InputText>
         </div>
-        <div style={Estilo.input}>
-          <InputText
-            style={Estilo.inputText}
-            placeholder="Contraseña"
+        <div className="input">
+          <InputText 
+            placeholder="Contraseña" 
             type="password"
+            name="contrasena"
+            value={formData.contrasena}
+            onChange={handleInputChange}
           ></InputText>
         </div>
-      </div>
+        <div className="loginContainer">
+          <Link to="/MenuPro">
+          </Link>
+          <Button type="submit" variant="contained" size="large">Iniciar sesión</Button>
+        </div>
+      </form>
 
-      <div>
-        <Link to="/MenuPro">
-          <Button variant="contained" style={Estilo.button}>
-            Iniciar Sesión
-          </Button>
-        </Link>
-      </div>
 
-      <div style={Estilo.registrar}>
-        <p>¿No tienes una cuenta?</p>
+      <div className="registerContainer">
+        <p className="registerText">¿No tienes una cuenta?</p>
         <Link to="/Registro">
-          <Button>Registrarse</Button>
+          <Button size="small">Crear cuenta</Button>
         </Link>
       </div>
     </div>

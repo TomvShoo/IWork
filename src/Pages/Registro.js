@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 import React, { useState } from 'react';
 import { InputText } from "primereact/inputtext";
-import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -40,63 +40,129 @@ const Estilo = {
 };
 
 export const Registro = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [checked, setChecked] = useState(false);
 
+  const [formData, setformData] = useState({
+    nombre: '',
+    apellido: '',
+    nroTelefono: '',
+    correo: '',
+    contrasena: '',
+    confirmarContrasena: '',
+    tipoCuenta: '',
+  })
+
+  const navigate = useNavigate();
+  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // verificar la contraseña y la confirmacion de la contraseña
+    if(formData.contrasena !== formData.confirmarContrasena) {
+      console.log('las contraseñas no coinciden');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:4000/auth/register', {
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        nroTelefono: formData.nroTelefono,
+        correo: formData.correo,
+        contrasena: formData.contrasena,
+        tipoCuenta: formData.tipoCuenta,
+      });
+
+      if(response.data.success) {
+        console.log('Registro exitoso :D');
+        navigate('/');
+      } else {
+        console.log('Registro fallido');
+      }
+        
+    } catch (error) {
+      if(error.response && error.response.status === 400) {
+        console.log('Solicitud incorrecta: Verifica los datos ingresados');
+        console.log('error en el registro', error);
+      } else {
+        console.log('error en el registro', error);
+      }
+    }
+
+  };
 
   return (
-    <div style={Estilo.divContainer}>
+    <form 
+      style={Estilo.divContainer} 
+      onSubmit={handleSubmit}
+    >
       <div style={Estilo.inputs}>
-        <InputText placeholder="Nombre" style={Estilo.input}></InputText>
-        <InputText placeholder="Apellido" style={Estilo.input}></InputText>
-        <InputText placeholder="Numero Telefonico (569)" style={Estilo.input}></InputText>
-        <InputText placeholder="Correo" style={Estilo.input}></InputText>
-        <InputText placeholder="Contraseña" style={Estilo.input}></InputText>
+        <InputText 
+          placeholder="Nombre" 
+          style={Estilo.input}
+          name="nombre"
+          value={formData.nombre}
+          onChange={handleInputChange}
+        ></InputText>
+        <InputText 
+          placeholder="Apellido" 
+          style={Estilo.input}
+          name="apellido"
+          value={formData.apellido}
+          onChange={handleInputChange}
+        ></InputText>
+        <InputText 
+          placeholder="Numero de Telefono" 
+          style={Estilo.input}
+          name="nroTelefono"
+          value={formData.nroTelefono}
+          onChange={handleInputChange}
+        ></InputText>
+        <InputText 
+          placeholder="Correo" 
+          style={Estilo.input}
+          name="correo"
+          value={formData.correo}
+          onChange={handleInputChange}
+        ></InputText>
+        <InputText 
+          placeholder="Contraseña" 
+          style={Estilo.input}
+          name="contrasena"
+          value={formData.contrasena}
+          onChange={handleInputChange}
+        ></InputText>
         <InputText
           placeholder="Verificar contraseña"
           style={Estilo.input}
+          name="confirmarContrasena"
+          value={formData.confirmarContrasena}
+          onChange={handleInputChange}
         ></InputText>
       </div>
       <div style={Estilo.cuentas}>
         <p>Tipo de cuenta:</p>
-        <div style={Estilo.cuenta}>
-          <SelectButton />
-          <RadioButton name="profesional" />
-          <label>Profesional</label>
-        </div>
-        <div style={Estilo.cuenta}>
-          <RadioButton name="Cliente" />
-          <label>Cliente</label>
-        </div>
-        <div>
-          <div>
-            <Button label="Terminos y condiciones:" onClick={handleShow} link />
-          </div>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Terminos y condiciones</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Aqui van los terminos y condiciones</Modal.Body>
-          </Modal>
-          <div style={Estilo.cuenta}>
-            <div>
-              <ToggleButton onLabel="Acepto los terminos y condiciones" offLabel="Rechazo los terminos y condiciones" onIcon="pi pi-check" offIcon="pi pi-times"
-                checked={checked} onChange={(e) => setChecked(e.value)} className="w-9rem" />
-            </div>
-          </div>
-        </div>
+        <SelectButton
+            options={[
+              { label: "Cliente", value: "cliente" },
+              { label: "Profesional", value: "profesional" },
+            ]}
+            value={formData.tipoCuenta}
+            onChange={(e) => setformData({ ...formData, tipoCuenta: e.value })}
+          />
       </div>
 
       <div style={Estilo.button}>
         <Link to="/">
           <Button severity="danger">Cancelar</Button>
         </Link>
-        <Link to="/">
-          <Button>Aceptar</Button>
-        </Link>
+        
+        <Button type="sumbit">Registrarse</Button>        
       </div>
-    </div>
+    </form>
   );
 };
