@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
+// primeicons
+import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 // import { ToggleButton } from "primereact/togglebutton";
@@ -64,66 +66,88 @@ export const Registro = () => {
 
   return (
     <div className="registerContainer">
+      <div className="registerBackLogin">
+        <Link to="/">
+          <Button severity="secondary" text>
+            <i
+              className="pi pi-arrow-circle-left"
+              style={{ fontSize: "1.75rem", color: "rgba(0, 0, 0, 0.5)" }}
+            ></i>
+          </Button>
+        </Link>
+      </div>
+
       <div className="registerData">
         <form className="registerForm" onSubmit={handleSubmit}>
-          <InputText
-            placeholder="Nombre"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleInputChange}
-          ></InputText>
-          <InputText
-            placeholder="Apellido"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleInputChange}
-          ></InputText>
-          <InputText
-            placeholder="Numero de Telefono"
-            name="nroTelefono"
-            value={formData.nroTelefono}
-            onChange={handleInputChange}
-          ></InputText>
-          <InputText
-            placeholder="Correo"
-            name="correo"
-            value={formData.correo}
-            onChange={handleInputChange}
-          ></InputText>
-          <InputText
-            placeholder="Contraseña"
-            name="contrasena"
-            value={formData.contrasena}
-            onChange={handleInputChange}
-          ></InputText>
-          <InputText
-            placeholder="Verificar contraseña"
-            name="confirmarContrasena"
-            value={formData.confirmarContrasena}
-            onChange={handleInputChange}
-          ></InputText>
-
-          <div className="selectContainer">
-            <div>
-              <p>Tipo de cuenta:</p>
-              <SelectButton
-                options={[
-                  { label: "Cliente", value: "cliente" },
-                  { label: "Profesional", value: "profesional" },
-                ]}
-                value={formData.tipoCuenta}
-                onChange={(e) =>
-                  setformData({ ...formData, tipoCuenta: e.value })
-                }
-              />
+          <div className="registerInputs">
+            <div className="registerName">
+              <InputText
+                placeholder="Nombre"
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleInputChange}
+              ></InputText>
+              <InputText
+                placeholder="Apellido"
+                name="apellido"
+                value={formData.apellido}
+                onChange={handleInputChange}
+              ></InputText>
             </div>
 
-            <div>
-              <Link to="/">
-                <Button severity="danger">Cancelar</Button>
-              </Link>
+            <div className="registerNum">
+              <InputText
+                placeholder="Numero de Telefono"
+                name="nroTelefono"
+                value={formData.nroTelefono}
+                onChange={handleInputChange}
+                maxLength={11}
+              ></InputText>
+            </div>
 
-              <Button type="sumbit">Registrarse</Button>
+            <div className="registerEmailPass">
+              <InputText
+                placeholder="Correo"
+                name="correo"
+                value={formData.correo}
+                onChange={handleInputChange}
+              ></InputText>
+              <InputText
+                placeholder="Contraseña"
+                name="contrasena"
+                value={formData.contrasena}
+                onChange={handleInputChange}
+              ></InputText>
+              <InputText
+                placeholder="Verificar contraseña"
+                name="confirmarContrasena"
+                value={formData.confirmarContrasena}
+                onChange={handleInputChange}
+              ></InputText>
+            </div>
+          </div>
+
+          <div className="registerSelectContainer">
+            <div className="registerTypeProfile">
+              <p>Selecciona el tipo de cuenta:</p>
+              <div>
+                <SelectButton
+                  options={[
+                    { label: "Cliente", value: "cliente" },
+                    { label: "Profesional", value: "profesional" },
+                  ]}
+                  value={formData.tipoCuenta}
+                  onChange={(e) =>
+                    setformData({ ...formData, tipoCuenta: e.value })
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="registerButton">
+              <Button className="button" rounded>
+                Registrarse
+              </Button>
             </div>
           </div>
         </form>

@@ -1,36 +1,28 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { SelectButton } from "primereact/selectbutton";
 
-class SwitchButton extends Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedOption: "cliente",
-    };
-  }
+const SwitchButton = ({ onUserTypeChange }) => {
+  const [selectedOption, setSelectedOption] = useState("cliente");
 
-  handleOptionChange = (option) => {
-    if (this.state.selectedOption !== option) {
-      this.setState({ selectedOption: option });
-    }
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+    onUserTypeChange(option); // Actualiza el estado en el componente Login
   };
 
-  render() {
-    const options = [
-      { label: "Cliente", value: "cliente" },
-      { label: "Profesional", value: "profesional" },
-    ];
+  const options = [
+    { label: "Cliente", value: "cliente" },
+    { label: "Profesional", value: "profesional" },
+  ];
 
-    return (
-      <div>
-        <SelectButton
-          value={this.state.selectedOption}
-          options={options}
-          onChange={(e) => this.handleOptionChange(e.value)}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <SelectButton
+        value={selectedOption}
+        options={options}
+        onChange={(e) => handleOptionChange(e.value)}
+      />
+    </div>
+  );
+};
 
 export default SwitchButton;
