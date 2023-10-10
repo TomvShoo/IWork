@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
-import Calificacion from "../components/Rating";
-import Carrusel from "../components/Carrusel";
-import BarraMenuPro from "../components/BarraMenuPro";
-import AdvertenciaPro from "../components/AdvertenciaPro";
+import Calificacion from "../../components/Rating";
+import Carrusel from "../../components/Carrusel";
+import BarraMenuPro from "../../components/BarraMenuPro";
+import AdvertenciaPro from "../../components/AdvertenciaPro";
+
 
 
 

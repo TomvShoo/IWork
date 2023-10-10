@@ -2,12 +2,13 @@
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./Pages/Login";
 import { Registro } from "./Pages/Registro";
-import { MenuPro } from "./Pages/MenuPro";
+import { MenuPro } from "./Pages/PagesPro/MenuPro";
 import { MenuCli } from "./Pages/PagesCli/MenuCli";
 import { EditarPerfilPro } from "./Pages/EditarPerfilPro";
 import { EditarPerfilCli } from "./Pages/PagesCli/EditarPerfilCli";
 import PerfilCliente from "./Pages/PagesCli/PerfilCliente";
-import { PerfilPro } from "./Pages/PerfilProfesional";
+import { PerfilPro } from "./Pages/PagesPro/PerfilProfesional";
+import AgregarPortfolio from "./Pages/PagesPro/AgregarPortfolio";
 // Estilos
 // import "./index.css";
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/PerfilCliente" element={<PerfilCliente />}></Route>
           <Route path="/EditarPerfilPro" element={<EditarPerfilPro />}></Route>
           <Route path="/EditarPerfilCli" element={<EditarPerfilCli />}></Route>
+          <Route path="/AgregarPortfolio" element={<AgregarPortfolio/>}></Route>
         </Routes>
       </header>
     </div>

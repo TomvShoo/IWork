@@ -103,7 +103,7 @@ export const Login = () => {
       <div className="switchButton">
       <SwitchButton
         onUserTypeChange={handleUserTypeChange}
-        selectedUserType={setSelectedUserType}/>
+        setSelectedUserType={setSelectedUserType}/>
       </div>
 
       <form onSubmit={ handlesubmit }>

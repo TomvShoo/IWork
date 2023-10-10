@@ -97,4 +97,65 @@
   }
 }
 
+/* .mensaje {
+  
+} */
+
 /* ESTILOS COMPONENTS */
+
+/* ESTILOS PERFIL PROFESIONAL */
+.info {
+  display: flex;
+}
+
+.contacto {
+  display: grid;
+  justify-content: center;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ESTILOS CARRUSEL */
+@media (min-width: 1024px) {
+  .carousel-image {
+    height: 400px; /* Altura diferente para pantallas grandes */
+  }
+}
+
+/* ESTILOS AGREGAR PORTAFOLIO */
+.Container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-color: #a8a83f;
+}
+
+.Carta {
+  margin: 2%;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.infoPro {
+  display: flex;
+  flex-direction: column;
+}
+
+.Descripcion {
+  display: flex;
+}
+
+.Imagenes {
+  width: 100%;
+}
+
+.UploadImage {
+  display: grid;
+    justify-content: center;
+}
