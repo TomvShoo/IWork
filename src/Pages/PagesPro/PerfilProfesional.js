@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "primereact/card";
 import Calificacion from "../../components/Rating";
 import { Avatar } from "primereact/avatar";
@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import BarraMenu from "../../components/BarraMenuPro"
 import BotonesRedes from "../../components/BotonesRedes";
+import axios from 'axios';
 // Estilos
 import "../../style.css";
 import ImageCarousel from "../../components/Carrusel";
@@ -37,6 +38,30 @@ const Estilo = {
 };
 
 export const PerfilPro = () => {
+
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    // obtener el token del almacenamiento local
+    const token = localStorage.getItem('token');
+
+    if(token) {
+      //se realiza la solicitud al servidor 
+      axios.get('http://localhost:4000/auth/perfil', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setUsuario(response.data);
+      })
+      .catch((error) => {
+        console.error('error al obtener los datos del usuario', error);
+      });
+    }
+
+  })
+
   return (
     <div>
       <BarraMenu />
@@ -45,10 +70,12 @@ export const PerfilPro = () => {
             <div className="info">
               <Avatar label="P" size="xlarge" />
             </div>
-            <div>
-              <h3>Nombre Apellido</h3>
-              <h4>Profesión</h4>
-            </div>
+            {usuario && (
+              <div>
+                <h3>{usuario.nombre}</h3>
+                <h4>Profesión</h4>
+              </div>
+            )}
             <div>
               <Calificacion />
             </div>
