@@ -6,7 +6,7 @@ import { Avatar } from "primereact/avatar";
 import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuCli  from "../../components/BarraMenuCli";
-import AdvertenciaCli from "../../components/AdvertenciaCli";
+import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
 
 
 const Estilos = {
@@ -39,14 +39,14 @@ export const MenuCli = () => {
   return (
     <div>
       <BarraMenuCli />
-      <AdvertenciaCli />
       <div style={Estilos.divLinks}>
-        <Link>
+        {/* <Link>
           <Button>Cercanos a ti</Button>
         </Link>
         <Link>
           <Button>Filtrar</Button>
-        </Link>
+        </Link> */}
+        <ModalAdvertenciaCli />
       </div>
       <Card>
         <div style={Estilos.carta}>
