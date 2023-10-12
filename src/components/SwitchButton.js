@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SelectButton } from "primereact/selectbutton";
 
-const SwitchButton = ({ onUserTypeChange  }) => {
+const SwitchButton = ({ onUserTypeChange }) => {
   const [selectedOption, setSelectedOption] = useState("cliente");
 
   const handleOptionChange = (option) => {
