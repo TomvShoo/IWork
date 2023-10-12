@@ -7,6 +7,7 @@ import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuCli  from "../../components/BarraMenuCli";
 import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
+import Footer from "../../components/Footer";
 
 
 const Estilos = {
@@ -65,6 +66,9 @@ export const MenuCli = () => {
           <Carrusel />
         </div>
       </Card>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

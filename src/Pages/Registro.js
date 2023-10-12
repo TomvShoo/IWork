@@ -8,6 +8,7 @@ import { SelectButton } from "primereact/selectbutton";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import BotonRegistro from "../components/BotonRegistro";
 // import { ToggleButton } from "primereact/togglebutton";
 // import Modal from "react-bootstrap/Modal";
 
@@ -145,9 +146,7 @@ export const Registro = () => {
             </div>
 
             <div className="registerButton">
-              <Button className="button" rounded>
-                Registrarse
-              </Button>
+              <BotonRegistro />
             </div>
           </div>
         </form>

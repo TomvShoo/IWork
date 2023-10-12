@@ -7,6 +7,7 @@ import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuPro from "../../components/BarraMenuPro";
 import ModalAdvertenciaPro from "../../components/ModalAdvertenciaPro";
+import Footer from "../../components/Footer";
 
 
 
@@ -68,6 +69,9 @@ export const MenuPro = () => {
           <Carrusel />
         </div>
       </Card>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

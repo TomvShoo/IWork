@@ -15,7 +15,7 @@ const Estilo = {
   carta: {
     flexDirection: "row",
     margin: "1rem 1rem",
-    background: "#255eb3",
+    background: "#5572D1",
   },
   imagen: {
     width: "20%",
