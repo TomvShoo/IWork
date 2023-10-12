@@ -7,10 +7,10 @@ import SwitchButton from "../components/SwitchButton";
 import axios from "axios";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-// primeicons
-import 'primeicons/primeicons.css';
 //core
 import "primereact/resources/primereact.min.css";
+// primeicons
+import 'primeicons/primeicons.css';
 // Estilos
 import "../style.css";
 

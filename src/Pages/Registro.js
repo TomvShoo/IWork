@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
-// primeicons
-import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import BotonRegistro from "../components/BotonRegistro";
 // import { ToggleButton } from "primereact/togglebutton";
 // import Modal from "react-bootstrap/Modal";
+// primeicons
+import "primeicons/primeicons.css";
+// Estilos
+import "../style.css";
 
 export const Registro = () => {
   const [formData, setformData] = useState({
