@@ -5,19 +5,20 @@ import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
-import BarraMenuCli  from "../../components/BarraMenuCli";
-import AdvertenciaCli from "../../components/AdvertenciaCli";
-
+import BarraMenuCli from "../../components/BarraMenuCli";
+import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
+import CartasMenu from "../../components/CartasMenu";
+// import Footer from "../../components/Footer";
 
 const Estilos = {
   divLinks: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "Space-evenly",
-    margin: "1rem",
+    // margin: "1rem",
   },
   div: {
-    margin: "rem 0rem",
+    margin: "0rem 0rem",
   },
   imagen: {
     width: "50%",
@@ -37,16 +38,22 @@ const Estilos = {
 
 export const MenuCli = () => {
   return (
-    <div>
-      <BarraMenuCli />
-      <AdvertenciaCli />
-      <div style={Estilos.divLinks}>
+    <div className="menuContainer">
+      <div>
+        <BarraMenuCli />
+      </div>
+      <div className="menuCartasMenu">
+        <CartasMenu />
+      </div>
+
+      {/* <div style={Estilos.divLinks}>
         <Link>
           <Button>Cercanos a ti</Button>
         </Link>
         <Link>
           <Button>Filtrar</Button>
         </Link>
+        <ModalAdvertenciaCli />
       </div>
       <Card>
         <div style={Estilos.carta}>
@@ -64,7 +71,10 @@ export const MenuCli = () => {
         <div>
           <Carrusel />
         </div>
-      </Card>
+      </Card> */}
+      {/* <div>
+        <Footer />
+      </div> */}
     </div>
   );
 };

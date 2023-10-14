@@ -9,8 +9,6 @@ import { EditarPerfilCli } from "./Pages/PagesCli/EditarPerfilCli";
 import PerfilCliente from "./Pages/PagesCli/PerfilCliente";
 import { PerfilPro } from "./Pages/PagesPro/PerfilProfesional";
 import AgregarPortfolio from "./Pages/PagesPro/AgregarPortfolio";
-// Estilos
-// import "./index.css";
 
 function App() {
   return (

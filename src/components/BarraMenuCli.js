@@ -1,68 +1,54 @@
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import PersonIcon from "@mui/icons-material/Person";
-import EngineeringIcon from "@mui/icons-material/Engineering";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import React from "react";
+import { Menubar } from "primereact/menubar";
+import { InputText } from "primereact/inputtext";
 
-const BarraMenuCli = () => {
-  return (
-    <Navbar expand="lg" className="bg-body-tertiary mb-3">
-      <Container fluid>
-        <Navbar.Brand href="/MenuCli">
-          <EngineeringIcon color="primary" />
-          IWork
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="offcanvasNavbar-expand-lg" />
-        <Navbar.Offcanvas
-          id="offcanvasNavbar-expand-lg"
-          aria-labelledby="offcanvasNavbarLabel-expand-lg"
-          placement="start"
-        >
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvasNavbarLabel-expand-lg">
-              IWork
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Form className="d-flex">
-              <Form.Control
-                type="Buscar"
-                placeholder="Buscar..."
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Buscar</Button>
-            </Form>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/MenuCli">Menu Principal</Nav.Link>
-              <NavDropdown
-                title="Perfil"
-                id="offcanvasNavbarDropdown-expand-lg"
-              >
-                <NavDropdown.Item href="/PerfilCliente">
-                  <PersonIcon color="primary" /> Mi Perfil
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/EditarPerfilCli">
-                  <ModeEditIcon color="primary" />
-                  Editar Perfil
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/">
-                <HighlightOffIcon color="primary" /> Cerrar Sesión
-              </Nav.Link>
-            </Nav>
-          </Offcanvas.Body>
-        </Navbar.Offcanvas>
-      </Container>
-    </Navbar>
+export default function BarraMenuCli() {
+  const menu = [
+    {
+      label: "Menú",
+      icon: "pi pi-home",
+    },
+    {
+      label: "Perfil",
+      icon: "pi pi-fw pi-user",
+      items: [
+        {
+          label: "Ver Perfil",
+          icon: "pi pi-eye",
+        },
+        {
+          label: "Editar Perfil",
+          icon: "pi pi-pencil",
+        },
+      ],
+    },
+    {
+      label: "Cerrar Sesión",
+      icon: "pi pi-fw pi-power-off",
+    },
+  ];
+
+  const logo = (
+    <img
+      alt="logo"
+      src="https://primefaces.org/cdn/primereact/images/logo.png"
+      height="40"
+      className="mr-2"
+    ></img>
   );
-};
 
-export default BarraMenuCli;
+  const barra = (
+    <div>
+      <span className="p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText placeholder="Buscar" />
+      </span>
+    </div>
+  );
+
+  return (
+    <div>
+      <Menubar model={menu} start={logo} end={barra} />
+    </div>
+  );
+}

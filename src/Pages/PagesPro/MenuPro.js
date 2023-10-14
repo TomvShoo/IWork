@@ -6,7 +6,8 @@ import { Avatar } from "primereact/avatar";
 import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuPro from "../../components/BarraMenuPro";
-import AdvertenciaPro from "../../components/AdvertenciaPro";
+import ModalAdvertenciaPro from "../../components/ModalAdvertenciaPro";
+import Footer from "../../components/Footer";
 
 
 
@@ -41,14 +42,15 @@ export const MenuPro = () => {
   return (
     <div>
       <BarraMenuPro />
-      <AdvertenciaPro/>
       <div style={Estilos.divLinks}>
-        <Link>
+        {/* <Link>
           <Button>Cercanos a ti</Button>
         </Link>
         <Link>
           <Button>Filtrar</Button>
-        </Link>
+        </Link> */}
+        <ModalAdvertenciaPro />
+        
       </div>
       <Card>
         <div style={Estilos.carta}>
@@ -67,6 +69,9 @@ export const MenuPro = () => {
           <Carrusel />
         </div>
       </Card>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
