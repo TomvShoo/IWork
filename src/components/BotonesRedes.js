@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
+import axios from 'axios';
 
 const Estilo = {
     button: {
@@ -14,21 +15,54 @@ const Estilo = {
 }
 export default function BotonesRedes() {
 
+  const [usuario, setUsuario] = useState(null);
+  // obtener el token del almacenamiento local
+  const token = localStorage.getItem('token');
+
+
+  useEffect(() => {
+    if(token) {
+      //se realiza la solicitud al servidor 
+      axios.get('http://localhost:4000/auth/perfil', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setUsuario(response.data);
+      })
+      .catch((error) => {
+        console.error('error al obtener los datos del usuario', error);
+      });
+    } 
+  
+  }, [token])
+  
   const handleWhatsAppClick = () => {
-    // URL de WhatsApp con el número de teléfono que desea
-    const whatsappURL = 'https://api.whatsapp.com/send?phone=569';
-    window.open(whatsappURL, '_blank');
+    if(usuario.nroTelefono) {
+      const whatsappURL = `https://api.whatsapp.com/send?phone=569${usuario.nroTelefono}`;
+      // URL de WhatsApp con el número de teléfono que desea
+      window.open(whatsappURL, '_blank');
+    }
   };
 
+  // const handleGmailClick = () => {
+  //   if (usuario.correo) {
+  //     // // Dirección de correo electrónico predefinida
+  //     // const email = ${usuario.correo};
+  //     // Crear el enlace "mailto"
+  //     const mailtoLink = `mailto:${correo}`;
+  
+  //     // Abrir el enlace en una nueva pestaña o ventana
+  //     window.open(mailtoLink, '_blank');
+
+  //   }
+  // };
   const handleGmailClick = () => {
-    // Dirección de correo electrónico predefinida
-    const email = 'tucorreo@gmail.com';
-
-    // Crear el enlace "mailto"
-    const mailtoLink = `mailto:${email}`;
-
-    // Abrir el enlace en una nueva pestaña o ventana
-    window.open(mailtoLink, '_blank');
+    if (usuario.correo) {
+      const mailtoLink = `mailto:${usuario.correo}`;
+      window.open(mailtoLink, '_blank');
+    }
   };
 
   return (

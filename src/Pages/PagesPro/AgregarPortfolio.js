@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { InputTextarea } from 'primereact/inputtextarea';
 import "../../style.css";
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 const AgregarPortfolio = () => {
   
@@ -23,35 +24,70 @@ const AgregarPortfolio = () => {
         // const professionalId = decodedToken.usuarioId;
         // setProfessionalId(decodedToken.profesionalId);
     }
-  })
+  }, []);
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
+    const reader = new FileReader();
 
-    if (images.length < 3) {
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const base64Image = event.target.result;
-          setImages([...images, base64Image]);
-        };
+    reader.onloadend = () => {
+        setImages((prevImages) => [...prevImages, reader.result]);
+    };
+
+    if (file) {
         reader.readAsDataURL(file);
-      }
     }
+
+    // if (images.length < 3) {
+    //   if (file) {
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //       const base64Image = event.target.result;
+    //       setImages([...images, base64Image]);
+    //     };
+    //     reader.readAsDataURL(file);
+    //   }
+    // }
+
+    // if (file) {
+    //     reader.readAsDataURL(file);
+    //     reader.onload = () => {
+    //       const base64Image = reader.result;
+    //       setImages([...images, base64Image]);
+    //     };
+    // }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
 
-    const data = {
-        description,
-        certificates,
-        images,
-        professionalId,
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('certificates', certificates);
+    formData.append('professionalId', professionalId);
+    images.forEach((image, index) => {
+        formData.append(`image${index}`, image);
+    });
+    
+    try {
+        const response = await axios.post('http://localhost:4000/portafolio/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      });
+
+        if (response.data.succes) {
+            console.log('se guardo exitosamente en la base de datos');
+            console.log(formData);
+        } else {
+            console.error('Hubo un error al guardar el portafolio en la base de datos');
+            // Realiza cualquier lógica adicional aquí, como mostrar un mensaje de error al usuario.
+        }
+    } catch (error) {
+        console.error('Error al comunicarse con el servidor', error);
+        console.log(formData);
     }
-    console.log('Imagenes', images);
-    console.log('Descripcion', description);
-    console.log('Certificados', certificates);
-    console.log('ID del Profesional', professionalId);
+
   }
 
   const footer = (
