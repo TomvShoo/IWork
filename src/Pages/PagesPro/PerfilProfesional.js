@@ -38,16 +38,16 @@ export const PerfilPro = () => {
 
   return (
     <div className="perfilProfesionalContainer">
-      <div>
-        <BarraMenuCli />
-      </div>
+      <BarraMenuCli />
 
-      <div className="cartaPerfilProfesional">
-        <div className="headerCartaPerfilProfesional">
-          <div>
-            <Avatar label="P" size="large" shape="circle" />
+      <div className="vistaPerfilProfesional">
+        <div className="dataPerfilProfesional">
+          <div className="headerPerfilProfesional">
+            <Avatar label="P" size="xlarge" shape="circle" />
+            <Calificacion />
           </div>
-          <div>
+
+          <div className="descriptionPerfilProfesional">
             {usuario && (
               <div>
                 <h3>{usuario.nombre}</h3>
@@ -55,38 +55,35 @@ export const PerfilPro = () => {
               </div>
             )}
           </div>
-          <div>
-            <Calificacion />
+
+          <div className="contactoPerfilProfesional">
+            <BotonesRedes />
+          </div>
+
+          <div className="botonesEditarAgregar">
+            <Link to="/EditarPerfilPro">
+              <Button
+                className="botonesPerfilProfesional"
+                label="Editar Perfil"
+                icon="pi pi-pencil"
+                rounded
+                outlined
+              />
+            </Link>
+            <Link to="/AgregarPortfolio">
+              <Button
+                className="botonesPerfilProfesional"
+                icon="pi pi-plus"
+                label="Agregar Portafolio"
+                rounded
+              />
+            </Link>
           </div>
         </div>
-      </div>
 
-      <div className="botonesEditarAgregar">
-        <Link to="/EditarPerfilPro">
-          <Button
-            className="botonEditarPerfilPro"
-            label="Editar Perfil"
-            icon="pi pi-pencil"
-            rounded
-            outlined
-          />
-        </Link>
-        <Link to="/AgregarPortfolio">
-          <Button
-            className="botonAgregarPortafolio"
-            icon="pi pi-plus"
-            label="Agregar Portafolio"
-            rounded
-          />
-        </Link>
-      </div>
-
-      <div className="portafolio">
-        <ImageCarousel />
-      </div>
-
-      <div className="contactoPerfilProfesional">
-        <BotonesRedes />
+        <div className="portafolioProfesional">
+          <ImageCarousel />
+        </div>
       </div>
     </div>
   );
