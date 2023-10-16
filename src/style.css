@@ -206,6 +206,28 @@
   margin: 1rem;
 }
 
+.menuCartas {
+  display: flex;
+  flex-direction:column;
+  margin: 1rem;
+}
+
+.calificadosPro{
+  display: flex;
+}
+
+.contentServicios {
+  display: flex;
+  flex-direction: row;
+}
+
+.servicios {
+  display: flex;
+  margin: 0px auto;
+  max-width: 1200px;
+}
+
+
 /* COMPONENTS */
 /* Estilos BOTONREGISTRO */
 .botonRegistroComponent {
@@ -241,4 +263,19 @@
 .cartaCarrusel {
   width: 100%;
   background-color: brown;
+}
+
+/* ESTILOS AGREGAR PORTAFOLIO */
+.Descripcion {
+  display: flex;
+}
+
+.Imagenes {
+  display: grid;
+  width: 100%;
+}
+
+.ImagesContent {
+  display: flex;
+  justify-content: center;
 }

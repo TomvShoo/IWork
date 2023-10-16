@@ -9,10 +9,10 @@ import axios from 'axios';
 
 const AgregarPortfolio = () => {
   
-  const [images, setImages] = useState([]);
-  const [description, setDescription] = useState('');
-  const [certificates, setCertificates] = useState('');
-  const [professionalId, setProfessionalId] = useState('');
+  const [imagen, setImages] = useState('');
+  const [descripcion, setDescription] = useState('');
+  const [certificaciones, setCertificates] = useState('');
+  const [profesionalId, setProfessionalId] = useState('');
 
   useEffect(() => {
     // obtener token 
@@ -20,75 +20,59 @@ const AgregarPortfolio = () => {
     if (token) {
         // decodificar token
         const decodedToken = jwt_decode(token);
-        setProfessionalId(decodedToken.usuarioId);
-        // const professionalId = decodedToken.usuarioId;
-        // setProfessionalId(decodedToken.profesionalId);
+        // console.log('Decoded Token:', decodedToken);
+        setProfessionalId(decodedToken.id);
+        // console.log('Professional ID:', decodedToken.id);
     }
   }, []);
 
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-
-    reader.onloadend = () => {
-        setImages((prevImages) => [...prevImages, reader.result]);
+  
+    reader.onload = (event) => {
+      const base64Image = event.target.result;
+      // setImages((prevImages) => [...prevImages, base64Image]);
+      setImages(base64Image);
     };
+  
+    reader.onerror = (error) => {
+        console.error('Error al leer el archivo:', error);
+      };
 
     if (file) {
         reader.readAsDataURL(file);
     }
-
-    // if (images.length < 3) {
-    //   if (file) {
-    //     const reader = new FileReader();
-    //     reader.onload = (event) => {
-    //       const base64Image = event.target.result;
-    //       setImages([...images, base64Image]);
-    //     };
-    //     reader.readAsDataURL(file);
-    //   }
-    // }
-
-    // if (file) {
-    //     reader.readAsDataURL(file);
-    //     reader.onload = () => {
-    //       const base64Image = reader.result;
-    //       setImages([...images, base64Image]);
-    //     };
-    // }
+    console.log(file);
   };
 
   const handleSave = async () => {
-
-    const formData = new FormData();
-    formData.append('description', description);
-    formData.append('certificates', certificates);
-    formData.append('professionalId', professionalId);
-    images.forEach((image, index) => {
-        formData.append(`image${index}`, image);
-    });
-    
+    const requestData  = {
+      descripcion,
+      certificaciones,
+      imagen: imagen.split(',')[1]
+    //   profesionalId,
+    };
+  
     try {
-        const response = await axios.post('http://localhost:4000/portafolio/upload', formData, {
+      const response = await axios.post("http://localhost:4000/portafolio/upload", requestData , {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          'Content-Type': 'application/json', 
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
         },
       });
-
-        if (response.data.succes) {
-            console.log('se guardo exitosamente en la base de datos');
-            console.log(formData);
-        } else {
-            console.error('Hubo un error al guardar el portafolio en la base de datos');
-            // Realiza cualquier lógica adicional aquí, como mostrar un mensaje de error al usuario.
-        }
+  
+      if (response.data.success) {
+        console.log('Se guardó exitosamente en la base de datos');
+        console.log(requestData);
+      } else {
+        console.error('Hubo un error al guardar el portafolio en la base de datos');
+      }
     } catch (error) {
-        console.error('Error al comunicarse con el servidor', error);
-        console.log(formData);
+      console.error('Error al comunicarse con el servidor', error);
+      console.log(requestData);
     }
-
-  }
+  };
 
   const footer = (
       <div className="footer">
@@ -109,29 +93,29 @@ const AgregarPortfolio = () => {
                     <div className='Descripcion'>
                          <div className='infoPro'>
                             <Card title="Descripcion">
-                                <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                                <InputTextarea value={descripcion} onChange={(e) => setDescription(e.target.value)} />
                             </Card>
                             <br></br>
                             <Card title="Certificados">
-                                <InputTextarea value={certificates} onChange={(e) => setCertificates(e.target.value)} />
+                                <InputTextarea value={certificaciones} onChange={(e) => setCertificates(e.target.value)} />
                             </Card>
                         </div>
                         <div className='Imagenes'>
                             <Card title="Imagenes">
-                                <Card>
-                                    <div className='UploadImage'>
-                                        {images.length > 0 && (
-                                    <div>
-                                    <h5>Imágenes seleccionadas:</h5>
-                                    {images.map((image, index) => (
-                                        <img key={index} src={image} alt={`Image ${index}`} style={{ maxWidth: '200px', maxHeight: '200px', marginRight: '10px' }} />
-                                    ))}
-                                    </div>
-                                    )}
-                                    <input type="file" accept="image/*" onChange={handleImageUpload} />
-                                    <Button label="Subir imagenes" severity="secondary" text type="file" accept="image/*" onChange={handleImageUpload}/>
-                                </div>    
-                                </Card>
+                                <div className='ImagesContent'>
+                                    <Card>
+                                        <div className='UploadImage'>
+                                            {imagen && (
+                                              <div>
+                                                <h5>Imágenes seleccionadas:</h5>
+                                                <img src={imagen} alt={`Image`} style={{ maxWidth: '200px', maxHeight: '200px', marginRight: '10px' }} />
+                                              </div>
+                                            )}
+                                            <input type="file" accept="image/*" onChange={handleImageUpload} />
+                                            <Button label="Subir imagenes" severity="secondary" text type="file" accept="image/*" onChange={handleImageUpload}/>
+                                        </div>    
+                                    </Card>
+                                </div>
                             </Card>
                         </div>
                     </div>
