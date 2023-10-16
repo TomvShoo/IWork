@@ -10,12 +10,11 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 // primeicons
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
 // Estilos
 import "../style.css";
 
 export const Login = () => {
-
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
@@ -55,7 +54,6 @@ export const Login = () => {
   const handleUserTypeChange = (userType) => {
     setSelectedUserType(userType);
   };
-
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -127,9 +125,7 @@ export const Login = () => {
           ></InputText>
           <Link to="/MenuPro"></Link>
           <Toast className="" ref={(el) => (mensaje.current = el)} />
-          <Button className="button" type="submit" variant="contained" rounded>
-            Iniciar sesión
-          </Button>
+          <Button className="button" label="Iniciar sesión" type="submit" variant="contained" rounded />
         </form>
       </div>
 
@@ -138,13 +134,10 @@ export const Login = () => {
 
         <Link to="/Registro">
           <div className="loginRegisterButton">
-            <Button className="button" outlined rounded>
-              Crear cuenta
-            </Button>
+            <Button className="button" label="Crear cuenta" outlined rounded />
           </div>
         </Link>
       </div>
     </div>
   );
 };
-     

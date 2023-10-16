@@ -36,7 +36,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0rem 1.5rem;
+  margin: 0rem 1rem;
 }
 .loginSwitchButton {
   margin-bottom: 1rem;
@@ -51,7 +51,7 @@
   display: flex;
   justify-content: end;
   flex-direction: column;
-  margin: 1rem 1.5rem;
+  margin: 1rem 1rem;
 }
 .loginRegisterButton {
   display: flex;
@@ -59,7 +59,7 @@
 }
 @media (min-width: 320px) {
   .loginData {
-    margin: 0rem 1.5rem;
+    margin: 0rem 1rem;
   }
 }
 @media (min-width: 480px) {
@@ -112,7 +112,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0rem 1.5rem;
+  margin: 0rem 1rem;
 }
 .registerForm {
   flex: 1;
@@ -161,7 +161,7 @@
 }
 @media (min-width: 320px) {
   .registerData {
-    margin: 0rem 1.5rem;
+    margin: 0rem 1rem;
   }
 }
 @media (min-width: 480px) {
@@ -183,7 +183,7 @@
     justify-content: center;
   }
 }
-/* Estilos MenuCli */
+/* Estilos MENUCLI */
 .menuContainer {
   display: flex;
   flex-direction: column;
@@ -205,28 +205,92 @@
   background-color: grey;
   margin: 1rem;
 }
-
 .menuCartas {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   margin: 1rem;
 }
-
-.calificadosPro{
+.calificadosPro {
   display: flex;
 }
-
 .contentServicios {
   display: flex;
   flex-direction: row;
 }
-
 .servicios {
   display: flex;
   margin: 0px auto;
   max-width: 1200px;
 }
+/* Estilos PERFILPROFESIONAL */
+.perfilProfesionalContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+.cartaPerfilProfesional {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 1rem;
+  gap: 1rem;
+}
+.headerCartaPerfilProfesional {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.botonesEditarAgregar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0rem 1rem;
+  gap: 1rem;
+}
+.botonEditarPerfilPro {
+  flex: 1;
+  width: 100%;
+}
+.botonAgregarPortafolio {
+  flex: 1;
+  width: 100%;
+}
 
+.portafolio {
+  flex: 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0rem 1rem;
+  gap: 1rem;
+  /* background-color: red; */
+}
+
+.contactoPerfilProfesional {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  margin: 1rem 1rem;
+  /* background-color: greenyellow; */
+}
+
+@media (min-width: 768px) {
+  .portafolio {
+    display: flex;
+    width: 40%;
+  }
+}
 
 /* COMPONENTS */
 /* Estilos BOTONREGISTRO */
@@ -264,17 +328,24 @@
   width: 100%;
   background-color: brown;
 }
+/* Estilos BOTONESREDES */
+.botonesRedes {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.botonRed {
+  flex: 1;
+}
 
 /* ESTILOS AGREGAR PORTAFOLIO */
 .Descripcion {
   display: flex;
 }
-
 .Imagenes {
   display: grid;
   width: 100%;
 }
-
 .ImagesContent {
   display: flex;
   justify-content: center;
