@@ -80,7 +80,7 @@ const AgregarPortfolio = () => {
   };
 
   const footer = (
-    <div className="footer">
+    <div className="agregarGuardarBoton">
       <Button
         label="Guardar cambios"
         icon="pi pi-save"
@@ -124,29 +124,31 @@ const AgregarPortfolio = () => {
           </div>
         </div>
 
-        <div>
-          {imagen && (
-            <div>
-              <span>Imágenes seleccionadas:</span>
-              <img
-                src={imagen}
-                alt={`Image`}
-                style={{
-                  maxWidth: "200px",
-                  maxHeight: "200px",
-                  marginRight: "10px",
-                }}
-              />
-            </div>
-          )}
+        <div className="agregarButtons">
+          <div>
+            {imagen && (
+              <div>
+                <span>Imágenes seleccionadas:</span>
+                <img
+                  src={imagen}
+                  alt={`Image`}
+                  style={{
+                    maxWidth: "200px",
+                    maxHeight: "200px",
+                    marginRight: "10px",
+                  }}
+                />
+              </div>
+            )}
+          </div>
           <input type="file" accept="image/*" onChange={handleImageUpload} />
           <Button
             label="Subir imágenes"
-            severity="secondary"
-            text
+            icon="pi pi-image"
             type="file"
             accept="image/*"
             rounded
+            outlined
             onChange={handleImageUpload}
           />
         </div>

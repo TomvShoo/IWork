@@ -362,13 +362,26 @@ div {
   height: 100%;
 }
 .agregarCarta {
+  display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 .agregarData {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 .agregarInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.agregarButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.agregarGuardarBoton {
   display: flex;
   flex-direction: column;
 }
