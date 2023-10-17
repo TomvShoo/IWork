@@ -9,8 +9,29 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import PersonIcon from "@mui/icons-material/Person";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { useState } from "react";
 
 const BarraMenuPro = () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = () => {
+    // Aquí debes enviar una solicitud al backend utilizando el valor de búsqueda
+    // Puedes usar fetch o axios para enviar la solicitud al servidor NestJS
+    // Por ejemplo:
+    // fetch(`/api/search?query=${searchValue}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     // Hacer algo con la respuesta del servidor
+    //   })
+    //   .catch(error => {
+    //     // Manejar el error si hay alguno
+    //   });
+  };
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("accessToken")
+  }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-3">
       <Container fluid>
@@ -30,7 +51,7 @@ const BarraMenuPro = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={handleSearch}>
               <Form.Control
                 type="Buscar"
                 placeholder="Buscar..."
@@ -54,8 +75,8 @@ const BarraMenuPro = () => {
                   Editar Perfil
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/">
-                <HighlightOffIcon color="primary" /> Cerrar Sesión
+              <Nav.Link onClick={cerrarSesion} href="/">
+                <HighlightOffIcon color="primary"/> Cerrar Sesión
               </Nav.Link>
             </Nav>
           </Offcanvas.Body>

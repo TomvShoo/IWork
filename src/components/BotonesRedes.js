@@ -8,7 +8,7 @@ import axios from "axios";
 export default function BotonesRedes() {
   const [usuario, setUsuario] = useState(null);
   // obtener el token del almacenamiento local
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (token) {

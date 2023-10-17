@@ -11,13 +11,14 @@ import ImageCarousel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
 // Estilos
 import "../../style.css";
+import BarraMenuPro from "../../components/BarraMenuPro";
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
     // obtener el token del almacenamiento local
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
     if (token) {
       //se realiza la solicitud al servidor
@@ -38,7 +39,7 @@ export const PerfilPro = () => {
 
   return (
     <div className="perfilProfesionalContainer">
-      <BarraMenuCli />
+      <BarraMenuPro/>
 
       <div className="vistaPerfilProfesional">
         <div className="dataPerfilProfesional">
