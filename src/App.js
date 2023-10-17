@@ -9,6 +9,8 @@ import { EditarPerfilCli } from "./Pages/PagesCli/EditarPerfilCli";
 import PerfilCliente from "./Pages/PagesCli/PerfilCliente";
 import { PerfilPro } from "./Pages/PagesPro/PerfilProfesional";
 import AgregarPortfolio from "./Pages/PagesPro/AgregarPortfolio";
+import AdminView from "./Pages/ADMIN/VistaAdmin";
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path="/EditarPerfilPro" element={<EditarPerfilPro />}></Route>
           <Route path="/EditarPerfilCli" element={<EditarPerfilCli />}></Route>
           <Route path="/AgregarPortfolio" element={<AgregarPortfolio/>}></Route>
+          <Route path="/AdminView" element={<AdminView/>}></Route>
         </Routes>
       </header>
     </div>

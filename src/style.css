@@ -342,3 +342,13 @@
   display: flex;
   justify-content: center;
 }
+
+/* ESTILOS LINKS */
+.link {
+  color: rgb(158, 158, 158);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #cc6c42;
+}

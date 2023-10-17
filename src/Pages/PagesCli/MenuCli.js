@@ -42,6 +42,9 @@ export const MenuCli = () => {
   return (
     <div className="menuContainer">
       <div>
+        <ModalAdvertenciaCli />
+      </div>
+      <div>
         <BarraMenuCli />
       </div>
       <div className="menuCartasMenu">

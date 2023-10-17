@@ -1,11 +1,13 @@
 import React from "react";
 import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
+import { Link } from "react-router-dom";
+import "../style.css";
 
 export default function BarraMenuCli() {
   const menu = [
     {
-      label: "Menú",
+      label: <Link to="/MenuCli" className="link">Menú</Link>,
       icon: "pi pi-home",
     },
     {
@@ -13,11 +15,11 @@ export default function BarraMenuCli() {
       icon: "pi pi-fw pi-user",
       items: [
         {
-          label: "Ver Perfil",
+          label: <Link to="/PerfilCliente" className="link">Ver Perfil</Link>,
           icon: "pi pi-eye",
         },
         {
-          label: "Editar Perfil",
+          label: <Link to="/EditarPerfilCli" className="link">Editar Perfil</Link>,
           icon: "pi pi-pencil",
         },
       ],
@@ -31,10 +33,17 @@ export default function BarraMenuCli() {
   const logo = (
     <img
       alt="logo"
-      src="https://primefaces.org/cdn/primereact/images/logo.png"
+      src="https://cdn-icons-png.flaticon.com/512/11107/11107584.png"
       height="40"
       className="mr-2"
     ></img>
+  );
+
+  const MarcaCli = (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {logo}
+      <span>I Work </span>
+    </div>
   );
 
   const barra = (
@@ -48,7 +57,7 @@ export default function BarraMenuCli() {
 
   return (
     <div>
-      <Menubar model={menu} start={logo} end={barra} />
+      <Menubar model={menu} start={MarcaCli} end={barra} />
     </div>
   );
 }
