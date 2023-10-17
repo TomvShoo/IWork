@@ -41,7 +41,7 @@ const Estilo = {
 export const EditarPerfilCli = () => {
   return (
     <div className="editarPerfilProContainer">
-      <div className="registerBackLogin">
+      <div className="menuBackLogin">
         <Link to="/PerfilCliente">
           <Button severity="secondary" text>
             <i
@@ -50,6 +50,7 @@ export const EditarPerfilCli = () => {
             ></i>
           </Button>
         </Link>
+        <span style={{ color: '#6C757D' }}>Editar perfil</span>
       </div>
 
       <div className="editarData">

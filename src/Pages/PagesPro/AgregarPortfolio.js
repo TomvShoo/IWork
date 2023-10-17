@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import BarraMenuPro from "../../components/BarraMenuPro";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
@@ -81,76 +81,76 @@ const AgregarPortfolio = () => {
 
   const footer = (
     <div className="footer">
-      <Button label="Guardar" icon="pi pi-check" onClick={handleSave} />
       <Button
-        label="Cancelar"
-        icon="pi pi-times"
-        className="p-button-outlined p-button-secondary"
+        label="Guardar cambios"
+        icon="pi pi-save"
+        rounded
+        onClick={handleSave}
       />
     </div>
   );
 
   return (
-    <div>
-      <BarraMenuPro />
-      <div>
-        <Card footer={footer}>
-          <div className="Descripcion">
-            <div className="infoPro">
-              <Card title="Descripcion">
-                <InputTextarea
-                  value={descripcion}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </Card>
-              <br></br>
-              <Card title="Certificados">
-                <InputTextarea
-                  value={certificaciones}
-                  onChange={(e) => setCertificates(e.target.value)}
-                />
-              </Card>
-            </div>
-            <div className="Imagenes">
-              <Card title="Imagenes">
-                <div className="ImagesContent">
-                  <Card>
-                    <div className="UploadImage">
-                      {imagen && (
-                        <div>
-                          <h5>Imágenes seleccionadas:</h5>
-                          <img
-                            src={imagen}
-                            alt={`Image`}
-                            style={{
-                              maxWidth: "200px",
-                              maxHeight: "200px",
-                              marginRight: "10px",
-                            }}
-                          />
-                        </div>
-                      )}
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                      />
-                      <Button
-                        label="Subir imagenes"
-                        severity="secondary"
-                        text
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                      />
-                    </div>
-                  </Card>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </Card>
+    <div className="agregarPortafolioContainer">
+      <div className="menuBackLogin">
+        <Link to="/PerfilProfesional">
+          <Button severity="secondary" text>
+            <i
+              className="pi pi-arrow-circle-left"
+              style={{ fontSize: "1.75rem", color: "rgba(0, 0, 0, 0.5)" }}
+            ></i>
+          </Button>
+        </Link>
+        <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
+
+      <Card footer={footer} className="agregarCarta">
+        <div className="agregarData">
+          <div className="agregarInputs">
+            <span>Descripción</span>
+            <InputTextarea
+              autoResize
+              value={descripcion}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="agregarInputs">
+            <span>Certificados</span>
+            <InputTextarea
+              autoResize
+              value={certificaciones}
+              onChange={(e) => setCertificates(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div>
+          {imagen && (
+            <div>
+              <span>Imágenes seleccionadas:</span>
+              <img
+                src={imagen}
+                alt={`Image`}
+                style={{
+                  maxWidth: "200px",
+                  maxHeight: "200px",
+                  marginRight: "10px",
+                }}
+              />
+            </div>
+          )}
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <Button
+            label="Subir imágenes"
+            severity="secondary"
+            text
+            type="file"
+            accept="image/*"
+            rounded
+            onChange={handleImageUpload}
+          />
+        </div>
+      </Card>
     </div>
   );
 };

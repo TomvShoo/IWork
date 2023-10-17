@@ -11,7 +11,7 @@ import "primereact/resources/primereact.min.css";
 export const EditarPerfilPro = () => {
   return (
     <div className="editarPerfilProContainer">
-      <div className="registerBackLogin">
+      <div className="menuBackLogin">
         <Link to="/PerfilProfesional">
           <Button severity="secondary" text>
             <i
@@ -20,6 +20,7 @@ export const EditarPerfilPro = () => {
             ></i>
           </Button>
         </Link>
+        <span style={{ color: '#6C757D' }}>Editar perfil</span>
       </div>
 
       <div className="editarData">
