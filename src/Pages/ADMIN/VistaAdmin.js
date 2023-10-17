@@ -9,21 +9,20 @@ import Correo from "../../components/Correo";
 
 const AdminView = () => {
   const [searchText, setSearchText] = useState("");
-  const [messages, setMessages] = useState([]); 
+  const [messages, setMessages] = useState([]);
 
   const handleDelete = (message) => {
     console.log("Mensaje eliminado:", message);
   };
 
   const handleSearch = () => {
-
     console.log("Buscar mensajes:", searchText);
   };
 
   return (
     <div>
-        <BarraMenuAdmin />
-        <BotonAdmin />
+      <BarraMenuAdmin />
+      <BotonAdmin />
       <div className="p-grid">
         <div className="p-col-12 p-md-4">
           <div className="p-inputgroup">
@@ -32,11 +31,7 @@ const AdminView = () => {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <Button
-              label="Buscar"
-              icon="pi pi-search"
-              onClick={handleSearch}
-            />
+            <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
           </div>
         </div>
       </div>
@@ -46,7 +41,14 @@ const AdminView = () => {
             <Column field="subject" header="Asunto" />
             <Column field="sender" header="Remitente" />
             <Column field="date" header="Fecha" />
-            <Column body={(rowData) => <Button label="Eliminar" onClick={() => handleDelete(rowData)} />} />
+            <Column
+              body={(rowData) => (
+                <Button
+                  label="Eliminar"
+                  onClick={() => handleDelete(rowData)}
+                />
+              )}
+            />
           </DataTable>
         </div>
       </div>

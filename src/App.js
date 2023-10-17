@@ -4,7 +4,7 @@ import { Login } from "./Pages/Login";
 import { Registro } from "./Pages/Registro";
 import { MenuPro } from "./Pages/PagesPro/MenuPro";
 import { MenuCli } from "./Pages/PagesCli/MenuCli";
-import { EditarPerfilPro } from "./Pages/EditarPerfilPro";
+import { EditarPerfilPro } from "./Pages/PagesPro/EditarPerfilPro";
 import { EditarPerfilCli } from "./Pages/PagesCli/EditarPerfilCli";
 import PerfilCliente from "./Pages/PagesCli/PerfilCliente";
 import { PerfilPro } from "./Pages/PagesPro/PerfilProfesional";

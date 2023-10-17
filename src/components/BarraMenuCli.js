@@ -7,7 +7,11 @@ import "../style.css";
 export default function BarraMenuCli() {
   const menu = [
     {
-      label: <Link to="/MenuCli" className="link">Menú</Link>,
+      label: (
+        <Link to="/MenuCli" className="link">
+          Menú
+        </Link>
+      ),
       icon: "pi pi-home",
     },
     {
@@ -15,11 +19,19 @@ export default function BarraMenuCli() {
       icon: "pi pi-fw pi-user",
       items: [
         {
-          label: <Link to="/PerfilCliente" className="link">Ver Perfil</Link>,
+          label: (
+            <Link to="/PerfilCliente" className="link">
+              Ver Perfil
+            </Link>
+          ),
           icon: "pi pi-eye",
         },
         {
-          label: <Link to="/EditarPerfilCli" className="link">Editar Perfil</Link>,
+          label: (
+            <Link to="/EditarPerfilCli" className="link">
+              Editar Perfil
+            </Link>
+          ),
           icon: "pi pi-pencil",
         },
       ],
@@ -42,7 +54,7 @@ export default function BarraMenuCli() {
   const MarcaCli = (
     <div style={{ display: "flex", alignItems: "center" }}>
       {logo}
-      <span>I Work </span>
+      <span>iWork</span>
     </div>
   );
 

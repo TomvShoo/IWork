@@ -7,7 +7,11 @@ import "../style.css";
 export default function BarraMenuPro() {
   const menu = [
     {
-      label: <Link to="/MenuPro" className="link">Menú</Link>,
+      label: (
+        <Link to="/MenuPro" className="link">
+          Menú
+        </Link>
+      ),
       icon: "pi pi-home",
     },
     {
@@ -15,11 +19,19 @@ export default function BarraMenuPro() {
       icon: "pi pi-fw pi-user",
       items: [
         {
-          label: <Link to="/PerfilProfesional" className="link">Ver Perfil</Link>,
+          label: (
+            <Link to="/PerfilProfesional" className="link">
+              Ver Perfil
+            </Link>
+          ),
           icon: "pi pi-eye",
         },
         {
-          label: <Link to="/EditarPerfilPro" className="link">Editar Perfil</Link>,
+          label: (
+            <Link to="/EditarPerfilPro" className="link">
+              Editar Perfil
+            </Link>
+          ),
           icon: "pi pi-pencil",
         },
       ],
@@ -42,7 +54,7 @@ export default function BarraMenuPro() {
   const MarcaPro = (
     <div style={{ display: "flex", alignItems: "center" }}>
       {logo}
-      <span>I WorkPro </span>
+      <span>iWork Pro</span>
     </div>
   );
 

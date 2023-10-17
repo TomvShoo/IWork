@@ -24,10 +24,9 @@ export default function BarraMenuAdmin() {
   const MarcaAdmin = (
     <div style={{ display: "flex", alignItems: "center" }}>
       {logo}
-      <span>I Work Administrador </span>
+      <span>iWork Administrador</span>
     </div>
   );
-
 
   return (
     <div>
