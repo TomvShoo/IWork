@@ -1,5 +1,9 @@
 /* PAGES */
 /* Estilos GLOBALES */
+div {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
 .button {
   display: flex;
   flex-direction: column;
@@ -37,9 +41,11 @@
   margin-bottom: 1rem;
 }
 .loginForm {
+  gap: 0.5rem;
+}
+.loginForm, .loginRegisterButton {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 .createNewUser {
   flex: 1;
@@ -47,10 +53,6 @@
   justify-content: end;
   flex-direction: column;
   margin: 1rem 1rem;
-}
-.loginRegisterButton {
-  display: flex;
-  flex-direction: column;
 }
 @media (min-width: 320px) {
   .loginData {
@@ -66,14 +68,12 @@
   }
 }
 @media (min-width: 768px) {
-  .loginData {
+  .loginData, .createNewUser {
     display: flex;
     align-items: center;
   }
   .createNewUser {
-    display: flex;
     justify-content: center;
-    align-items: center;
   }
 }
 /* Estilos REGISTER */
@@ -145,10 +145,7 @@
   }
 }
 @media (min-width: 768px) {
-  .registerData {
-    display: flex;
-    align-items: center;
-  }
+  .registerData,
   .registerSelectContainer {
     display: flex;
     align-items: center;
@@ -215,13 +212,13 @@
 .vistaPerfilProfesional {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   margin: 0rem 1rem;
 }
 .dataPerfilProfesional {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 .headerPerfilProfesional,
 .descriptionPerfilProfesional {
@@ -250,6 +247,7 @@
     display: flex;
     flex-direction: row-reverse;
     gap: 1rem;
+    margin: 0rem 1rem;
   }
   .dataPerfilProfesional {
     flex: 1;
@@ -273,7 +271,6 @@
     flex: 1;
     justify-content: center;
   }
-
   .portafolioProfesional {
     flex: 2;
     padding: 1.5rem;
@@ -281,6 +278,64 @@
     border: 1px;
     border-radius: 0.5rem;
     border: 1px solid #e1e4e8;
+  }
+}
+@media (min-width: 1200px) {
+  .vistaPerfilProfesional {
+    margin: 0rem 10rem;
+  }
+}
+/* Estilos EDITARPERFILPRO */
+.editarPerfilProContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.editarData {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 1rem 1rem;
+  gap: 5rem;
+}
+.editarInputs {
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  gap: 1rem;
+}
+.editarButton {
+  display: flex;
+  flex-direction: column;
+}
+.botonGuardar {
+  width: 100%;
+}
+@media (min-width: 480px) {
+  .registerData {
+    margin: 0rem 5rem;
+  }
+}
+@media (min-width: 768px) {
+  .editarData,
+  .editarInputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .editarButton {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -330,15 +385,11 @@
   flex: 1;
 }
 
-/* ESTILOS AGREGAR PORTAFOLIO */
-.Descripcion {
-  display: flex;
+/* ESTILOS LINKS */
+.link {
+  color: rgb(158, 158, 158);
+  text-decoration: none;
 }
-.Imagenes {
-  display: grid;
-  width: 100%;
-}
-.ImagesContent {
-  display: flex;
-  justify-content: center;
+.link:hover {
+  color: #cc6c42;
 }

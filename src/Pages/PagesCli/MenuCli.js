@@ -12,35 +12,12 @@ import CartasMenu from "../../components/CartasMenu";
 
 import { Rating } from "primereact/rating";
 
-const Estilos = {
-  divLinks: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "Space-evenly",
-    // margin: "1rem",
-  },
-  div: {
-    margin: "0rem 0rem",
-  },
-  imagen: {
-    width: "50%",
-    height: "50%",
-  },
-  rating: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  carta: {
-    display: "flex",
-    justifyContent: "Space-around",
-    alingItems: "center",
-  },
-};
-
 export const MenuCli = () => {
   return (
     <div className="menuContainer">
+      <div>
+        <ModalAdvertenciaCli />
+      </div>
       <div>
         <BarraMenuCli />
       </div>
@@ -52,56 +29,45 @@ export const MenuCli = () => {
           <h3>Profesionales mejor calificados</h3>
         </div>
         <div className="servicios">
-          <Card>
-            <div className="calificadosPro">
-              <div>
-                <Card>
-                  <div className="cartaMenu">
-                    <div className="cartaHeader">
-                      <div>
-                        <Avatar
-                          label="U"
-                          style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                          shape="circle"
-                        />
-                        <span>Nombre Apellido</span>
-                      </div>
-                      <div>
-                        <Rating value={4} readOnly cancel={false} />
-                        <span>Profesión</span>
-                      </div>
-                    </div>
+          <div className="calificadosPro">
+            <div>
+              <div className="cartaMenu">
+                <div className="cartaHeader">
+                  <div>
+                    <Avatar
+                      label="U"
+                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                      shape="circle"
+                    />
+                    <span>Nombre Apellido</span>
                   </div>
-                </Card>
-              </div>
-
-              <div>
-                <Card>
-                  <div className="cartaMenu">
-                    <div className="cartaHeader">
-                      <div>
-                        <Avatar
-                          label="U"
-                          style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                          shape="circle"
-                        />
-                        <span>Nombre Apellido</span>
-                      </div>
-                      <div>
-                        <Rating value={4} readOnly cancel={false} />
-                        <span>Profesión</span>
-                      </div>
-                    </div>
+                  <div>
+                    <span>Profesión</span>
+                    <Rating value={4} readOnly cancel={false} />
                   </div>
-                </Card>
-              </div>
-              
-              <div>
-                <Card>
-                </Card>
+                </div>
               </div>
             </div>
-          </Card>
+
+            <div>
+              <div className="cartaMenu">
+                <div className="cartaHeader">
+                  <div>
+                    <Avatar
+                      label="U"
+                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                      shape="circle"
+                    />
+                    <span>Nombre Apellido</span>
+                  </div>
+                  <div>
+                    <span>Profesión</span>
+                    <Rating value={4} readOnly cancel={false} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -119,7 +85,7 @@ export const MenuCli = () => {
             </Card>
             <Card>
               <div>
-                  <i className="pi pi-user"></i>
+                <i className="pi pi-user"></i>
               </div>
               <span>Electricista</span>
             </Card>

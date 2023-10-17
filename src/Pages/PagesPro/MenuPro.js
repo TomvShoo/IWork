@@ -9,9 +9,6 @@ import BarraMenuPro from "../../components/BarraMenuPro";
 import ModalAdvertenciaPro from "../../components/ModalAdvertenciaPro";
 import Footer from "../../components/Footer";
 
-
-
-
 const Estilos = {
   divLinks: {
     display: "flex",
@@ -50,7 +47,6 @@ export const MenuPro = () => {
           <Button>Filtrar</Button>
         </Link> */}
         <ModalAdvertenciaPro />
-        
       </div>
       <Card>
         <div style={Estilos.carta}>

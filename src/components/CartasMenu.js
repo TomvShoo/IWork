@@ -17,8 +17,8 @@ export default function CartasMenu() {
           <span>Nombre Apellido</span>
         </div>
         <div>
-          <Rating value={4} readOnly cancel={false} />
           <span>Profesión</span>
+          <Rating value={4} readOnly cancel={false} />
         </div>
       </div>
 

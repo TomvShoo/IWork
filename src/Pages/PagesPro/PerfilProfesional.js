@@ -8,7 +8,8 @@ import Calificacion from "../../components/Rating";
 // import BarraMenu from "../../components/BarraMenuPro";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
-import BarraMenuCli from "../../components/BarraMenuCli";
+// import BarraMenuCli from "../../components/BarraMenuCli";
+import BarraMenuPro from "../../components/BarraMenuPro";
 // Estilos
 import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
@@ -39,7 +40,7 @@ export const PerfilPro = () => {
 
   return (
     <div className="perfilProfesionalContainer">
-      <BarraMenuPro/>
+      <BarraMenuPro />
 
       <div className="vistaPerfilProfesional">
         <div className="dataPerfilProfesional">
@@ -56,7 +57,6 @@ export const PerfilPro = () => {
               </div>
             )}
           </div>
-
           <div className="contactoPerfilProfesional">
             <BotonesRedes />
           </div>

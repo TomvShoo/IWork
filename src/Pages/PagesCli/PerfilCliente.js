@@ -4,8 +4,7 @@ import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import BarraMenuCli from "../../components/BarraMenuCli";
-import axios from 'axios';
-
+import axios from "axios";
 
 const Estilo = {
   card: {
@@ -30,30 +29,29 @@ const Estilo = {
 };
 
 const PerfilCliente = () => {
-
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
     // obtener el token del almacenamiento local
     const token = localStorage.getItem('accessToken');
 
-    if(token) {
-      //se realiza la solicitud al servidor 
-      axios.get('http://localhost:4000/auth/perfil', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setUsuario(response.data);
-      })
-      .catch((error) => {
-        console.error('error al obtener los datos del usuario', error);
-      });
+    if (token) {
+      //se realiza la solicitud al servidor
+      axios
+        .get("http://localhost:4000/auth/perfil", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUsuario(response.data);
+        })
+        .catch((error) => {
+          console.error("error al obtener los datos del usuario", error);
+        });
     }
+  });
 
-  })
-  
   return (
     <div>
       <BarraMenuCli />
@@ -67,14 +65,13 @@ const PerfilCliente = () => {
             <p>Apellido: {usuario.apellido}</p>
           </div>
         )}
-        
+
         <Link to="/EditarPerfilCli">
           <Button variant="contained" style={Estilo.button}>
             Editar Perfil
           </Button>
         </Link>
       </Card>
-
     </div>
   );
 };
