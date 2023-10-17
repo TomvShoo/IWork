@@ -17,7 +17,7 @@ export const PerfilPro = () => {
 
   useEffect(() => {
     // obtener el token del almacenamiento local
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('accessToken');
 
     if (token) {
       //se realiza la solicitud al servidor

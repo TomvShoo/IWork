@@ -13,6 +13,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 // Estilos
 import "../style.css";
+import MyFacebookLogin from "../components/BotonFacebook";
 
 export const Login = () => {
   const [formData, setFormData] = useState({
@@ -127,6 +128,10 @@ export const Login = () => {
           <Toast className="" ref={(el) => (mensaje.current = el)} />
           <Button className="button" label="Iniciar sesión" type="submit" variant="contained" rounded />
         </form>
+
+        <div>
+          <MyFacebookLogin/>
+        </div>
       </div>
 
       <div className="createNewUser">
