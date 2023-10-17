@@ -9,16 +9,16 @@ import Calificacion from "../../components/Rating";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
 // import BarraMenuCli from "../../components/BarraMenuCli";
-import BarraMenuPro from "../../components/BarraMenuPro";
 // Estilos
 import "../../style.css";
+import BarraMenuPro from "../../components/BarraMenuPro";
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
     // obtener el token del almacenamiento local
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
     if (token) {
       //se realiza la solicitud al servidor
@@ -51,7 +51,7 @@ export const PerfilPro = () => {
           <div className="descriptionPerfilProfesional">
             {usuario && (
               <div>
-                <h3>{usuario.nombre}</h3>
+                <h3>{usuario.nombre} {usuario.apellido}</h3>
                 <h4>Profesión</h4>
               </div>
             )}
@@ -85,6 +85,28 @@ export const PerfilPro = () => {
           <ImageCarousel />
         </div>
       </div>
+
+      <div className="vistaPerfilProfesional">
+        <div className="contenidoProfesional">
+          <div className="portafolioProfesional">
+            <div className="description">
+              <h5>Descripcion</h5>
+            </div>
+            <div>
+              <span>contenido de la descripcion</span>
+            </div>
+          </div>
+          <div className="portafolioProfesional">
+            <div className="description">
+              <h5>Certificados</h5>
+            </div>
+            <div>
+              <span>contenido de los certificados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };

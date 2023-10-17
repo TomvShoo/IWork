@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 import "../style.css";
 
 export default function BarraMenuPro() {
+
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearch = () => {
+    // Aquí debes enviar una solicitud al backend utilizando el valor de búsqueda
+    // Puedes usar fetch o axios para enviar la solicitud al servidor NestJS
+    // Por ejemplo:
+    // fetch(`/api/search?query=${searchValue}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     // Hacer algo con la respuesta del servidor
+    //   })
+    //   .catch(error => {
+    //     // Manejar el error si hay alguno
+    //   });
+  };
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("accessToken")
+  }
+
   const menu = [
     {
       label: (
