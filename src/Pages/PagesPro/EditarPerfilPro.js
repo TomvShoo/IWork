@@ -20,7 +20,7 @@ export const EditarPerfilPro = () => {
             ></i>
           </Button>
         </Link>
-        <span style={{ color: '#6C757D' }}>Editar perfil</span>
+        <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
 
       <div className="editarData">
