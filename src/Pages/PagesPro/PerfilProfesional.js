@@ -12,47 +12,50 @@ import ImageCarousel from "../../components/Carrusel";
 // Estilos
 import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
+import BotonCalificacion from "../../components/AgregarCalificacion";
+
+// Importaciones
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
   const [portafolio, setPortafolio] = useState(null);
-
-  useEffect(() => {
-    // obtener el token del almacenamiento local
-    const token = localStorage.getItem("accessToken");
-
-    if (token) {
-      //se realiza la solicitud al servidor
-      axios.get("http://localhost:4000/auth/perfil", {
-        headers: {
-          Authorization: `Bearer ${token}`,},})
-        .then((response) => {
-          setUsuario(response.data);
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error("error al obtener los datos del usuario", error);
-        });
-    }
-  }, []);
+  const [profesionalData, setProfesionalData] = useState(null); // Estado para almacenar la información del profesional
+  const [userRole, setUserRole] = useState(""); // Estado para almacenar el rol del usuario
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       const decodedToken = parseJwt(token);
-      const userId = decodedToken.id;
+      setUserRole(decodedToken.role);
 
-      axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },})
-        .then((response) => {
-          setPortafolio(response.data);
-          console.log("Datos del portafolio:", response.data);
+      if (decodedToken.role === 'profesional') {
+        // Lógica para obtener y almacenar los datos del perfil del profesional
+        axios.get("http://localhost:4000/auth/perfil", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .catch((error) => {
-          console.error("Error al obtener los datos del portafolio", error);
-        });
+          .then((response) => {
+            setProfesionalData(response.data); // Almacena los datos del perfil del profesional
+          })
+          .catch((error) => {
+            console.error("error al obtener los datos del usuario", error);
+          });
+
+        const userId = decodedToken.id;
+        axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => {
+            setPortafolio(response.data);
+            console.log("Datos del portafolio:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error al obtener los datos del portafolio", error);
+          });
+      }
     }
   }, []);
 
@@ -76,51 +79,62 @@ export const PerfilPro = () => {
           </div>
 
           <div className="descriptionPerfilProfesional">
-            {usuario && (
+            {profesionalData && (
               <div>
-                <h3>{usuario.nombre} {usuario.apellido}</h3>
+                <h3>{profesionalData.nombre} {profesionalData.apellido}</h3>
                 <h4>Profesión</h4>
               </div>
             )}
           </div>
           <div className="contactoPerfilProfesional">
-            <BotonesRedes />
+            {profesionalData && (
+              <BotonesRedes />
+            )}
           </div>
 
           <div className="botonesEditarAgregar">
-            <Link to="/EditarPerfilPro">
-              <Button
-                className="botonesPerfilProfesional"
-                label="Editar Perfil"
-                icon="pi pi-pencil"
-                rounded
-                outlined
-              />
-            </Link>
-            <Link to="/AgregarPortfolio">
-              <Button
-                className="botonesPerfilProfesional"
-                icon="pi pi-plus"
-                label="Agregar Portafolio"
-                rounded
-              />
-            </Link>
+            {userRole === 'profesional' && (
+              <Link to="/EditarPerfilPro">
+                <Button
+                  className="botonesPerfilProfesional"
+                  label="Editar Perfil"
+                  icon="pi pi-pencil"
+                  rounded
+                  outlined
+                />
+              </Link>
+            )}
+            {userRole === 'profesional' && (
+              <Link to="/AgregarPortfolio">
+                <Button
+                  className="botonesPerfilProfesional"
+                  icon="pi pi-plus"
+                  label="Agregar Portafolio"
+                  rounded
+                />
+              </Link>
+            )}
+            {userRole === 'cliente' && (
+              <BotonCalificacion />
+            )}
           </div>
+
         </div>
 
         <div className="portafolioProfesional">
-        <ImageCarousel images={ portafolio && portafolio.data ? [portafolio.data[0].imagen] : []}/>
+          <ImageCarousel images={portafolio && portafolio.data ? [portafolio.data[0].imagen] : []} />
         </div>
       </div>
 
       <div className="vistaPerfilProfesional">
         <div className="contenidoProfesional">
+          {/* Mostrar la descripción y los certificados del profesional */}
           <div className="portafolioProfesional">
             <div className="description">
               <h5>Descripcion</h5>
             </div>
             <div>
-            <span>{portafolio && portafolio.data && portafolio.data[0].descripcion ? portafolio.data[0].descripcion : "Cargando..."}</span>
+              <span>{portafolio && portafolio.data && portafolio.data[0].descripcion ? portafolio.data[0].descripcion : "Cargando..."}</span>
             </div>
           </div>
           <div className="portafolioProfesional">
@@ -130,6 +144,15 @@ export const PerfilPro = () => {
             <div>
               <span>{portafolio && portafolio.data && portafolio.data[0].certificaciones ? portafolio.data[0].certificaciones : "Cargando..."}</span>
             </div>
+          </div>
+
+        </div>
+        <div className="portafolioProfesional">
+          <div className="description">
+            <h5>Reseñas</h5>
+          </div>
+          <div>
+            <span>aqui se debe poner las reseñas</span>
           </div>
         </div>
       </div>

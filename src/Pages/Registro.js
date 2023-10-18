@@ -69,7 +69,7 @@ export const Registro = () => {
 
   return (
     <div className="registerContainer">
-      <div className="registerBackLogin">
+      <div className="menuBackLogin">
         <Link to="/">
           <Button severity="secondary" text>
             <i
@@ -78,6 +78,7 @@ export const Registro = () => {
             ></i>
           </Button>
         </Link>
+        <span style={{ color: '#6C757D' }}>Crear cuenta</span>
       </div>
 
       <div className="registerData">

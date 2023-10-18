@@ -77,42 +77,35 @@ export const MenuCli = () => {
         </div>
         <div className="servicios">
           <div className="contentServicios">
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Carpinteria</span>
-            </Card>
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Electricista</span>
-            </Card>
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Gasfiteria</span>
-            </Card>
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Construccion</span>
-            </Card>
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Construccion</span>
-            </Card>
-            <Card>
-              <div>
-                <i className="pi pi-user"></i>
-              </div>
-              <span>Construccion</span>
-            </Card>
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Carpinteria</span>
+
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Electricista</span>
+
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Gasfiteria</span>
+
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Construccion</span>
+
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Construccion</span>
+
+            <div>
+              <i className="pi pi-user"></i>
+            </div>
+            <span>Construccion</span>
           </div>
         </div>
       </section>
