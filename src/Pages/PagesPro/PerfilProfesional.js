@@ -15,6 +15,7 @@ import BarraMenuPro from "../../components/BarraMenuPro";
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
+  const [portafolio, setPortafolio] = useState(null);
 
   useEffect(() => {
     // obtener el token del almacenamiento local
@@ -22,20 +23,46 @@ export const PerfilPro = () => {
 
     if (token) {
       //se realiza la solicitud al servidor
-      axios
-        .get("http://localhost:4000/auth/perfil", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+      axios.get("http://localhost:4000/auth/perfil", {
+        headers: {
+          Authorization: `Bearer ${token}`,},})
         .then((response) => {
           setUsuario(response.data);
+          console.log(response.data);
         })
         .catch((error) => {
           console.error("error al obtener los datos del usuario", error);
         });
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      const decodedToken = parseJwt(token);
+      const userId = decodedToken.id;
+
+      axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },})
+        .then((response) => {
+          setPortafolio(response.data);
+          console.log("Datos del portafolio:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos del portafolio", error);
+        });
+    }
+  }, []);
+
+  function parseJwt(token) {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  }
 
   return (
     <div className="perfilProfesionalContainer">
@@ -82,7 +109,7 @@ export const PerfilPro = () => {
         </div>
 
         <div className="portafolioProfesional">
-          <ImageCarousel />
+        <ImageCarousel images={ portafolio && portafolio.data ? [portafolio.data[0].imagen] : []}/>
         </div>
       </div>
 
@@ -93,7 +120,7 @@ export const PerfilPro = () => {
               <h5>Descripcion</h5>
             </div>
             <div>
-              <span>contenido de la descripcion</span>
+            <span>{portafolio && portafolio.data && portafolio.data[0].descripcion ? portafolio.data[0].descripcion : "Cargando..."}</span>
             </div>
           </div>
           <div className="portafolioProfesional">
@@ -101,12 +128,11 @@ export const PerfilPro = () => {
               <h5>Certificados</h5>
             </div>
             <div>
-              <span>contenido de los certificados</span>
+              <span>{portafolio && portafolio.data && portafolio.data[0].certificaciones ? portafolio.data[0].certificaciones : "Cargando..."}</span>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

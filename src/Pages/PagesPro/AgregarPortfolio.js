@@ -79,22 +79,11 @@ const AgregarPortfolio = () => {
     }
   };
 
-  const footer = (
-    <div className="footer">
-      <Button label="Guardar" icon="pi pi-check" onClick={handleSave} />
-      <Button
-        label="Cancelar"
-        icon="pi pi-times"
-        className="p-button-outlined p-button-secondary"
-      />
-    </div>
-  );
-
   return (
     <div>
       <BarraMenuPro />
       <div>
-        <Card footer={footer}>
+        <div>
           <div className="Descripcion">
             <div className="infoPro">
               <Card title="Descripcion">
@@ -149,7 +138,15 @@ const AgregarPortfolio = () => {
               </Card>
             </div>
           </div>
-        </Card>
+          <div className="footer">
+            <Button label="Guardar" icon="pi pi-check" onClick={handleSave} />
+            <Button
+              label="Cancelar"
+              icon="pi pi-times"
+              className="p-button-outlined p-button-secondary"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

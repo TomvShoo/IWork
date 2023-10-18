@@ -8,35 +8,20 @@ import "../style.css";
 
 const Estilo = {
   caruselImagen: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    objectFit: "cover",
+    maxWidth: "100%", // Asegura que la imagen no sea más ancha que su contenedor
+    maxHeight: "300px", // Limita la altura máxima de la imagen
+    objectFit: "cover", // Ajusta el tamaño de la imagen para que cubra completamente su contenedor manteniendo la relación de aspecto
   },
 };
 
-const ImageCarousel = () => {
-  const images = [
-    {
-      source:
-        "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/03125e3dba48c2b4fffa8ea3997759757a91d1d87e57239976ea8aee3cc25563._RI_TTW_.jpg",
-      alt: "Imagen 1",
-    },
-    {
-      source:
-        "https://img.freepik.com/vector-premium/casa-lago-temporada-verano-hermoso-paisaje-natural_198696-595.jpg",
-      alt: "Imagen 2",
-    },
-  ];
-
+const ImageCarousel = ({ images }) => {
   const itemTemplate = (image) => {
     return (
       <div className="p-grid p-nogutter">
         <div className="p-col">
           <img
-            src={image.source}
-            alt={image.alt}
+            src={`data:image/jpeg;base64, ${image}`} // Utiliza directamente la imagen
+            alt="Imagen"
             style={Estilo.caruselImagen}
           />
         </div>
