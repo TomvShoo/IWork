@@ -28,13 +28,14 @@ export const PerfilPro = () => {
       const decodedToken = parseJwt(token);
       setUserRole(decodedToken.role);
 
-      if (decodedToken.role === 'profesional') {
+      if (decodedToken.role === "profesional") {
         // Lógica para obtener y almacenar los datos del perfil del profesional
-        axios.get("http://localhost:4000/auth/perfil", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        axios
+          .get("http://localhost:4000/auth/perfil", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
           .then((response) => {
             setProfesionalData(response.data); // Almacena los datos del perfil del profesional
           })
@@ -43,11 +44,12 @@ export const PerfilPro = () => {
           });
 
         const userId = decodedToken.id;
-        axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        axios
+          .get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
           .then((response) => {
             setPortafolio(response.data);
             console.log("Datos del portafolio:", response.data);
@@ -81,19 +83,19 @@ export const PerfilPro = () => {
           <div className="descriptionPerfilProfesional">
             {profesionalData && (
               <div>
-                <h3>{profesionalData.nombre} {profesionalData.apellido}</h3>
+                <h3>
+                  {profesionalData.nombre} {profesionalData.apellido}
+                </h3>
                 <h4>Profesión</h4>
               </div>
             )}
           </div>
           <div className="contactoPerfilProfesional">
-            {profesionalData && (
-              <BotonesRedes />
-            )}
+            {profesionalData && <BotonesRedes />}
           </div>
 
           <div className="botonesEditarAgregar">
-            {userRole === 'profesional' && (
+            {userRole === "profesional" && (
               <Link to="/EditarPerfilPro">
                 <Button
                   className="botonesPerfilProfesional"
@@ -104,7 +106,7 @@ export const PerfilPro = () => {
                 />
               </Link>
             )}
-            {userRole === 'profesional' && (
+            {userRole === "profesional" && (
               <Link to="/AgregarPortfolio">
                 <Button
                   className="botonesPerfilProfesional"
@@ -114,45 +116,82 @@ export const PerfilPro = () => {
                 />
               </Link>
             )}
-            {userRole === 'cliente' && (
-              <BotonCalificacion />
-            )}
+            {userRole === "cliente" && <BotonCalificacion />}
           </div>
-
         </div>
 
         <div className="portafolioProfesional">
-          <ImageCarousel images={portafolio && portafolio.data ? [portafolio.data[0].imagen] : []} />
+          <ImageCarousel
+            images={
+              portafolio && portafolio.data ? [portafolio.data[0].imagen] : []
+            }
+          />
         </div>
       </div>
 
-      <div className="vistaPerfilProfesional">
-        <div className="contenidoProfesional">
+      <div className="vistaPerfilProfesionalDatos">
+        <div className="dataPerfilProfesional">
           {/* Mostrar la descripción y los certificados del profesional */}
-          <div className="portafolioProfesional">
-            <div className="description">
-              <h5>Descripcion</h5>
+          <div className="portafolioProfesionalBloque">
+            <div>
+              <h5>Descripción</h5>
             </div>
             <div>
-              <span>{portafolio && portafolio.data && portafolio.data[0].descripcion ? portafolio.data[0].descripcion : "Cargando..."}</span>
+              <span>
+                {portafolio && portafolio.data && portafolio.data[0].descripcion
+                  ? portafolio.data[0].descripcion
+                  : "Cargando..."}
+              </span>
             </div>
           </div>
-          <div className="portafolioProfesional">
-            <div className="description">
+          <div className="portafolioProfesionalBloque">
+            <div>
               <h5>Certificados</h5>
             </div>
             <div>
-              <span>{portafolio && portafolio.data && portafolio.data[0].certificaciones ? portafolio.data[0].certificaciones : "Cargando..."}</span>
+              <span>
+                {portafolio &&
+                portafolio.data &&
+                portafolio.data[0].certificaciones
+                  ? portafolio.data[0].certificaciones
+                  : "Cargando..."}
+              </span>
             </div>
           </div>
-
         </div>
-        <div className="portafolioProfesional">
-          <div className="description">
+
+        <div className="portafolioProfesionalBloque">
+          <div>
             <h5>Reseñas</h5>
           </div>
-          <div>
-            <span>aqui se debe poner las reseñas</span>
+          <div className="resenas">
+            <span className="resenaBloque">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              vitae erat at justo dictum molestie. Nam venenatis vestibulum
+              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
+              ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
+              Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
+              leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
+            </span>
+            <span className="resenaBloque">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              vitae erat at justo dictum molestie. Nam venenatis vestibulum
+              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
+            </span>
+            <span className="resenaBloque">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              vitae erat at justo dictum molestie. Nam venenatis vestibulum
+              justo, in interdum
+            </span>
+            <span className="resenaBloque">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+              vitae erat at justo dictum molestie. Nam venenatis vestibulum
+              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
+              ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
+              Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
+              leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
+            </span>
+            <span className="resenaBloque">Lorem ipsum dolor sit!</span>
           </div>
         </div>
       </div>

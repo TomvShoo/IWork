@@ -101,10 +101,10 @@ const AgregarPortfolio = () => {
             ></i>
           </Button>
         </Link>
-        <span style={{ color: "#6C757D" }}>Editar perfil</span>
+        <span style={{ color: "#6C757D" }}>Agregar portafolio</span>
       </div>
 
-      <Card footer={footer} className="agregarCarta">
+      <div className="agregarCarta">
         <div className="agregarData">
           <div className="agregarInputs">
             <span>Descripción</span>
@@ -152,7 +152,15 @@ const AgregarPortfolio = () => {
             onChange={handleImageUpload}
           />
         </div>
-      </Card>
+        <div className="agregarGuardarBoton">
+          <Button
+            label="Guardar cambios"
+            icon="pi pi-save"
+            rounded
+            onClick={handleSave}
+          />
+        </div>
+      </div>
     </div>
   );
 };
