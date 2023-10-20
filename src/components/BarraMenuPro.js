@@ -4,7 +4,7 @@ import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 import "../style.css";
 
-export default function BarraMenuPro() {
+const BarraMenuPro = () => {
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -58,7 +58,11 @@ export default function BarraMenuPro() {
       ],
     },
     {
-      label: "Cerrar Sesión",
+      label:(
+        <Link to="/" onClick={cerrarSesion} className="link">
+          Cerrar sesion
+        </Link>
+      ),
       icon: "pi pi-fw pi-power-off",
     },
   ];
@@ -94,3 +98,5 @@ export default function BarraMenuPro() {
     </div>
   );
 }
+
+export default BarraMenuPro;

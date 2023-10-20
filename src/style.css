@@ -358,6 +358,10 @@ div {
 }
 
 /* Estilos EDITARPERFILPRO */
+.editarProfesion {
+  display: grid;
+}
+
 .editarPerfilProContainer {
   display: flex;
   flex-direction: column;
