@@ -6,11 +6,12 @@ import { Button } from "primereact/button";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
+import styles from "./EditarPerfilCli.module.css";
 
 export const EditarPerfilCli = () => {
   return (
-    <div className="editarPerfilProContainer">
-      <div className="menuBackLogin">
+    <div className={styles.editarPerfilCliContainer}>
+      <div className={styles.menuBackNav}>
         <Link to="/PerfilCliente">
           <Button severity="secondary" text>
             <i
@@ -19,19 +20,19 @@ export const EditarPerfilCli = () => {
             ></i>
           </Button>
         </Link>
-        <span style={{ color: '#6C757D' }}>Editar perfil</span>
+        <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
 
-      <div className="editarData">
-        <div className="editarInputs">
+      <div className={styles.editarData}>
+        <div className={styles.editarInputs}>
           <InputText placeholder="Cambiar Nombre"></InputText>
           <InputText placeholder="Nueva Contraseña"></InputText>
           <InputText placeholder="Verificar contraseña"></InputText>
         </div>
-        <div className="editarButton">
+        <div className={styles.editarButton}>
           <Link to="/PerfilCliente">
             <Button
-              className="botonGuardar"
+              className={styles.botonGuardar}
               label="Guardar cambios"
               icon="pi pi-save"
               rounded

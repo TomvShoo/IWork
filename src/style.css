@@ -14,10 +14,7 @@ div {
   display: flex;
   flex-direction: column;
 }
-.switchButton {
-  font-style: oblique;
-}
-.loginContainer,
+/* .loginContainer,
 .registerContainer {
   display: flex;
   flex-direction: column;
@@ -32,8 +29,8 @@ div {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-}
-.menuBackLogin {
+} */
+/* .menuBackLogin {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -41,7 +38,7 @@ div {
   margin: 0;
   background-color: #f8f9fa;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
+} */
 @media (min-width: 320px) {
   .divFooter {
     display: none;
@@ -54,7 +51,7 @@ div {
 }
 
 /* Estilos LOGIN */
-.loginLogo,
+/* .loginLogo,
 .loginData {
   flex: 1;
   display: flex;
@@ -105,10 +102,10 @@ div {
   .createNewUser {
     justify-content: center;
   }
-}
+} */
 
 /* Estilos REGISTER */
-.registerData {
+/* .registerData {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -179,7 +176,7 @@ div {
     display: flex;
     justify-content: center;
   }
-}
+} */
 
 /* Estilos MENUCLI */
 .menuContainer {
@@ -361,7 +358,6 @@ div {
 .editarProfesion {
   display: grid;
 }
-
 .editarPerfilProContainer {
   display: flex;
   flex-direction: column;
@@ -475,7 +471,7 @@ div {
 }
 
 /* Estilos VISTAADMIN */
-.vistaAdminContainer {
+/* .vistaAdminContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -515,7 +511,7 @@ div {
     display: flex;
     flex-direction: row;
   }
-}
+} */
 
 /* COMPONENTS */
 /* ESTILOS BOTONREGISTRO */

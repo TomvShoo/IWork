@@ -1,0 +1,41 @@
+.vistaAdminContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-image: url(/src/Images/background.png);
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+.vistaAdminData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0rem 1rem;
+  gap: 1rem;
+}
+.adminBuscarMensajes {
+  flex: 2;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+.buscarMensajes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .vistaAdminData {
+    display: flex;
+    flex-direction: row;
+  }
+}

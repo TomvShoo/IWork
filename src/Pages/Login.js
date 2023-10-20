@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import SwitchButton from "../components/SwitchButton";
 import axios from "axios";
+import styles from "./Login.module.css";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
@@ -93,19 +94,19 @@ export const Login = () => {
 
   // Front-End
   return (
-    <div className="loginContainer">
-      <div className="loginLogo">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginLogo}>
         <h1>iWork</h1>
       </div>
 
-      <div className="loginData">
-        <div className="loginSwitchButton">
+      <div className={styles.loginData}>
+        <div className={styles.loginSwitchButton}>
           <SwitchButton
             onUserTypeChange={handleUserTypeChange}
             setSelectedUserType={setSelectedUserType}
           />
         </div>
-        <form className="loginForm" onSubmit={handlesubmit}>
+        <form className={styles.loginForm} onSubmit={handlesubmit}>
           <InputText
             placeholder="Correo electrónico"
             name="correo"
@@ -120,17 +121,17 @@ export const Login = () => {
             onChange={handleInputChange}
           ></InputText>
           <Link to="/MenuPro"></Link>
-          <Toast className="" ref={(el) => (mensaje.current = el)} />
-          <Button className="button" label="Iniciar sesión" type="submit" variant="contained" rounded />
+          <Toast ref={(el) => (mensaje.current = el)} />
+          <Button className={styles.button} label="Iniciar sesión" type="submit" variant="contained" rounded />
         </form>
       </div>
 
-      <div className="createNewUser">
+      <div className={styles.createNewUser}>
         <p>¿No tienes una cuenta?</p>
 
         <Link to="/Registro">
-          <div className="loginRegisterButton">
-            <Button className="button" label="Crear cuenta" outlined rounded />
+          <div className={styles.loginRegisterButton}>
+            <Button className={styles.button} label="Crear cuenta" outlined rounded />
           </div>
         </Link>
       </div>

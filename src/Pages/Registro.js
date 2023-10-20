@@ -7,6 +7,7 @@ import { SelectButton } from "primereact/selectbutton";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import BotonRegistro from "../components/BotonRegistro";
+import styles from "./Registro.module.css";
 // import { ToggleButton } from "primereact/togglebutton";
 // import Modal from "react-bootstrap/Modal";
 
@@ -64,8 +65,8 @@ export const Registro = () => {
   };
 
   return (
-    <div className="registerContainer">
-      <div className="menuBackLogin">
+    <div className={styles.registerContainer}>
+      <div className={styles.menuBackNav}>
         <Link to="/">
           <Button severity="secondary" text>
             <i
@@ -74,13 +75,13 @@ export const Registro = () => {
             ></i>
           </Button>
         </Link>
-        <span style={{ color: '#6C757D' }}>Crear cuenta</span>
+        <span style={{ color: "#6C757D" }}>Crear cuenta</span>
       </div>
 
-      <div className="registerData">
-        <form className="registerForm" onSubmit={handleSubmit}>
-          <div className="registerInputs">
-            <div className="registerName">
+      <div className={styles.registerData}>
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
+          <div className={styles.registerInputs}>
+            <div className={styles.registerName}>
               <InputText
                 placeholder="Nombre"
                 name="nombre"
@@ -95,7 +96,7 @@ export const Registro = () => {
               ></InputText>
             </div>
 
-            <div className="registerNum">
+            <div className={styles.registerNum}>
               <InputText
                 placeholder="Numero de Telefono"
                 name="nroTelefono"
@@ -105,7 +106,7 @@ export const Registro = () => {
               ></InputText>
             </div>
 
-            <div className="registerEmailPass">
+            <div className={styles.registerEmailPass}>
               <InputText
                 placeholder="Correo"
                 name="correo"
@@ -127,8 +128,8 @@ export const Registro = () => {
             </div>
           </div>
 
-          <div className="registerSelectContainer">
-            <div className="registerTypeProfile">
+          <div className={styles.registerSelectContainer}>
+            <div className={styles.registerTypeProfile}>
               <p>Selecciona el tipo de cuenta:</p>
               <div>
                 <SelectButton
@@ -144,7 +145,7 @@ export const Registro = () => {
               </div>
             </div>
 
-            <div className="registerButton">
+            <div className={styles.registerButton}>
               <BotonRegistro />
             </div>
           </div>

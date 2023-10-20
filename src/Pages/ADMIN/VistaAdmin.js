@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import BarraMenuAdmin from "../../components/BarraMenuAdmin";
 import BotonAdmin from "../../components/BotonesAdmin";
 import Correo from "../../components/Correo";
+import styles from "./VistaAdmin.module.css";
 
 const AdminView = () => {
   const [searchText, setSearchText] = useState("");
@@ -20,13 +21,13 @@ const AdminView = () => {
   };
 
   return (
-    <div className="vistaAdminContainer">
+    <div className={styles.vistaAdminContainer}>
       <BarraMenuAdmin />
-      <div className="vistaAdminData">
+      <div className={styles.vistaAdminData}>
         <BotonAdmin />
 
-        <div className="adminBuscarMensajes">
-          <div className="buscarMensajes">
+        <div className={styles.adminBuscarMensajes}>
+          <div className={styles.buscarMensajes}>
             <InputText
               placeholder="Buscar mensajes"
               value={searchText}
