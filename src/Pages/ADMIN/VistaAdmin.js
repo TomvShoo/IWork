@@ -24,42 +24,31 @@ const AdminView = () => {
       <BarraMenuAdmin />
       <div className="vistaAdminData">
         <BotonAdmin />
-        <div>
-          <div>
-            <div>
-              <InputText
-                placeholder="Buscar mensajes"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-              <Button
-                label="Buscar"
-                icon="pi pi-search"
-                onClick={handleSearch}
-              />
-            </div>
+
+        <div className="adminBuscarMensajes">
+          <div className="buscarMensajes">
+            <InputText
+              placeholder="Buscar mensajes"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
           </div>
+          <DataTable value={messages}>
+            <Column field="subject" header="Asunto" />
+            <Column field="sender" header="Remitente" />
+            <Column field="date" header="Fecha" />
+            <Column
+              body={(rowData) => (
+                <Button
+                  label="Eliminar"
+                  onClick={() => handleDelete(rowData)}
+                />
+              )}
+            />
+          </DataTable>
         </div>
-        <div>
-          <div>
-            <DataTable value={messages}>
-              <Column field="subject" header="Asunto" />
-              <Column field="sender" header="Remitente" />
-              <Column field="date" header="Fecha" />
-              <Column
-                body={(rowData) => (
-                  <Button
-                    label="Eliminar"
-                    onClick={() => handleDelete(rowData)}
-                  />
-                )}
-              />
-            </DataTable>
-          </div>
-        </div>
-        <div>
-          <Correo />
-        </div>
+        <Correo />
       </div>
     </div>
   );

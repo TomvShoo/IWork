@@ -1,21 +1,45 @@
 import React from "react";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer style={{ background: "#5572D1", color: "white", padding: "1rem", textAlign: "center" }}>
+    <footer className={styles.footerContainer}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ textAlign: "left" }}>
-          <h4>Síguenos en Redes Sociales</h4>
-          <a href="[Enlace a Facebook]" style={{ color: "white", marginRight: "10px" }}><FacebookIcon /></a>
-          <a href="[Enlace a Twitter]" style={{ color: "white", marginRight: "10px" }}><TwitterIcon /></a>
-          <a href="[Enlace a Instagram]" style={{ color: "white", marginRight: "10px" }}><InstagramIcon /></a>
+          <h4>Nuestras Redes</h4>
+          <div className={styles.footerRedes}>
+            <a
+              href="[Enlace a Facebook]"
+              style={{ color: "white", marginRight: "10px" }}
+            >
+              <i
+                className="pi pi-facebook"
+                style={{ fontSize: "1.5rem", color: "black" }}
+              ></i>
+            </a>
+            <a
+              href="[Enlace a Twitter]"
+              style={{ color: "white", marginRight: "10px" }}
+            >
+              <i
+                className="pi pi-twitter"
+                style={{ fontSize: "1.5rem", color: "black" }}
+              ></i>
+            </a>
+            <a
+              href="[Enlace a Instagram]"
+              style={{ color: "white", marginRight: "10px" }}
+            >
+              <i
+                className="pi pi-instagram"
+                style={{ fontSize: "1.5rem", color: "black" }}
+              ></i>
+            </a>
+          </div>
         </div>
         <div style={{ textAlign: "right" }}>
           <h4>Contacto</h4>
-          <p>Nrtdevops@gmail.com</p>
+          <p>nrtdevops@gmail.com</p>
         </div>
       </div>
     </footer>

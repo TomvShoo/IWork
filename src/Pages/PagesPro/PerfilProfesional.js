@@ -9,12 +9,9 @@ import Calificacion from "../../components/Rating";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
 // import BarraMenuCli from "../../components/BarraMenuCli";
-// Estilos
-import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
 import BotonCalificacion from "../../components/AgregarCalificacion";
-
-// Importaciones
+import Footer from "../../components/Footer";
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
@@ -194,6 +191,10 @@ export const PerfilPro = () => {
             <span className="resenaBloque">Lorem ipsum dolor sit!</span>
           </div>
         </div>
+      </div>
+
+      <div className="divFooter">
+        <Footer />
       </div>
     </div>
   );

@@ -1,0 +1,9 @@
+.footerContainer {
+  background-color: #f8f9fa;
+  border: 1px solid #eeeeee;
+  padding: 1rem 10rem;
+}
+.footerRedes {
+  display: flex;
+  gap: 2rem;
+}

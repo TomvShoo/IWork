@@ -9,10 +9,6 @@ import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
-// primeicons
-import "primeicons/primeicons.css";
-// Estilos
-import "../style.css";
 
 export const Login = () => {
   const [formData, setFormData] = useState({

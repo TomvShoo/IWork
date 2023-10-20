@@ -65,7 +65,7 @@ export const MenuPro = () => {
           <Carrusel />
         </div>
       </Card>
-      <div>
+      <div className="divFooter">
         <Footer />
       </div>
     </div>

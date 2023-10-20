@@ -21,7 +21,6 @@ div {
 .registerContainer {
   display: flex;
   flex-direction: column;
-  
   text-align: center;
   background-image: url(/src/Images/background.png);
   position: absolute;
@@ -40,8 +39,18 @@ div {
   align-items: center;
   padding: 0.5rem 0.5rem;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: #f8f9fa;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+@media (min-width: 320px) {
+  .divFooter {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .divFooter {
+    display: block;
+  }
 }
 
 /* Estilos LOGIN */
@@ -276,7 +285,6 @@ div {
   flex-direction: column;
   width: 100%;
   border-radius: 0.5rem;
-  gap: 1rem;
   border: 1px solid #e1e4e8;
 }
 .resenas {
@@ -284,13 +292,12 @@ div {
   text-align: left;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
-  margin: 0rem 1rem;
 }
 .resenaBloque {
   display: flex;
   border-radius: 0.25rem;
   padding: 1rem;
+  margin: 1rem;
   border: 1px solid #e1e4e8;
 }
 
@@ -424,7 +431,6 @@ div {
 .agregarCarta {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin: 0rem 1rem;
   gap: 1rem;
 }
@@ -453,6 +459,17 @@ div {
     margin: 0rem 5rem;
   }
 }
+@media (min-width: 768px) {
+  .agregarCarta {
+    margin: 0rem 10rem;
+  }
+}
+@media (min-width: 1200px) {
+  .agregarCarta {
+    margin: 0rem 25rem;
+  }
+}
+
 /* Estilos VISTAADMIN */
 .vistaAdminContainer {
   display: flex;
@@ -477,9 +494,27 @@ div {
   margin: 0rem 1rem;
   gap: 1rem;
 }
+.adminBuscarMensajes {
+  flex: 2;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  background-color: #f8f9fa;
+  padding: 1rem;
+}
+.buscarMensajes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .vistaAdminData {
+    display: flex;
+    flex-direction: row;
+  }
+}
 
 /* COMPONENTS */
-/* Estilos BOTONREGISTRO */
+/* ESTILOS BOTONREGISTRO */
 .botonRegistroComponent {
   display: flex;
   justify-content: center;
@@ -496,7 +531,7 @@ div {
   }
 }
 
-/* Estilos CARTASMENU */
+/* ESTILOS CARTASMENU */
 .cartaMenu {
   display: flex;
   flex-direction: column;
@@ -516,7 +551,7 @@ div {
   background-color: brown;
 }
 
-/* Estilos BOTONESREDES */
+/* ESTILOS BOTONESREDES */
 .botonesRedes {
   display: flex;
   flex-direction: row;
@@ -542,3 +577,52 @@ div {
   align-items: center;
   margin: 1rem;
 }
+
+/* ESTILOS CORREO */
+/* .correoContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  gap: 1rem;
+}
+.correoInputText {
+  width: 100%;
+} */
+
+/* ESTILOS BOTONESADMIN */
+/* .botonesAdminContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  gap: 1rem;
+}
+.buscarBotonesAdmin {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 1rem;
+}
+.botonesAdmin {
+  display: flex;
+  justify-content: space-evenly;
+} */
+
+/* ESTILOS FOOTER */
+/* .footerContainer {
+  background-color: #f8f9fa;
+  border: 1px solid #eeeeee;
+  padding: 1rem 10rem;
+}
+.footerRedes {
+  display: flex;
+  gap: 2rem;
+} */

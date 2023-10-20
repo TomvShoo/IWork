@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import BarraMenuPro from "../../components/BarraMenuPro";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
