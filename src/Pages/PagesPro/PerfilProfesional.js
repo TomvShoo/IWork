@@ -3,18 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
-// Components
 import Calificacion from "../../components/Rating";
-// import BarraMenu from "../../components/BarraMenuPro";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
-// import BarraMenuCli from "../../components/BarraMenuCli";
 // Estilos
 import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
 import BotonCalificacion from "../../components/AgregarCalificacion";
-
-// Importaciones
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
@@ -83,15 +78,19 @@ export const PerfilPro = () => {
           <div className="descriptionPerfilProfesional">
             {profesionalData && (
               <div>
-                <h3>
-                  {profesionalData.nombre} {profesionalData.apellido}
-                </h3>
-                <h4>Profesión</h4>
-              </div>
+              <h3>
+                {profesionalData.nombre} {profesionalData.apellido}
+              </h3>
+              {profesionalData.tipoProfesion && profesionalData.tipoProfesion.length > 0 ? (
+                <h4>Profesión: {profesionalData.tipoProfesion[0].nombre_profesion}</h4>
+              ) : (
+                <p>Aún no se ha asignado una profesión</p>
+              )}
+            </div>
             )}
           </div>
           <div className="contactoPerfilProfesional">
-            {profesionalData && <BotonesRedes />}
+            <BotonesRedes />
           </div>
 
           <div className="botonesEditarAgregar">

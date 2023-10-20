@@ -11,6 +11,7 @@ import CartasMenu from "../../components/CartasMenu";
 // import Footer from "../../components/Footer";
 
 import { Rating } from "primereact/rating";
+import BotonCalificacion from "../../components/AgregarCalificacion";
 
 export const MenuCli = () => {
   return (
@@ -22,7 +23,7 @@ export const MenuCli = () => {
         <BarraMenuCli />
       </div>
       <div className="menuCartasMenu">
-        <CartasMenu />
+        {/* <CartasMenu /> */}
       </div>
       <section className="menuCartas">
         <div className="tituloCard">

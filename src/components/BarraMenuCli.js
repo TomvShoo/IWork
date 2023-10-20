@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 import "../style.css";
+import axios from 'axios';
+import { Button } from "primereact/button";
 
 export default function BarraMenuCli() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("accessToken");
+  };
+
   const menu = [
     {
       label: (
@@ -28,16 +36,20 @@ export default function BarraMenuCli() {
         },
         {
           label: (
-            <Link to="/EditarPerfilCli" className="link">
+            <button to="/EditarPerfilCli" className="link">
               Editar Perfil
-            </Link>
+            </button>
           ),
           icon: "pi pi-pencil",
         },
       ],
     },
     {
-      label: "Cerrar Sesión",
+      label:(
+        <Link to="/" onClick={cerrarSesion} className="link">
+          Cerrar sesion
+        </Link>
+      ),
       icon: "pi pi-fw pi-power-off",
     },
   ];
@@ -58,11 +70,30 @@ export default function BarraMenuCli() {
     </div>
   );
 
+  const onSearch = (e) => {
+    setSearchQuery(e.target.value);
+    fetchResults(e.target.value); // Llama a la función fetchResults cuando se realice la búsqueda
+  };
+
+  const fetchResults = (query) => {
+    axios.get(`http://localhost:4000/profesional/search?query=${query}`)
+      .then((response) => {
+        console.log(response.data); 
+      })
+      .catch((error) => {
+        console.error('Error fetching data: ', error);
+      });
+  };
+
   const barra = (
     <div>
       <span className="p-input-icon-left">
         <i className="pi pi-search" />
-        <InputText placeholder="Buscar" />
+        <InputText
+          placeholder="Buscar"
+          value={searchQuery}
+          onChange={onSearch}
+        />
       </span>
     </div>
   );
