@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
+import { useForm } from 'react-hook-form';
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
@@ -19,6 +20,12 @@ export const Login = () => {
     correo: "",
     contrasena: "",
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [loginMessage, setLoginMessage] = useState({ text: "", style: "" });
   const [selectedUserType, setSelectedUserType] = useState("cliente");
@@ -56,9 +63,9 @@ export const Login = () => {
   };
 
   const handlesubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    console.log("Tipo de cuenta seleccionado:", selectedUserType);
+    // console.log("Tipo de cuenta seleccionado:", selectedUserType);
     // inicio de sesion con axios
     try {
       const response = await axios.post("http://localhost:4000/auth/login", {
@@ -109,20 +116,26 @@ export const Login = () => {
             setSelectedUserType={setSelectedUserType}
           />
         </div>
-        <form className="loginForm" onSubmit={handlesubmit}>
+
+        <form className="loginForm" onSubmit={handleSubmit(handlesubmit)}>
           <InputText
+            type="email"
             placeholder="Correo electrónico"
             name="correo"
+            {...register('correo', { required: true })}
             value={formData.correo}
             onChange={handleInputChange}
           ></InputText>
+          {errors.correo && <span>Correo es requerido</span>}
           <InputText
             placeholder="Contraseña"
             type="password"
             name="contrasena"
+            {...register('contrasena', { required: true })}
             value={formData.contrasena}
             onChange={handleInputChange}
           ></InputText>
+          {errors.contrasena && <span>Constraseña es requerido</span>}
           <Link to="/MenuPro"></Link>
           <Toast className="" ref={(el) => (mensaje.current = el)} />
           <Button className="button" label="Iniciar sesión" type="submit" variant="contained" rounded />
@@ -131,7 +144,6 @@ export const Login = () => {
 
       <div className="createNewUser">
         <p>¿No tienes una cuenta?</p>
-
         <Link to="/Registro">
           <div className="loginRegisterButton">
             <Button className="button" label="Crear cuenta" outlined rounded />

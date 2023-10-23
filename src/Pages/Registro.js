@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from 'react-hook-form';
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
@@ -13,8 +14,12 @@ import BotonRegistro from "../components/BotonRegistro";
 import "primeicons/primeicons.css";
 // Estilos
 import "../style.css";
+import { Dropdown } from "primereact/dropdown";
 
 export const Registro = () => {
+  const [selectedProfesion, setSelectedProfesion] = useState(null);
+  const [profesiones, setProfesiones] = useState([]);
+  const token = localStorage.getItem('accessToken');
   const [formData, setformData] = useState({
     nombre: "",
     apellido: "",
@@ -25,19 +30,48 @@ export const Registro = () => {
     tipoCuenta: "",
   });
 
+  const { register, handleSubmit: handleFormSubmit, formState: { errors }, setValue, setError } = useForm();
+
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Verificar la longitud del número de teléfono
+    if (name === 'nroTelefono' && value.length !== 8) {
+      setError('nroTelefono', {
+        type: 'manual',
+        message: 'El número de teléfono debe tener 8 dígitos',
+      });
+    } else {
+      // Restablece el mensaje de error si el número de teléfono es válido
+      setValue('nroTelefono', value); // Asegúrate de importar setValue
+    }
+
     setformData({ ...formData, [name]: value });
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/profesion')
+      .then(response => {
+        setProfesiones(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log('Error al traer los datos', error);
+      })
+  }, [])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // verificar la contraseña y la confirmacion de la contraseña
     if (formData.contrasena !== formData.confirmarContrasena) {
-      console.log("las contraseñas no coinciden");
+      setError('confirmarContrasena', {
+        type: 'manual',
+        message: 'Las contraseñas no coinciden',
+      });
       return;
     }
 
@@ -53,7 +87,12 @@ export const Registro = () => {
 
       if (response.data.success) {
         console.log("Registro exitoso :D");
-        navigate("/");
+        console.log(response.data);
+        const profesionalId = response.data.profesionalId; // Asegúrate de ajustar la clave adecuada para el ID
+        if (formData.tipoCuenta === "profesional") {
+          asignarProfesion(profesionalId); // Pasa el ID a la función asignarProfesion
+        }
+        // navigate("/");
       } else {
         console.log("Registro fallido");
       }
@@ -64,6 +103,35 @@ export const Registro = () => {
       } else {
         console.log("error en el registro", error);
       }
+    }
+  };
+
+  const asignarProfesion = (profesionalId) => {
+    if (selectedProfesion && profesionalId) {
+      const idProfesion = selectedProfesion.id_profesion;
+      axios
+        .post(
+          `http://localhost:4000/profesional/asignarProfesion/${idProfesion}`,
+          {
+            profesionalId: profesionalId, // Asegúrate de enviar el profesionalId
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        )
+        .then((response) => {
+          // Lógica de manejo de respuesta, si es necesario
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Error al asignar la profesión:", error);
+          console.log(error.response.data);
+        });
+    } else {
+      console.error("No se ha seleccionado ninguna profesión.");
     }
   };
 
@@ -100,13 +168,17 @@ export const Registro = () => {
             </div>
 
             <div className="registerNum">
-              <InputText
-                placeholder="Numero de Telefono"
-                name="nroTelefono"
-                value={formData.nroTelefono}
-                onChange={handleInputChange}
-                maxLength={11}
-              ></InputText>
+              <div className="number">
+                <span className="p-inputgroup-addon">+56 9</span>
+                <InputText
+                  placeholder="Numero de Telefono"
+                  name="nroTelefono"
+                  value={formData.nroTelefono}
+                  onChange={handleInputChange}
+                  maxLength={8}
+                ></InputText>
+              </div>
+              {errors.nroTelefono && <span>{errors.nroTelefono.message}</span>}
             </div>
 
             <div className="registerEmailPass">
@@ -114,8 +186,10 @@ export const Registro = () => {
                 placeholder="Correo"
                 name="correo"
                 value={formData.correo}
+                {...register('correo', { required: true })}
                 onChange={handleInputChange}
               ></InputText>
+              {errors.correo && <span>Correo es requerido</span>}
               <InputText
                 placeholder="Contraseña"
                 name="contrasena"
@@ -128,8 +202,28 @@ export const Registro = () => {
                 value={formData.confirmarContrasena}
                 onChange={handleInputChange}
               ></InputText>
+              {errors.confirmarContrasena && (
+                <span>{errors.confirmarContrasena.message}</span>
+              )}
             </div>
           </div>
+
+          {formData.tipoCuenta === "profesional" && (
+            <div className="registerProfession">
+              {/* Aquí va tu campo "Seleccione profesión" */}
+              <div className="editarProfesion">
+                <span>Seleccione una profesion</span>
+                <Dropdown
+                  value={selectedProfesion}
+                  onChange={(e) => setSelectedProfesion(e.value)}
+                  options={profesiones}
+                  optionLabel="nombre_profesion"
+                  placeholder="Profesiones"
+                  className="w-full md:w-14rem" />
+              </div>
+            </div>
+          )}
+
 
           <div className="registerSelectContainer">
             <div className="registerTypeProfile">

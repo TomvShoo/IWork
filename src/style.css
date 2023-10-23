@@ -129,6 +129,9 @@ div {
   flex-direction: column;
   margin: 2rem 0rem;
 }
+.number{
+  display: flex;
+}
 .registerSelectContainer {
   flex: 1;
   display: flex;

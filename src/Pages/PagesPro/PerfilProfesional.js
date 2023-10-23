@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import Calificacion from "../../components/Rating";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
+import { Chip } from 'primereact/chip';
 // Estilos
 import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
@@ -33,6 +34,7 @@ export const PerfilPro = () => {
           })
           .then((response) => {
             setProfesionalData(response.data); // Almacena los datos del perfil del profesional
+            console.log(response.data);
           })
           .catch((error) => {
             console.error("error al obtener los datos del usuario", error);
@@ -78,15 +80,22 @@ export const PerfilPro = () => {
           <div className="descriptionPerfilProfesional">
             {profesionalData && (
               <div>
-              <h3>
-                {profesionalData.nombre} {profesionalData.apellido}
-              </h3>
-              {profesionalData.tipoProfesion && profesionalData.tipoProfesion.length > 0 ? (
-                <h4>Profesión: {profesionalData.tipoProfesion[0].nombre_profesion}</h4>
-              ) : (
-                <p>Aún no se ha asignado una profesión</p>
-              )}
-            </div>
+                <h3>
+                  {profesionalData.nombre} {profesionalData.apellido}
+                </h3>
+                <div>
+                  <h4>Profesiones:</h4>
+                  {profesionalData.tipoProfesion && profesionalData.tipoProfesion.length > 0 ? (
+                    <ul>
+                      {profesionalData.tipoProfesion.map((profesion, index) => (
+                        <Chip key={index} label={profesion.nombre_profesion} className="p-mr-2" />
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Aún no se han asignado profesiones</p>
+                  )}
+                </div>
+              </div>
             )}
           </div>
           <div className="contactoPerfilProfesional">
@@ -150,8 +159,8 @@ export const PerfilPro = () => {
             <div>
               <span>
                 {portafolio &&
-                portafolio.data &&
-                portafolio.data[0].certificaciones
+                  portafolio.data &&
+                  portafolio.data[0].certificaciones
                   ? portafolio.data[0].certificaciones
                   : "Cargando..."}
               </span>
