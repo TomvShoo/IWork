@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
-import "../../style.css";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 
@@ -78,17 +76,6 @@ const AgregarPortfolio = () => {
       console.log(requestData);
     }
   };
-
-  const footer = (
-    <div className="agregarGuardarBoton">
-      <Button
-        label="Guardar cambios"
-        icon="pi pi-save"
-        rounded
-        onClick={handleSave}
-      />
-    </div>
-  );
 
   return (
     <div className="agregarPortafolioContainer">

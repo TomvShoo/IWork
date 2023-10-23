@@ -6,6 +6,7 @@ import { Column } from "primereact/column";
 import BarraMenuAdmin from "../../components/BarraMenuAdmin";
 import BotonAdmin from "../../components/BotonesAdmin";
 import Correo from "../../components/Correo";
+import styles from "./VistaAdmin.module.css";
 
 const AdminView = () => {
   const [searchText, setSearchText] = useState("");
@@ -20,46 +21,35 @@ const AdminView = () => {
   };
 
   return (
-    <div className="vistaAdminContainer">
+    <div className={styles.vistaAdminContainer}>
       <BarraMenuAdmin />
-      <div className="vistaAdminData">
+      <div className={styles.vistaAdminData}>
         <BotonAdmin />
-        <div>
-          <div>
-            <div>
-              <InputText
-                placeholder="Buscar mensajes"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-              />
-              <Button
-                label="Buscar"
-                icon="pi pi-search"
-                onClick={handleSearch}
-              />
-            </div>
+
+        <div className={styles.adminBuscarMensajes}>
+          <div className={styles.buscarMensajes}>
+            <InputText
+              placeholder="Buscar mensajes"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
           </div>
+          <DataTable value={messages}>
+            <Column field="subject" header="Asunto" />
+            <Column field="sender" header="Remitente" />
+            <Column field="date" header="Fecha" />
+            <Column
+              body={(rowData) => (
+                <Button
+                  label="Eliminar"
+                  onClick={() => handleDelete(rowData)}
+                />
+              )}
+            />
+          </DataTable>
         </div>
-        <div>
-          <div>
-            <DataTable value={messages}>
-              <Column field="subject" header="Asunto" />
-              <Column field="sender" header="Remitente" />
-              <Column field="date" header="Fecha" />
-              <Column
-                body={(rowData) => (
-                  <Button
-                    label="Eliminar"
-                    onClick={() => handleDelete(rowData)}
-                  />
-                )}
-              />
-            </DataTable>
-          </div>
-        </div>
-        <div>
-          <Correo />
-        </div>
+        <Correo />
       </div>
     </div>
   );

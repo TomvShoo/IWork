@@ -8,13 +8,17 @@ import { SelectButton } from "primereact/selectbutton";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import BotonRegistro from "../components/BotonRegistro";
+import styles from "./Registro.module.css";
 // import { ToggleButton } from "primereact/togglebutton";
 // import Modal from "react-bootstrap/Modal";
+<<<<<<< HEAD
 // primeicons
 import "primeicons/primeicons.css";
 // Estilos
 import "../style.css";
 import { Dropdown } from "primereact/dropdown";
+=======
+>>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
 
 export const Registro = () => {
   const [selectedProfesion, setSelectedProfesion] = useState(null);
@@ -136,8 +140,8 @@ export const Registro = () => {
   };
 
   return (
-    <div className="registerContainer">
-      <div className="menuBackLogin">
+    <div className={styles.registerContainer}>
+      <div className={styles.menuBackNav}>
         <Link to="/">
           <Button severity="secondary" text>
             <i
@@ -146,13 +150,13 @@ export const Registro = () => {
             ></i>
           </Button>
         </Link>
-        <span style={{ color: '#6C757D' }}>Crear cuenta</span>
+        <span style={{ color: "#6C757D" }}>Crear cuenta</span>
       </div>
 
-      <div className="registerData">
-        <form className="registerForm" onSubmit={handleSubmit}>
-          <div className="registerInputs">
-            <div className="registerName">
+      <div className={styles.registerData}>
+        <form className={styles.registerForm} onSubmit={handleSubmit}>
+          <div className={styles.registerInputs}>
+            <div className={styles.registerName}>
               <InputText
                 placeholder="Nombre"
                 name="nombre"
@@ -167,6 +171,7 @@ export const Registro = () => {
               ></InputText>
             </div>
 
+<<<<<<< HEAD
             <div className="registerNum">
               <div className="number">
                 <span className="p-inputgroup-addon">+56 9</span>
@@ -179,9 +184,19 @@ export const Registro = () => {
                 ></InputText>
               </div>
               {errors.nroTelefono && <span>{errors.nroTelefono.message}</span>}
+=======
+            <div className={styles.registerNum}>
+              <InputText
+                placeholder="Numero de Telefono"
+                name="nroTelefono"
+                value={formData.nroTelefono}
+                onChange={handleInputChange}
+                maxLength={11}
+              ></InputText>
+>>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
             </div>
 
-            <div className="registerEmailPass">
+            <div className={styles.registerEmailPass}>
               <InputText
                 placeholder="Correo"
                 name="correo"
@@ -208,6 +223,7 @@ export const Registro = () => {
             </div>
           </div>
 
+<<<<<<< HEAD
           {formData.tipoCuenta === "profesional" && (
             <div className="registerProfession">
               {/* Aquí va tu campo "Seleccione profesión" */}
@@ -227,6 +243,10 @@ export const Registro = () => {
 
           <div className="registerSelectContainer">
             <div className="registerTypeProfile">
+=======
+          <div className={styles.registerSelectContainer}>
+            <div className={styles.registerTypeProfile}>
+>>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
               <p>Selecciona el tipo de cuenta:</p>
               <div>
                 <SelectButton
@@ -242,7 +262,7 @@ export const Registro = () => {
               </div>
             </div>
 
-            <div className="registerButton">
+            <div className={styles.registerButton}>
               <BotonRegistro />
             </div>
           </div>

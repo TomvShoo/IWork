@@ -1,0 +1,22 @@
+.botonesAdminContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  gap: 1rem;
+}
+.buscarBotonesAdmin {
+  /* flex: 1; */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 1rem;
+}
+.botonesAdmin {
+  display: flex;
+  justify-content: space-evenly;
+}

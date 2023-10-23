@@ -8,7 +8,7 @@ import Carrusel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
 import CartasMenu from "../../components/CartasMenu";
-// import Footer from "../../components/Footer";
+import Footer from "../../components/Footer";
 
 import { Rating } from "primereact/rating";
 import BotonCalificacion from "../../components/AgregarCalificacion";
@@ -110,36 +110,9 @@ export const MenuCli = () => {
           </div>
         </div>
       </section>
-
-      {/* <div style={Estilos.divLinks}>
-        <Link>
-          <Button>Cercanos a ti</Button>
-        </Link>
-        <Link>
-          <Button>Filtrar</Button>
-        </Link>
-        <ModalAdvertenciaCli />
-      </div>
-      <Card>
-        <div style={Estilos.carta}>
-          <div>
-            <Avatar label="P" shape="circle" />
-          </div>
-          <div>
-            <h3>Nombre Apellido</h3>
-            <h4>Profesión</h4>
-          </div>
-          <div>
-            <Calificacion />
-          </div>
-        </div>
-        <div>
-          <Carrusel />
-        </div>
-      </Card> */}
-      {/* <div>
+      <div className="divFooter">
         <Footer />
-      </div> */}
+      </div>
     </div>
   );
 };

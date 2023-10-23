@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import axios from "axios";
+import Footer from "../../components/Footer";
 
 const Estilo = {
   card: {
@@ -33,7 +34,7 @@ const PerfilCliente = () => {
 
   useEffect(() => {
     // obtener el token del almacenamiento local
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
 
     if (token) {
       //se realiza la solicitud al servidor
@@ -72,6 +73,9 @@ const PerfilCliente = () => {
           </Button>
         </Link>
       </Card>
+      <div className="divFooter">
+        <Footer />
+      </div>
     </div>
   );
 };

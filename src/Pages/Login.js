@@ -6,14 +6,11 @@ import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import SwitchButton from "../components/SwitchButton";
 import axios from "axios";
+import styles from "./Login.module.css";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
-// primeicons
-import "primeicons/primeicons.css";
-// Estilos
-import "../style.css";
 
 export const Login = () => {
   const [formData, setFormData] = useState({
@@ -104,20 +101,24 @@ export const Login = () => {
 
   // Front-End
   return (
-    <div className="loginContainer">
-      <div className="loginLogo">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginLogo}>
         <h1>iWork</h1>
       </div>
 
-      <div className="loginData">
-        <div className="loginSwitchButton">
+      <div className={styles.loginData}>
+        <div className={styles.loginSwitchButton}>
           <SwitchButton
             onUserTypeChange={handleUserTypeChange}
             setSelectedUserType={setSelectedUserType}
           />
         </div>
+<<<<<<< HEAD
 
         <form className="loginForm" onSubmit={handleSubmit(handlesubmit)}>
+=======
+        <form className={styles.loginForm} onSubmit={handlesubmit}>
+>>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
           <InputText
             type="email"
             placeholder="Correo electrónico"
@@ -137,16 +138,16 @@ export const Login = () => {
           ></InputText>
           {errors.contrasena && <span>Constraseña es requerido</span>}
           <Link to="/MenuPro"></Link>
-          <Toast className="" ref={(el) => (mensaje.current = el)} />
-          <Button className="button" label="Iniciar sesión" type="submit" variant="contained" rounded />
+          <Toast ref={(el) => (mensaje.current = el)} />
+          <Button className={styles.button} label="Iniciar sesión" type="submit" variant="contained" rounded />
         </form>
       </div>
 
-      <div className="createNewUser">
+      <div className={styles.createNewUser}>
         <p>¿No tienes una cuenta?</p>
         <Link to="/Registro">
-          <div className="loginRegisterButton">
-            <Button className="button" label="Crear cuenta" outlined rounded />
+          <div className={styles.loginRegisterButton}>
+            <Button className={styles.button} label="Crear cuenta" outlined rounded />
           </div>
         </Link>
       </div>
