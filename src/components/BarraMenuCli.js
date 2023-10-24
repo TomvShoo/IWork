@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import "../style.css";
 import axios from 'axios';
 import { Button } from "primereact/button";
+import Busqueda from "./resultadoBusqueda";
 
 export default function BarraMenuCli() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const cerrarSesion = () => {
     localStorage.removeItem("accessToken");
@@ -45,7 +48,7 @@ export default function BarraMenuCli() {
       ],
     },
     {
-      label:(
+      label: (
         <Link to="/" onClick={cerrarSesion} className="link">
           Cerrar sesion
         </Link>
@@ -75,10 +78,20 @@ export default function BarraMenuCli() {
     fetchResults(e.target.value); // Llama a la función fetchResults cuando se realice la búsqueda
   };
 
+  // const fetchResults = (query) => {
+  //   axios.get(`http://localhost:4000/profesional/search?query=${query}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching data: ', error);
+  //     });
+  // };
   const fetchResults = (query) => {
     axios.get(`http://localhost:4000/profesional/search?query=${query}`)
       .then((response) => {
-        console.log(response.data); 
+        console.log(response.data);
+        setResultadosBusqueda(response.data); // Guarda los resultados de la búsqueda en el estado
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
@@ -97,10 +110,21 @@ export default function BarraMenuCli() {
       </span>
     </div>
   );
-
+  const onHide = () => {
+    setShowModal(false); // Oculta el modal al llamar a setShowModal con el valor false
+  };
+  
   return (
     <div>
       <Menubar model={menu} start={MarcaCli} end={barra} />
+      {/* Renderiza el componente ResultadoModal si hay resultados */}
+      {resultadosBusqueda.length > 0 && (
+        <Busqueda
+          resultados={resultadosBusqueda}
+          visible={showModal}
+          onHide={onHide} // Cambiado de setShowModal(true) a setShowModal(false)
+        />
+      )}
     </div>
   );
 }

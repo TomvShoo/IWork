@@ -6,13 +6,9 @@ import { Button } from "primereact/button";
 import Calificacion from "../../components/Rating";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
-<<<<<<< HEAD
 import { Chip } from 'primereact/chip';
 // Estilos
 import "../../style.css";
-=======
-// import BarraMenuCli from "../../components/BarraMenuCli";
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
 import BarraMenuPro from "../../components/BarraMenuPro";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
@@ -88,7 +84,6 @@ export const PerfilPro = () => {
                 <h3>
                   {profesionalData.nombre} {profesionalData.apellido}
                 </h3>
-<<<<<<< HEAD
                 <div>
                   <h4>Profesiones:</h4>
                   {profesionalData.tipoProfesion && profesionalData.tipoProfesion.length > 0 ? (
@@ -101,17 +96,6 @@ export const PerfilPro = () => {
                     <p>Aún no se han asignado profesiones</p>
                   )}
                 </div>
-=======
-                {profesionalData.tipoProfesion &&
-                profesionalData.tipoProfesion.length > 0 ? (
-                  <h4>
-                    Profesión:{" "}
-                    {profesionalData.tipoProfesion[0].nombre_profesion}
-                  </h4>
-                ) : (
-                  <p>Aún no se ha asignado una profesión</p>
-                )}
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
               </div>
             )}
           </div>

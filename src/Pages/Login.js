@@ -113,12 +113,8 @@ export const Login = () => {
             setSelectedUserType={setSelectedUserType}
           />
         </div>
-<<<<<<< HEAD
 
-        <form className="loginForm" onSubmit={handleSubmit(handlesubmit)}>
-=======
-        <form className={styles.loginForm} onSubmit={handlesubmit}>
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
+        <form className={styles.loginForm} onSubmit={handleSubmit(handlesubmit)}>
           <InputText
             type="email"
             placeholder="Correo electrónico"

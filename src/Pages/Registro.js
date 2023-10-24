@@ -11,14 +11,11 @@ import BotonRegistro from "../components/BotonRegistro";
 import styles from "./Registro.module.css";
 // import { ToggleButton } from "primereact/togglebutton";
 // import Modal from "react-bootstrap/Modal";
-<<<<<<< HEAD
 // primeicons
 import "primeicons/primeicons.css";
 // Estilos
 import "../style.css";
 import { Dropdown } from "primereact/dropdown";
-=======
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
 
 export const Registro = () => {
   const [selectedProfesion, setSelectedProfesion] = useState(null);
@@ -171,7 +168,6 @@ export const Registro = () => {
               ></InputText>
             </div>
 
-<<<<<<< HEAD
             <div className="registerNum">
               <div className="number">
                 <span className="p-inputgroup-addon">+56 9</span>
@@ -184,16 +180,6 @@ export const Registro = () => {
                 ></InputText>
               </div>
               {errors.nroTelefono && <span>{errors.nroTelefono.message}</span>}
-=======
-            <div className={styles.registerNum}>
-              <InputText
-                placeholder="Numero de Telefono"
-                name="nroTelefono"
-                value={formData.nroTelefono}
-                onChange={handleInputChange}
-                maxLength={11}
-              ></InputText>
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
             </div>
 
             <div className={styles.registerEmailPass}>
@@ -223,7 +209,6 @@ export const Registro = () => {
             </div>
           </div>
 
-<<<<<<< HEAD
           {formData.tipoCuenta === "profesional" && (
             <div className="registerProfession">
               {/* Aquí va tu campo "Seleccione profesión" */}
@@ -243,10 +228,6 @@ export const Registro = () => {
 
           <div className="registerSelectContainer">
             <div className="registerTypeProfile">
-=======
-          <div className={styles.registerSelectContainer}>
-            <div className={styles.registerTypeProfile}>
->>>>>>> 3cb65d8f7eff07076bc067fb2a02f879ba6916c6
               <p>Selecciona el tipo de cuenta:</p>
               <div>
                 <SelectButton
