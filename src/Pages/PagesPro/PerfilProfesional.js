@@ -12,12 +12,15 @@ import "../../style.css";
 import BarraMenuPro from "../../components/BarraMenuPro";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
+import CalificacionPro from "../../components/RatingPro";
 
 export const PerfilPro = () => {
   const [usuario, setUsuario] = useState(null);
   const [portafolio, setPortafolio] = useState(null);
-  const [profesionalData, setProfesionalData] = useState(null); // Estado para almacenar la información del profesional
-  const [userRole, setUserRole] = useState(""); // Estado para almacenar el rol del usuario
+  const [profesionalData, setProfesionalData] = useState(null);
+  const [promedioCalificacion, setPromedioCalificacion] = useState(0);
+  const [resenas, setResenas] = useState(null);
+  const [userRole, setUserRole] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -27,12 +30,11 @@ export const PerfilPro = () => {
 
       if (decodedToken.role === "profesional") {
         // Lógica para obtener y almacenar los datos del perfil del profesional
-        axios
-          .get("http://localhost:4000/auth/perfil", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
+        axios.get("http://localhost:4000/auth/perfil", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => {
             setProfesionalData(response.data); // Almacena los datos del perfil del profesional
             console.log(response.data);
@@ -42,12 +44,11 @@ export const PerfilPro = () => {
           });
 
         const userId = decodedToken.id;
-        axios
-          .get(`http://localhost:4000/portafolio/profesional/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
+        axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => {
             setPortafolio(response.data);
             console.log("Datos del portafolio:", response.data);
@@ -55,6 +56,22 @@ export const PerfilPro = () => {
           .catch((error) => {
             console.error("Error al obtener los datos del portafolio", error);
           });
+
+        const fetchResenas = async () => {
+          try {
+            const resenasResponse = await axios.get(`http://localhost:4000/resena/profesional/${userId}`);
+            setResenas(resenasResponse.data);
+            console.log(resenasResponse.data);
+
+            const sum = resenasResponse.data.reduce((total, resena) => total + resena.calificacion, 0);
+            const promedio = resenasResponse.data.length > 0 ? sum / resenasResponse.data.length : 0;
+            setPromedioCalificacion(promedio);
+          } catch (error) {
+            console.error('Error fetching resenas data:', error);
+          }
+
+        }
+        fetchResenas();
       }
     }
   }, []);
@@ -75,7 +92,7 @@ export const PerfilPro = () => {
         <div className="dataPerfilProfesional">
           <div className="headerPerfilProfesional">
             <Avatar label="P" size="xlarge" shape="circle" />
-            <Calificacion />
+            <CalificacionPro promedio={promedioCalificacion} />
           </div>
 
           <div className="descriptionPerfilProfesional">
@@ -174,33 +191,22 @@ export const PerfilPro = () => {
             <h5>Reseñas</h5>
           </div>
           <div className="resenas">
-            <span className="resenaBloque">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              vitae erat at justo dictum molestie. Nam venenatis vestibulum
-              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-              ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
-              Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
-              leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
-            </span>
-            <span className="resenaBloque">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              vitae erat at justo dictum molestie. Nam venenatis vestibulum
-              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-            </span>
-            <span className="resenaBloque">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              vitae erat at justo dictum molestie. Nam venenatis vestibulum
-              justo, in interdum
-            </span>
-            <span className="resenaBloque">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              vitae erat at justo dictum molestie. Nam venenatis vestibulum
-              justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-              ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
-              Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
-              leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
-            </span>
-            <span className="resenaBloque">Lorem ipsum dolor sit!</span>
+            {resenas && resenas.map((resena, index) => (
+              <span key={index} className="resenaBloque">
+                <div className="resenaContent">
+                  <div className="ContentUser">
+                    <Avatar
+                      label="U"
+                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                      shape="circle"
+                    />
+                    <span>{resena.nombreUsuario}</span>
+                  </div>
+                  <CalificacionPro promedio={resena.calificacion} />
+                </div>
+                <span>{resena.resena}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>

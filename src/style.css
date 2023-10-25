@@ -134,14 +134,7 @@ div {
   flex-direction: column;
   gap: 1rem;
 }
-.registerNum {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem 0rem;
-}
-.number{
-  display: flex;
-}
+
 .registerSelectContainer {
   flex: 1;
   display: flex;
@@ -255,7 +248,7 @@ div {
 
 .vistaPerfilProfesionalDatos {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   gap: 1rem;
   margin: 0rem 1rem;
 }

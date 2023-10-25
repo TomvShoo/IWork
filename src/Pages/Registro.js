@@ -14,7 +14,7 @@ import styles from "./Registro.module.css";
 // primeicons
 import "primeicons/primeicons.css";
 // Estilos
-import "../style.css";
+import "./Registro.module.css";
 import { Dropdown } from "primereact/dropdown";
 
 export const Registro = () => {
@@ -89,9 +89,9 @@ export const Registro = () => {
       if (response.data.success) {
         console.log("Registro exitoso :D");
         console.log(response.data);
-        const profesionalId = response.data.profesionalId; // Asegúrate de ajustar la clave adecuada para el ID
+        const profesionalId = response.data.profesionalId; 
         if (formData.tipoCuenta === "profesional") {
-          asignarProfesion(profesionalId); // Pasa el ID a la función asignarProfesion
+          asignarProfesion(profesionalId);
         }
         // navigate("/");
       } else {

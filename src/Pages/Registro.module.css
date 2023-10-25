@@ -52,6 +52,9 @@
   flex-direction: column;
   margin: 2rem 0rem;
 }
+.numberPhone {
+  display: flex;
+}
 .registerSelectContainer {
   flex: 1;
   display: flex;

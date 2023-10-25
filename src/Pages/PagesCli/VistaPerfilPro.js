@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
-import Calificacion from "../../components/Rating";
-import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
 import { Chip } from 'primereact/chip';
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
 import BarraMenuCli from "../../components/BarraMenuCli";
+import CalificacionPro from "../../components/RatingPro";
+import "./VistaPro.css"
 
 const VistaPerfilPro = () => {
     const [profesionalData, setProfesionalData] = useState(null);
     const [portafolio, setPortafolio] = useState(null);
+    const [promedioCalificacion, setPromedioCalificacion] = useState(0);
     const [resenas, setResenas] = useState(null);
-    const location = useLocation();
+    // const location = useLocation();
     const { id } = useParams();
 
     useEffect(() => {
@@ -44,6 +45,10 @@ const VistaPerfilPro = () => {
                 const resenasResponse = await axios.get(`http://localhost:4000/resena/profesional/${id}`);
                 setResenas(resenasResponse.data);
                 console.log(resenasResponse.data);
+
+                const sum = resenasResponse.data.reduce((total, resena) => total + resena.calificacion, 0);
+                const promedio = resenasResponse.data.length > 0 ? sum / resenasResponse.data.length : 0;
+                setPromedioCalificacion(promedio);
             } catch (error) {
                 console.error('Error fetching resenas data:', error);
             }
@@ -53,15 +58,6 @@ const VistaPerfilPro = () => {
         fetchPortafolioData();
         fetchResenas();
     }, [id]);
-
-    const calcularPromedioCalificacion = () => {
-        if (resenas && resenas.length > 0) {
-            const sum = resenas.reduce((total, resena) => total + resena.calificacion, 0);
-            const promedio = sum / resenas.length;
-            return promedio;
-        }
-        return 0;
-    }
 
     const handleWhatsAppClick = () => {
         if (profesionalData && profesionalData.nroTelefono) {
@@ -85,7 +81,7 @@ const VistaPerfilPro = () => {
                 <div className="dataPerfilProfesional">
                     <div className="headerPerfilProfesional">
                         <Avatar label="P" size="xlarge" shape="circle" />
-                        <Calificacion value={calcularPromedioCalificacion()} readOnly />
+                        <CalificacionPro promedio={promedioCalificacion} />
                     </div>
 
                     <div className="descriptionPerfilProfesional">
@@ -144,9 +140,8 @@ const VistaPerfilPro = () => {
                 </div>
             </div>
 
-            <div className="vistaPerfilProfesionalDatos">
+            <div className="vistaPerfilProfesionalResena">
                 <div className="dataPerfilProfesional">
-                    {/* Mostrar la descripción y los certificados del profesional */}
                     <div className="portafolioProfesionalBloque">
                         <div>
                             <h5>Descripción</h5>
@@ -180,10 +175,21 @@ const VistaPerfilPro = () => {
                         <h5>Reseñas</h5>
                     </div>
                     <div className="resenas">
-                        {resenas && resenas.map((resena,index) => (
+                        {resenas && resenas.map((resena, index) => (
                             <span key={index} className="resenaBloque">
-                                <p>{resena.resena}</p>
-                            </span>                       
+                                <div className="resenaContent">
+                                    <div className="ContentUser">
+                                        <Avatar
+                                            label="U"
+                                            style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                                            shape="circle"
+                                        />
+                                        <span>{resena.nombreUsuario}</span>
+                                    </div>
+                                    <CalificacionPro promedio={resena.calificacion} />
+                                </div>
+                                <span>{resena.resena}</span>
+                            </span>
                         ))}
                     </div>
                 </div>
