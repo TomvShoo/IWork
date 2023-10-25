@@ -14,13 +14,14 @@ import BarraMenuCli from "../../components/BarraMenuCli";
 const VistaPerfilPro = () => {
     const [profesionalData, setProfesionalData] = useState(null);
     const [portafolio, setPortafolio] = useState(null);
-    const location = useLocation(); // Usa useLocation para obtener la URL actual
+    const [resenas, setResenas] = useState(null);
+    const location = useLocation();
     const { id } = useParams();
 
     useEffect(() => {
         const fetchProfesionalData = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/profesional/id/${id}`); // Utiliza el parámetro de la URL en la solicitud GET
+                const response = await axios.get(`http://localhost:4000/profesional/id/${id}`);
                 setProfesionalData(response.data);
                 console.log(response.data);
             } catch (error) {
@@ -28,8 +29,39 @@ const VistaPerfilPro = () => {
             }
         };
 
+        const fetchPortafolioData = async () => {
+            try {
+                const portafolioResponse = await axios.get(`http://localhost:4000/portafolio/profesional/${id}`);
+                setPortafolio(portafolioResponse.data);
+                console.log(portafolioResponse.data);
+            } catch (error) {
+                console.error('Error fetching portafolio data:', error);
+            }
+        };
+
+        const fetchResenas = async () => {
+            try {
+                const resenasResponse = await axios.get(`http://localhost:4000/resena/profesional/${id}`);
+                setResenas(resenasResponse.data);
+                console.log(resenasResponse.data);
+            } catch (error) {
+                console.error('Error fetching resenas data:', error);
+            }
+        }
+
         fetchProfesionalData();
+        fetchPortafolioData();
+        fetchResenas();
     }, [id]);
+
+    const calcularPromedioCalificacion = () => {
+        if (resenas && resenas.length > 0) {
+            const sum = resenas.reduce((total, resena) => total + resena.calificacion, 0);
+            const promedio = sum / resenas.length;
+            return promedio;
+        }
+        return 0;
+    }
 
     const handleWhatsAppClick = () => {
         if (profesionalData && profesionalData.nroTelefono) {
@@ -40,10 +72,10 @@ const VistaPerfilPro = () => {
 
     const handleGmailClick = () => {
         if (profesionalData && profesionalData.correo) {
-          const mailtoLink = `mailto:${profesionalData.correo}`;
-          window.open(mailtoLink, "_blank");
+            const mailtoLink = `mailto:${profesionalData.correo}`;
+            window.open(mailtoLink, "_blank");
         }
-      };
+    };
 
     return (
         <div className="perfilProfesionalContainer">
@@ -53,7 +85,7 @@ const VistaPerfilPro = () => {
                 <div className="dataPerfilProfesional">
                     <div className="headerPerfilProfesional">
                         <Avatar label="P" size="xlarge" shape="circle" />
-                        <Calificacion />
+                        <Calificacion value={calcularPromedioCalificacion()} readOnly />
                     </div>
 
                     <div className="descriptionPerfilProfesional">
@@ -99,7 +131,7 @@ const VistaPerfilPro = () => {
                     </div>
 
                     <div className="botonesEditarAgregar">
-                        <BotonCalificacion />
+                        <BotonCalificacion profesionalId={id} />
                     </div>
                 </div>
 
@@ -148,33 +180,11 @@ const VistaPerfilPro = () => {
                         <h5>Reseñas</h5>
                     </div>
                     <div className="resenas">
-                        <span className="resenaBloque">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                            vitae erat at justo dictum molestie. Nam venenatis vestibulum
-                            justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-                            ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
-                            Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
-                            leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
-                        </span>
-                        <span className="resenaBloque">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                            vitae erat at justo dictum molestie. Nam venenatis vestibulum
-                            justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-                        </span>
-                        <span className="resenaBloque">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                            vitae erat at justo dictum molestie. Nam venenatis vestibulum
-                            justo, in interdum
-                        </span>
-                        <span className="resenaBloque">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                            vitae erat at justo dictum molestie. Nam venenatis vestibulum
-                            justo, in interdum diam. Morbi non pharetra ligula. Sed lobortis
-                            ac mi nec ultrices. Mauris sollicitudin vulputate dui a luctus.
-                            Aenean non condimentum dolor, at rutrum enim. Donec auctor dapibus
-                            leo, quis congue sem accumsan vel. Ut non accumsan quam. Nullam.
-                        </span>
-                        <span className="resenaBloque">Lorem ipsum dolor sit!</span>
+                        {resenas && resenas.map((resena,index) => (
+                            <span key={index} className="resenaBloque">
+                                <p>{resena.resena}</p>
+                            </span>                       
+                        ))}
                     </div>
                 </div>
             </div>

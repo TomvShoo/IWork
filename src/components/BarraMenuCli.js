@@ -39,9 +39,9 @@ export default function BarraMenuCli() {
         },
         {
           label: (
-            <button to="/EditarPerfilCli" className="link">
+            <Link to="/EditarPerfilCli" className="link">
               Editar Perfil
-            </button>
+            </Link>
           ),
           icon: "pi pi-pencil",
         },
@@ -78,15 +78,6 @@ export default function BarraMenuCli() {
     fetchResults(e.target.value); // Llama a la función fetchResults cuando se realice la búsqueda
   };
 
-  // const fetchResults = (query) => {
-  //   axios.get(`http://localhost:4000/profesional/search?query=${query}`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching data: ', error);
-  //     });
-  // };
   const fetchResults = (query) => {
     axios.get(`http://localhost:4000/profesional/search?query=${query}`)
       .then((response) => {

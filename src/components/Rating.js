@@ -2,21 +2,34 @@ import React, { Component } from "react";
 import { Rating } from "primereact/rating";
 
 class Calificacion extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      ratingValue: null,
+      ratingValue: this.props.value || null, // Valor de la calificación proporcionado por el padre
     };
   }
 
+  handleRatingChange = (e) => {
+    this.setState({ ratingValue: e.value });
+    this.props.onRateChange(e.value); // Pasa la calificación al componente padre
+  };
+
   render() {
+    const { readOnly, promedio } = this.props; // readOnly para el promedio y promedio como el valor promedio de la calificación
+
     return (
       <div>
         <Rating
           value={this.state.ratingValue}
-          onChange={(e) => this.setState({ ratingValue: e.value })}
+          onChange={this.handleRatingChange}
           cancel={false}
+          readonly={readOnly} // Establece el modo de solo lectura
         />
+        {readOnly && promedio && ( // Muestra el promedio si es modo de solo lectura y se proporciona un promedio
+          <div className="calificacionPromedio">
+            Promedio de calificación: {promedio}
+          </div>
+        )}
       </div>
     );
   }

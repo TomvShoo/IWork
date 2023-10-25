@@ -1,33 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import Calificacion from "./Rating";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const BotonCalificacion = () => {
   const [visible, setVisible] = useState(false);
   const [calificacion, setCalificacion] = useState(null);
   const [resena, setResena] = useState("");
+  let { id } = useParams();
 
-  const enviarCalificacion = () => {
+  const handleRateChange = (value) => {
+    setCalificacion(value);
+  }
+
+  const enviarCalificacion = async () => {
     const data = {
       calificacion: calificacion,
       resena: resena,
+      profesionalId: parseInt(id),
     };
 
-    // Cambia la URL por la ruta correcta en tu backend
-    axios
-      .post("poner link aqui", data)
-      .then((response) => {
-        console.log(response.data); // Aquí puedes manejar la respuesta del backend
-        // Por ejemplo, puedes actualizar el estado con las calificaciones y reseñas del profesional
-      })
-      .catch((error) => {
-        console.error("Error al enviar la calificación:", error);
-      });
+    try {
+      const response = await
+        axios.post("http://localhost:4000/resena/subirResena",
+          data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+        )
 
-    setVisible(false); // Cierra el diálogo después de enviar la calificación
+        if (response.data) {
+          console.log(data);
+        } else {
+          console.error("hubo un error al mandar la reseña")
+        } // Cierra el diálogo después de enviar la calificación
+
+    } catch (error) {
+      console.error("Error al comunicarse con el servidor", error);
+      console.log(data);
+    }
   };
 
   const cancelarModal = () => {
@@ -72,7 +88,7 @@ const BotonCalificacion = () => {
             <div>
               <span>Califica al profesional:</span>
             </div>
-            <Calificacion onRate={(e) => setCalificacion(e.value)} />
+            <Calificacion onRateChange={handleRateChange} />
           </div>
           <div className="resena">
             <div>
