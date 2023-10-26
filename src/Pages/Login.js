@@ -7,6 +7,7 @@ import { Toast } from "primereact/toast";
 import SwitchButton from "../components/SwitchButton";
 import axios from "axios";
 import styles from "./Login.module.css";
+import jwt_decode from "jwt-decode";
 //theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
@@ -17,7 +18,10 @@ export const Login = () => {
     correo: "",
     contrasena: "",
   });
-
+  const [validationErrors, setValidationErrors] = useState({
+    emailError: '',
+    passwordError: '',
+  });
   const {
     register,
     handleSubmit,
@@ -25,7 +29,6 @@ export const Login = () => {
   } = useForm();
 
   const [loginMessage, setLoginMessage] = useState({ text: "", style: "" });
-  const [selectedUserType, setSelectedUserType] = useState("cliente");
   const navigate = useNavigate();
   const mensaje = useRef(null);
 
@@ -39,67 +42,102 @@ export const Login = () => {
     }
   }, [loginMessage]);
 
-  useEffect(() => {
-    if (loginMessage.severity === "success") {
-      const timer = setTimeout(() => {
-        navigate("/MenuPro");
-      }, 5000);
+  // useEffect(() => {
+  //   if (loginMessage.severity === "success") {
+  //     const timer = setTimeout(() => {
+  //       navigate("/MenuPro");
+  //     }, 5000);
 
-      // Limpia el temporizador si el componente se desmonta antes de que ocurra la redirección
-      return () => clearTimeout(timer);
-    }
-  }, [loginMessage, navigate]);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [loginMessage, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleUserTypeChange = (userType) => {
-    setSelectedUserType(userType);
-  };
+  // const handleUserTypeChange = (userType) => {
+  //   setSelectedUserType(userType);
+  // };
 
-  const handlesubmit = async (e) => {
-    // e.preventDefault();
-
-    // console.log("Tipo de cuenta seleccionado:", selectedUserType);
-    // inicio de sesion con axios
+  const handlesubmit = async () => {
+    setValidationErrors({
+      emailError: '',
+      passwordError: '',
+    });
+  
+    if (!formData.correo) {
+      setValidationErrors((prevState) => ({
+        ...prevState,
+        emailError: 'Ingresar un correo electrónico.',
+      }));
+      return;
+    }
+    if (!formData.contrasena) {
+      setValidationErrors((prevState) => ({
+        ...prevState,
+        passwordError: 'Ingresa una contraseña.',
+      }));
+      return;
+    }
+    
     try {
       const response = await axios.post("http://localhost:4000/auth/login", {
         correo: formData.correo,
         contrasena: formData.contrasena,
-        tipoCuenta: selectedUserType,
       });
 
-      // manejo de respuesta exitosa
       if (response.data.success) {
         console.log("inicio de sesion exitoso :D");
         console.log("Respuesta del servidor:", response.data);
         localStorage.setItem("accessToken", response.data.data);
         setLoginMessage({ text: "Inicio de sesión exitoso", style: "success" });
+      
+        const token = response.data.data;
+        const decodedToken = jwt_decode(token)
+        const userType = decodedToken.role;
 
-        if (selectedUserType === "cliente") {
+        if (userType === "cliente") {
           navigate("/PerfilCliente");
-        } else if (selectedUserType === "profesional") {
-          navigate("/PerfilProfesional");
+        } else if (userType === "profesional") {
+          navigate("PerfilProfesional")
         }
-        // return navigate('/MenuPro')
       } else {
-        console.log("Error en el inicio de sesion");
+        
+      }
+    } catch (error) {
+      console.error("error en el inicio de sesion", error);
+      setLoginMessage({ text: "Error en el inicio de sesión", style: "error" });
+
+      if (error.response) {
+        if (error.response.status === 401) {
+          setLoginMessage({
+            text: error.response.data.message,
+            style: "error",
+          });
+        } else if (error.response.status === 400) {
+          setLoginMessage({
+            text: error.response.data.message,
+            style: "error",
+          });
+        } else {
+          console.error("Error en el inicio de sesión", error);
+          setLoginMessage({
+            text: "Error en el inicio de sesión",
+            style: "error",
+          });
+        }
+      } else {
+        console.error("Error en el inicio de sesión", error);
         setLoginMessage({
           text: "Error en el inicio de sesión",
           style: "error",
         });
       }
-      // const token = response.data.token;
-    } catch (error) {
-      // manejo de errores
-      console.error("error en el inicio de sesion", error);
-      setLoginMessage({ text: "Error en el inicio de sesión", style: "error" });
     }
   };
 
-  // Front-End
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginLogo}>
@@ -107,12 +145,12 @@ export const Login = () => {
       </div>
 
       <div className={styles.loginData}>
-        <div className={styles.loginSwitchButton}>
+        {/* <div className={styles.loginSwitchButton}>
           <SwitchButton
             onUserTypeChange={handleUserTypeChange}
             setSelectedUserType={setSelectedUserType}
           />
-        </div>
+        </div> */}
 
         <form className={styles.loginForm} onSubmit={handleSubmit(handlesubmit)}>
           <InputText
@@ -124,6 +162,7 @@ export const Login = () => {
             onChange={handleInputChange}
           ></InputText>
           {errors.correo && <span>Correo es requerido</span>}
+          {/* color: #ff6f6f */}
           <InputText
             placeholder="Contraseña"
             type="password"
@@ -132,7 +171,7 @@ export const Login = () => {
             value={formData.contrasena}
             onChange={handleInputChange}
           ></InputText>
-          {errors.contrasena && <span>Constraseña es requerido</span>}
+          {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>
           <Toast ref={(el) => (mensaje.current = el)} />
           <Button className={styles.button} label="Iniciar sesión" type="submit" variant="contained" rounded />
