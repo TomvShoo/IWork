@@ -1,3 +1,5 @@
+// Estilos
+import styles from "./AgregarPortfolio.module.css";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
@@ -48,7 +50,7 @@ const AgregarPortfolio = () => {
       descripcion,
       certificaciones,
       imagen: imagen.split(",")[1],
-      //   profesionalId,
+      // profesionalId,
     };
 
     try {
@@ -78,8 +80,8 @@ const AgregarPortfolio = () => {
   };
 
   return (
-    <div className="agregarPortafolioContainer">
-      <div className="menuBackLogin">
+    <div className={styles.agregarPortafolioContainer}>
+      <div className={styles.menuBackNav}>
         <Link to="/PerfilProfesional">
           <Button severity="secondary" text>
             <i
@@ -91,19 +93,21 @@ const AgregarPortfolio = () => {
         <span style={{ color: "#6C757D" }}>Agregar portafolio</span>
       </div>
 
-      <div className="agregarCarta">
-        <div className="agregarData">
-          <div className="agregarInputs">
+      <div className={styles.agregarCarta}>
+        <div className={styles.agregarData}>
+          <div className={styles.agregarInputs}>
             <span>Descripción</span>
             <InputTextarea
+              className={styles.inputTextArea}
               autoResize
               value={descripcion}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className="agregarInputs">
+          <div className={styles.agregarInputs}>
             <span>Certificados</span>
             <InputTextarea
+              className={styles.inputTextArea}
               autoResize
               value={certificaciones}
               onChange={(e) => setCertificates(e.target.value)}
@@ -111,10 +115,10 @@ const AgregarPortfolio = () => {
           </div>
         </div>
 
-        <div className="agregarButtons">
+        <div className={styles.agregarButtons}>
           <div>
             {imagen && (
-              <div>
+              <div className={styles.agregarImagenes}>
                 <span>Imágenes seleccionadas:</span>
                 <img
                   src={imagen}
@@ -128,7 +132,9 @@ const AgregarPortfolio = () => {
               </div>
             )}
           </div>
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <div className={styles.agregarImagenes}>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+          </div>
           <Button
             label="Subir imágenes"
             icon="pi pi-image"
@@ -139,7 +145,7 @@ const AgregarPortfolio = () => {
             onChange={handleImageUpload}
           />
         </div>
-        <div className="agregarGuardarBoton">
+        <div className={styles.agregarGuardarBoton}>
           <Button
             label="Guardar cambios"
             icon="pi pi-save"

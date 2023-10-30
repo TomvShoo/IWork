@@ -9,6 +9,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 import axios from "axios";
+// Estilos
+import styles from "./EditarPerfilPro.module.css";
 
 export const EditarPerfilPro = () => {
   const [selectedProfesion, setSelectedProfesion] = useState(null);
@@ -54,8 +56,8 @@ export const EditarPerfilPro = () => {
   };
 
   return (
-    <div className="editarPerfilProContainer">
-      <div className="menuBackLogin">
+    <div className={styles.editarPerfilProContainer}>
+      <div className={styles.menuBackNav}>
         <Link to="/PerfilProfesional">
           <Button severity="secondary" text>
             <i
@@ -67,29 +69,29 @@ export const EditarPerfilPro = () => {
         <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
 
-      <div className="editarData">
-        <div className="editarProfesion">
-          <span>Seleccione una profesion</span>
+      <div className={styles.editarData}>
+        <div className={styles.editarProfesion}>
+          {/* <span>Seleccionar una profesión:</span> */}
           <Dropdown
             value={selectedProfesion}
             onChange={(e) => setSelectedProfesion(e.value)}
             options={profesiones}
             optionLabel="nombre_profesion"
-            placeholder="Seleccione una profesion"
+            placeholder="Seleccionar profesión"
             className="w-full md:w-14rem"
           />
         </div>
-        <div className="editarInputs">
-          <InputText placeholder="Cambiar Nombre"></InputText>
-          <InputText placeholder="Cambiar Apellido"></InputText>
-          <InputText placeholder="Cambiar Telefono" type="phone"></InputText>
-          <InputText placeholder="Nueva Contraseña"></InputText>
+        <div className={styles.editarInputs}>
+          <InputText placeholder="Cambiar nombre"></InputText>
+          <InputText placeholder="Cambiar apellido"></InputText>
+          <InputText placeholder="Cambiar teléfono" type="phone"></InputText>
+          <InputText placeholder="Nueva contraseña"></InputText>
           <InputText placeholder="Verificar contraseña"></InputText>
         </div>
-        <div className="editarButton">
+        <div className={styles.editarButton}>
           <Link to="/PerfilProfesional">
             <Button
-              className="botonGuardar"
+              className={styles.botonGuardar}
               label="Guardar cambios"
               icon="pi pi-save"
               rounded

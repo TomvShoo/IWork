@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from 'primereact/card';
-import "../style.css";
 import { Chip } from "primereact/chip";
 import { useNavigate } from "react-router-dom";
 

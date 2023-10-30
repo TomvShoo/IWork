@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
-import "../style.css";
+// Estilos
+import styles from "./BarraMenuPro.module.css";
 
 const BarraMenuPro = () => {
-
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = () => {
     // Aquí debes enviar una solicitud al backend utilizando el valor de búsqueda
@@ -23,25 +23,17 @@ const BarraMenuPro = () => {
   };
 
   const cerrarSesion = () => {
-    localStorage.removeItem("accessToken")
-  }
+    localStorage.removeItem("accessToken");
+  };
 
   const menu = [
-    {
-      label: (
-        <Link to="/MenuPro" className="link">
-          Menú
-        </Link>
-      ),
-      icon: "pi pi-home",
-    },
     {
       label: "Perfil",
       icon: "pi pi-fw pi-user",
       items: [
         {
           label: (
-            <Link to="/PerfilProfesional" className="link">
+            <Link to="/PerfilProfesional" className={styles.link}>
               Ver Perfil
             </Link>
           ),
@@ -49,7 +41,7 @@ const BarraMenuPro = () => {
         },
         {
           label: (
-            <Link to="/EditarPerfilPro" className="link">
+            <Link to="/EditarPerfilPro" className={styles.link}>
               Editar Perfil
             </Link>
           ),
@@ -58,8 +50,8 @@ const BarraMenuPro = () => {
       ],
     },
     {
-      label:(
-        <Link to="/" onClick={cerrarSesion} className="link">
+      label: (
+        <Link to="/" onClick={cerrarSesion} className={styles.link}>
           Cerrar sesion
         </Link>
       ),
@@ -83,20 +75,11 @@ const BarraMenuPro = () => {
     </div>
   );
 
-  const barra = (
-    <div>
-      <span className="p-input-icon-left">
-        <i className="pi pi-search" />
-        <InputText placeholder="Buscar" />
-      </span>
-    </div>
-  );
-
   return (
     <div>
-      <Menubar model={menu} start={MarcaPro} end={barra} />
+      <Menubar model={menu} start={MarcaPro} />
     </div>
   );
-}
+};
 
 export default BarraMenuPro;

@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
+import styles from "./BotonesRedes.module.css";
 
 export default function BotonesRedes() {
   const [usuario, setUsuario] = useState(null);
@@ -56,9 +57,9 @@ export default function BotonesRedes() {
   };
 
   return (
-    <div className="botonesRedes">
+    <div className={styles.botonesRedes}>
       <Button
-        className="botonRed"
+        className={styles.botonRed}
         icon="pi pi-envelope"
         label="Gmail"
         severity="danger"
@@ -66,7 +67,7 @@ export default function BotonesRedes() {
         rounded
       />
       <Button
-        className="botonRed"
+        className={styles.botonRed}
         icon="pi pi-whatsapp"
         label="WhatsApp"
         severity="success"

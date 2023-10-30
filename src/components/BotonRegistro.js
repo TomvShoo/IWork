@@ -5,7 +5,8 @@ import { Dialog } from "primereact/dialog";
 // primeicons
 import "primeicons/primeicons.css";
 // Estilos
-import "../style.css";
+import styles from "./BotonRegistro.module.css";
+
 
 export default function BotonRegistro() {
   const [visible, setVisible] = useState(false);
@@ -36,10 +37,10 @@ export default function BotonRegistro() {
   );
 
   return (
-    <div className="botonRegistroComponent">
+    <div className={styles.botonRegistroComponent}>
       <Button label="Registrarse" onClick={() => setVisible(true)} rounded />
       <Dialog
-        className="dialogoTerCon"
+        className={styles.dialogoTerCon}
         header="Términos y Condiciones de Uso"
         visible={visible && !accepted}
         onHide={() => setVisible(false)}

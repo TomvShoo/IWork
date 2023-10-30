@@ -180,7 +180,7 @@ export const Login = () => {
 
       <div className={styles.createNewUser}>
         <p>¿No tienes una cuenta?</p>
-        <Link to="/Registro">
+        <Link className={styles.link} to="/Registro">
           <div className={styles.loginRegisterButton}>
             <Button className={styles.button} label="Crear cuenta" outlined rounded />
           </div>
