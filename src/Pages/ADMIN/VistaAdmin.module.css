@@ -33,6 +33,14 @@
   justify-content: center;
   gap: 1rem;
 }
+.vistaAdminProfesion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0rem 1rem;
+  gap: 1rem;
+}
+
 @media (min-width: 768px) {
   .vistaAdminData {
     display: flex;

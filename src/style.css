@@ -239,6 +239,10 @@ div {
   gap: 1rem;
 }
 
+.profesionChip {
+
+}
+
 .vistaPerfilProfesional {
   display: flex;
   flex-direction: column;

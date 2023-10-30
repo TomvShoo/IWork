@@ -17,8 +17,7 @@ export const EditarPerfilPro = () => {
   const usuarioId = token ? JSON.parse(atob(token.split(".")[1])).id : null;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/profesion")
+    axios.get("http://localhost:4000/profesion")
       .then((response) => {
         setProfesiones(response.data);
         console.log(response.data);
@@ -26,14 +25,12 @@ export const EditarPerfilPro = () => {
       .catch((error) => {
         console.log("Error al traer los datos", error);
       });
-  }, []);
+  }, [])
 
   const asignarProfesion = () => {
     if (selectedProfesion) {
       const idProfesion = selectedProfesion.id_profesion;
-      axios
-        .post(
-          `http://localhost:4000/profesional/asignar-profesion/${idProfesion}`,
+      axios.post(`http://localhost:4000/profesional/asignar-profesion/${idProfesion}`,
           {
             id_profesion: idProfesion,
           },
@@ -45,7 +42,6 @@ export const EditarPerfilPro = () => {
           }
         )
         .then((response) => {
-          // Lógica de manejo de respuesta, si es necesario
           console.log(response.data);
         })
         .catch((error) => {
@@ -79,7 +75,7 @@ export const EditarPerfilPro = () => {
             onChange={(e) => setSelectedProfesion(e.value)}
             options={profesiones}
             optionLabel="nombre_profesion"
-            placeholder="Profesiones"
+            placeholder="Seleccione una profesion"
             className="w-full md:w-14rem"
           />
         </div>

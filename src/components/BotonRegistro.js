@@ -9,6 +9,13 @@ import "../style.css";
 
 export default function BotonRegistro() {
   const [visible, setVisible] = useState(false);
+  const [accepted, setAccepted] = useState(false);
+
+  const handleAccept = () => {
+    setAccepted(true);
+    setVisible(false);
+  };
+
   const footerContent = (
     <div className="cancel">
       <Button
@@ -21,7 +28,7 @@ export default function BotonRegistro() {
         <Button
           label="Aceptar"
           // icon="pi pi-check"
-          onClick={() => setVisible(false)}
+          onClick={handleAccept}
           autoFocus
         />
       </Link>
@@ -34,7 +41,7 @@ export default function BotonRegistro() {
       <Dialog
         className="dialogoTerCon"
         header="Términos y Condiciones de Uso"
-        visible={visible}
+        visible={visible && !accepted}
         onHide={() => setVisible(false)}
         footer={footerContent}
       >
