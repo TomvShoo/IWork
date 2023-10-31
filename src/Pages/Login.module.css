@@ -27,7 +27,6 @@
 }
 .loginForm {
   gap: 0.5rem;
-  
 }
 .loginForm,
 .loginRegisterButton {
@@ -36,8 +35,7 @@
 }
 .createNewUser {
   flex: 1;
-  display: flex;
-  justify-content: end;
+  display: flex-end;
   flex-direction: column;
   margin: 1rem 1rem;
 }
