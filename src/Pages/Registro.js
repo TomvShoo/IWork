@@ -8,8 +8,6 @@ import { SelectButton } from "primereact/selectbutton";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import BotonRegistro from "../components/BotonRegistro";
-// import { ToggleButton } from "primereact/togglebutton";
-// import Modal from "react-bootstrap/Modal";
 // primeicons
 import "primeicons/primeicons.css";
 // Estilos
@@ -18,7 +16,6 @@ import styles from "./Registro.module.css";
 export const Registro = () => {
   const {
     register,
-    handleSubmit,
     formState: { errors },
     setValue,
     setError,
@@ -48,17 +45,6 @@ export const Registro = () => {
 
     setformData({ ...formData, [name]: value });
   };
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:4000/profesion')
-  //     .then(response => {
-  //       setProfesiones(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log('Error al traer los datos', error);
-  //     })
-  // }, [])
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -95,10 +81,6 @@ export const Registro = () => {
       if (response.data.success) {
         console.log("Registro exitoso :D");
         console.log(response.data);
-        // const profesionalId = response.data.profesionalId;
-        // if (formData.tipoCuenta === "profesional") {
-        //   asignarProfesion(profesionalId);
-        // }
         navigate("/");
       } else {
         console.log("Registro fallido");
@@ -106,41 +88,11 @@ export const Registro = () => {
     } catch (error) {
       if (error.response && error.response.status === 400) {
         console.log("Solicitud incorrecta: Verifica los datos ingresados");
-        console.log("error en el registro", error);
       } else {
         console.log("error en el registro", error);
       }
     }
   };
-
-  // const asignarProfesion = (profesionalId) => {
-  //   if (selectedProfesion && profesionalId) {
-  //     const idProfesion = selectedProfesion.id_profesion;
-  //     axios
-  //       .post(
-  //         `http://localhost:4000/profesional/asignarProfesion/${idProfesion}`,
-  //         {
-  //           profesionalId: profesionalId, // Asegúrate de enviar el profesionalId
-  //         },
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         // Lógica de manejo de respuesta, si es necesario
-  //         console.log(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error al asignar la profesión:", error);
-  //         console.log(error.response.data);
-  //       });
-  //   } else {
-  //     console.error("No se ha seleccionado ninguna profesión.");
-  //   }
-  // };
 
   return (
     <div className={styles.registerContainer}>

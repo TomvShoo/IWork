@@ -47,7 +47,7 @@ const BotonCalificacion = () => {
   };
 
   const cancelarModal = () => {
-    setVisible(false); // Cierra el diálogo al presionar Cancelar
+    setVisible(false);
   };
 
   const footerContent = (

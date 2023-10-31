@@ -3,10 +3,16 @@ import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 
-export default function BarraMenuAdmin() {
+const BarraMenuAdmin = () => {
+  const cerrarSesion = () => {
+    localStorage.removeItem("accessToken");
+  };
   const menu = [
     {
-      label: "Cerrar Sesión",
+      label: 
+      (<Link to="/" onClick={cerrarSesion} className="link">
+        Cerrar sesion
+      </Link>),
       icon: "pi pi-fw pi-power-off",
     },
   ];
@@ -33,3 +39,4 @@ export default function BarraMenuAdmin() {
     </div>
   );
 }
+export default BarraMenuAdmin;

@@ -102,6 +102,8 @@ export const Login = () => {
           navigate("/PerfilCliente");
         } else if (userType === "profesional") {
           navigate("PerfilProfesional")
+        } else if (userType === "admin") {
+          navigate("/AdminView")
         }
       } else {
         

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
-import Calificacion from "../../components/Rating";
 import BotonesRedes from "../../components/BotonesRedes";
 import ImageCarousel from "../../components/Carrusel";
 import BarraMenuPro from "../../components/BarraMenuPro";
@@ -131,7 +130,7 @@ export const PerfilPro = () => {
                 <div>
                   <h4>Profesiones:</h4>
                   {profesionalData.tipoProfesion &&
-                  profesionalData.tipoProfesion.length > 0 ? (
+                    profesionalData.tipoProfesion.length > 0 ? (
                     <div className={styles.profesionChips}>
                       {profesionalData.tipoProfesion.map((profesion, index) => (
                         <div className={styles.chip}>
@@ -242,8 +241,8 @@ export const PerfilPro = () => {
             <div>
               <span>
                 {portafolio &&
-                portafolio.data &&
-                portafolio.data[0].certificaciones
+                  portafolio.data &&
+                  portafolio.data[0].certificaciones
                   ? portafolio.data[0].certificaciones
                   : "Cargando..."}
               </span>

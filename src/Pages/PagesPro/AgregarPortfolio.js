@@ -14,14 +14,10 @@ const AgregarPortfolio = () => {
   const [profesionalId, setProfessionalId] = useState("");
 
   useEffect(() => {
-    // obtener token
     const token = localStorage.getItem("accessToken");
     if (token) {
-      // decodificar token
       const decodedToken = jwt_decode(token);
-      // console.log('Decoded Token:', decodedToken);
       setProfessionalId(decodedToken.id);
-      // console.log('Professional ID:', decodedToken.id);
     }
   }, []);
 

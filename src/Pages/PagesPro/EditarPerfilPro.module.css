@@ -46,6 +46,23 @@
 .botonGuardar {
   width: 100%;
 }
+.contentEditar {
+  display: flex;
+}
+.editarPortafolio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 1rem 1rem;
+  gap: 5rem;
+  margin: 1rem 1rem;
+}
+.contentEditarPortafolio {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
 
 @media (min-width: 480px) {
   .registerData {
