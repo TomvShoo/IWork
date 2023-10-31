@@ -7,7 +7,6 @@ import "primeicons/primeicons.css";
 // Estilos
 import styles from "./BotonRegistro.module.css";
 
-
 export default function BotonRegistro() {
   const [visible, setVisible] = useState(false);
   const [accepted, setAccepted] = useState(false);

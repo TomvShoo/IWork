@@ -17,14 +17,14 @@ const BarraMenuPro = () => {
       label: "Perfil",
       icon: "pi pi-fw pi-user",
       items: [
-        {
-          label: (
-            <Link to="/PerfilProfesional" className={styles.link}>
-              Ver Perfil
-            </Link>
-          ),
-          icon: "pi pi-eye",
-        },
+        // {
+        //   label: (
+        //     <Link to="/PerfilProfesional" className={styles.link}>
+        //       Ver Perfil
+        //     </Link>
+        //   ),
+        //   icon: "pi pi-eye",
+        // },
         {
           label: (
             <Link to="/EditarPerfilPro" className={styles.link}>
