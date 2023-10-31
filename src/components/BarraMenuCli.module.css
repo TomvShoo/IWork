@@ -1,0 +1,11 @@
+.link {
+  color: #536475;
+  text-decoration: none;
+}
+.busqueda {
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}

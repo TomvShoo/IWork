@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Rating } from "primereact/rating";
+import styles from "./Ratting.module.css";
 
 class Calificacion extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Calificacion extends Component {
     const { readOnly, promedio } = this.props; // readOnly para el promedio y promedio como el valor promedio de la calificación
 
     return (
-      <div>
+      <div className={styles.ratting}>
         <Rating
           value={this.state.ratingValue}
           onChange={this.handleRatingChange}
@@ -26,7 +27,7 @@ class Calificacion extends Component {
           readonly={readOnly} // Establece el modo de solo lectura
         />
         {readOnly && promedio && ( // Muestra el promedio si es modo de solo lectura y se proporciona un promedio
-          <div className="calificacionPromedio">
+          <div className={styles.promedio}>
             Promedio de calificación: {promedio}
           </div>
         )}

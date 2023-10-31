@@ -49,17 +49,6 @@ export const Registro = () => {
     setformData({ ...formData, [name]: value });
   };
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:4000/profesion')
-  //     .then(response => {
-  //       setProfesiones(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log('Error al traer los datos', error);
-  //     })
-  // }, [])
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (formData.contrasena !== formData.confirmarContrasena) {
@@ -112,35 +101,6 @@ export const Registro = () => {
       }
     }
   };
-
-  // const asignarProfesion = (profesionalId) => {
-  //   if (selectedProfesion && profesionalId) {
-  //     const idProfesion = selectedProfesion.id_profesion;
-  //     axios
-  //       .post(
-  //         `http://localhost:4000/profesional/asignarProfesion/${idProfesion}`,
-  //         {
-  //           profesionalId: profesionalId, // Asegúrate de enviar el profesionalId
-  //         },
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         // Lógica de manejo de respuesta, si es necesario
-  //         console.log(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error al asignar la profesión:", error);
-  //         console.log(error.response.data);
-  //       });
-  //   } else {
-  //     console.error("No se ha seleccionado ninguna profesión.");
-  //   }
-  // };
 
   return (
     <div className={styles.registerContainer}>

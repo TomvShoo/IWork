@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { Button } from "primereact/button";
 import Busqueda from "./resultadoBusqueda";
+// Estilos
+import styles from "./BarraMenuCli.module.css";
 
 export default function BarraMenuCli() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,7 +20,7 @@ export default function BarraMenuCli() {
   const menu = [
     {
       label: (
-        <Link to="/MenuCli" className="link">
+        <Link to="/MenuCli" className={styles.link}>
           Menú
         </Link>
       ),
@@ -30,7 +32,7 @@ export default function BarraMenuCli() {
       items: [
         {
           label: (
-            <Link to="/PerfilCliente" className="link">
+            <Link to="/PerfilCliente" className={styles.link}>
               Ver Perfil
             </Link>
           ),
@@ -38,7 +40,7 @@ export default function BarraMenuCli() {
         },
         {
           label: (
-            <Link to="/EditarPerfilCli" className="link">
+            <Link to="/EditarPerfilCli" className={styles.link}>
               Editar Perfil
             </Link>
           ),
@@ -48,7 +50,7 @@ export default function BarraMenuCli() {
     },
     {
       label: (
-        <Link to="/" onClick={cerrarSesion} className="link">
+        <Link to="/" onClick={cerrarSesion} className={styles.link}>
           Cerrar sesion
         </Link>
       ),
@@ -78,13 +80,14 @@ export default function BarraMenuCli() {
   };
 
   const fetchResults = (query) => {
-    axios.get(`http://localhost:4000/profesional/search?query=${query}`)
+    axios
+      .get(`http://localhost:4000/profesional/search?query=${query}`)
       .then((response) => {
         console.log(response.data);
         setResultadosBusqueda(response.data); // Guarda los resultados de la búsqueda en el estado
       })
       .catch((error) => {
-        console.error('Error fetching data: ', error);
+        console.error("Error fetching data: ", error);
       });
   };
 
@@ -103,18 +106,20 @@ export default function BarraMenuCli() {
   const onHide = () => {
     setShowModal(false); // Oculta el modal al llamar a setShowModal con el valor false
   };
-  
+
   return (
     <div>
       <Menubar model={menu} start={MarcaCli} end={barra} />
       {/* Renderiza el componente ResultadoModal si hay resultados */}
-      {resultadosBusqueda.length > 0 && (
-        <Busqueda
-          resultados={resultadosBusqueda}
-          visible={showModal}
-          onHide={onHide} // Cambiado de setShowModal(true) a setShowModal(false)
-        />
-      )}
+      <div className={styles.busqueda}>
+        {resultadosBusqueda.length > 0 && (
+          <Busqueda
+            resultados={resultadosBusqueda}
+            visible={showModal}
+            onHide={onHide} // Cambiado de setShowModal(true) a setShowModal(false)
+          />
+        )}
+      </div>
     </div>
   );
 }
