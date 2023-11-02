@@ -69,7 +69,8 @@ export const Registro = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:4000/auth/register", {
+      // dejar asi los links!!!
+      const response = await axios.post("https://api-iwork.onrender.com/auth/register", {
         nombre: formData.nombre,
         apellido: formData.apellido,
         nroTelefono: formData.nroTelefono,

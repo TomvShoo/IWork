@@ -80,7 +80,7 @@ export default function BarraMenuCli() {
 
   const fetchResults = (query) => {
     axios
-      .get(`http://localhost:4000/profesional/search?query=${query}`)
+      .get(`https://api-iwork.onrender.com/profesional/search?query=${query}`)
       .then((response) => {
         console.log(response.data);
         setResultadosBusqueda(response.data); // Guarda los resultados de la búsqueda en el estado

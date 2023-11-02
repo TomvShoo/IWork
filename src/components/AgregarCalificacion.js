@@ -27,7 +27,7 @@ const BotonCalificacion = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/resena/subirResena",
+        "https://api-iwork.onrender.com/resena/subirResena",
         data,
         {
           headers: {

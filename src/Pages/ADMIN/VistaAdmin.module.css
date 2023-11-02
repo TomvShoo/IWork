@@ -14,6 +14,7 @@
   height: 100%;
   gap: 1rem;
 }
+
 .vistaAdminData {
   display: flex;
   flex-direction: column;
@@ -21,6 +22,26 @@
   margin: 0rem 1rem;
   gap: 1rem;
 }
+
+.vistaAdminContent1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.vistaAdminContent2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.correoAdmin {
+  flex: 2 1;
+}
+
+.graficoAdmin {
+  flex: 3 1;
+}
+
 .adminBuscarMensajes {
   flex: 2;
   border-radius: 0.5rem;
@@ -28,11 +49,13 @@
   background-color: #f8f9fa;
   padding: 1rem;
 }
+
 .buscarMensajes {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
+
 .vistaAdminProfesion {
   display: flex;
   flex-direction: column;
@@ -41,9 +64,9 @@
   gap: 1rem;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .vistaAdminData {
     display: flex;
     flex-direction: row;
   }
-}
+} */

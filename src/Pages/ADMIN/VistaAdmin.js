@@ -8,6 +8,7 @@ import BotonAdmin from "../../components/BotonesAdmin";
 import Correo from "../../components/Correo";
 import styles from "./VistaAdmin.module.css";
 import axios from "axios";
+import Grafico from "./Grafico";
 
 const AdminView = () => {
   const [searchText, setSearchText] = useState("");
@@ -17,7 +18,7 @@ const AdminView = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/profesion")
+      .get("https://api-iwork.onrender.com/profesion")
       .then((response) => {
         setProfesiones(response.data);
         console.log(response.data);
@@ -38,12 +39,10 @@ const AdminView = () => {
   const handleAddProfesion = () => {
     if (nuevaProfesion.trim() !== "") {
       axios
-        .post("http://localhost:4000/profesion", { nombre_profesion: nuevaProfesion })
+        .post("https://api-iwork.onrender.com/profesion", { nombre_profesion: nuevaProfesion })
         .then((response) => {
           console.log("Profesión agregada con éxito", response.data);
-          // Realizar una nueva llamada GET para actualizar la lista de profesiones
-          axios
-            .get("http://localhost:4000/profesion")
+          axios.get("https://api-iwork.onrender.com/profesion")
             .then((response) => {
               setProfesiones(response.data);
             })
@@ -65,50 +64,63 @@ const AdminView = () => {
     <div className={styles.vistaAdminContainer}>
       <BarraMenuAdmin />
       <div className={styles.vistaAdminData}>
-        <BotonAdmin />
-        <div className={styles.adminBuscarMensajes}>
-          <div className={styles.buscarMensajes}>
-            <InputText
-              placeholder="Buscar mensajes"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
-          </div>
-          <DataTable value={messages}>
-            <Column field="subject" header="Asunto" />
-            <Column field="sender" header="Remitente" />
-            <Column field="date" header="Fecha" />
-            <Column
-              body={(rowData) => (
-                <Button
-                  label="Eliminar"
-                  onClick={() => handleDelete(rowData)}
-                />
-              )}
-            />
-          </DataTable>
-        </div>
-        <Correo />
-
-        <div className={styles.vistaAdminProfesion}>
-        <InputText
-            placeholder="Agregar profesion"
-            value={nuevaProfesion}
-            onChange={(e) => setNuevaProfesion(e.target.value)} 
-          />
-          <Button label="Agregar" onClick={handleAddProfesion} />
-          <DataTable paginator rows={5} value={profesion}>
-            <Column field="nombre_profesion" header="Profesiones">
+        <div className={styles.vistaAdminContent1}>
+          <BotonAdmin />
+          <div className={styles.adminBuscarMensajes}>
+            <span>Gestor de mensajes;</span>
+            <div className={styles.buscarMensajes}>
+              <InputText
+                placeholder="Buscar mensajes"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
+            </div>
+            <DataTable value={messages}>
+              <Column field="subject" header="Asunto" />
+              <Column field="sender" header="Remitente" />
+              <Column field="date" header="Fecha" />
               <Column
                 body={(rowData) => (
-                  <Button icon="pi pi-check" className="p-button-success" rounded onClick={() => handleDeleteProfesion(rowData)} />
+                  <Button
+                    label="Eliminar"
+                    onClick={() => handleDelete(rowData)}
+                  />
                 )}
               />
-            </Column>
+            </DataTable>
+          </div>
 
-          </DataTable>
-          <div className={styles.botonesAdmin}>
+
+          <div className={styles.vistaAdminProfesion}>
+            <InputText
+              placeholder="Agregar profesion"
+              value={nuevaProfesion}
+              onChange={(e) => setNuevaProfesion(e.target.value)}
+            />
+            <Button label="Agregar" onClick={handleAddProfesion} />
+            <DataTable paginator rows={5} value={profesion}>
+              <Column field="nombre_profesion" header="Profesiones">
+                <Column
+                  body={(rowData) => (
+                    <Button icon="pi pi-check" className="p-button-success" rounded onClick={() => handleDeleteProfesion(rowData)} />
+                  )}
+                />
+              </Column>
+
+            </DataTable>
+            <div className={styles.botonesAdmin}>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className={styles.vistaAdminContent2}>
+            <div className={styles.correoAdmin}>
+              <Correo />
+            </div>
+            <div className={styles.graficoAdmin}>
+              <Grafico />
+            </div>
           </div>
         </div>
       </div>

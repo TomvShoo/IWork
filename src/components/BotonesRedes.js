@@ -12,7 +12,7 @@ export default function BotonesRedes() {
     if (token) {
       //se realiza la solicitud al servidor
       axios
-        .get("http://localhost:4000/auth/perfil", {
+        .get("https://api-iwork.onrender.com/auth/perfil", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

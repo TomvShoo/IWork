@@ -28,7 +28,7 @@ export const PerfilPro = () => {
 
       if (decodedToken.role === "profesional") {
         axios
-          .get("http://localhost:4000/auth/perfil", {
+          .get("https://api-iwork.onrender.com/auth/perfil", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -43,7 +43,7 @@ export const PerfilPro = () => {
 
         const userId = decodedToken.id;
         axios
-          .get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+          .get(`https://api-iwork.onrender.com/portafolio/profesional/${userId}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -59,7 +59,7 @@ export const PerfilPro = () => {
         const fetchResenas = async () => {
           try {
             const resenasResponse = await axios.get(
-              `http://localhost:4000/resena/profesional/${userId}`
+              `https://api-iwork.onrender.com/resena/profesional/${userId}`
             );
             setResenas(resenasResponse.data);
             console.log(resenasResponse.data);
@@ -86,7 +86,7 @@ export const PerfilPro = () => {
     const token = localStorage.getItem("accessToken");
     axios
       .patch(
-        `http://localhost:4000/profesional/eliminar-profesion/${id_profesion}`,
+        `https://api-iwork.onrender.com/profesional/eliminar-profesion/${id_profesion}`,
         null,
         {
           headers: {
