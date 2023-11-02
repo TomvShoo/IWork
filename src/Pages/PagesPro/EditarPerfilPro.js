@@ -37,7 +37,7 @@ export const EditarPerfilPro = () => {
   })
 
   useEffect(() => {
-    axios.get("http://localhost:4000/profesion")
+    axios.get("https://api-iwork.onrender.com/profesion")
       .then((response) => {
         setProfesiones(response.data);
         console.log(response.data);
@@ -50,7 +50,7 @@ export const EditarPerfilPro = () => {
   useEffect(() => {
     const decodedToken = parseJwt(token);
     const userId = decodedToken.id;
-    axios.get(`http://localhost:4000/portafolio/profesional/${userId}`, {
+    axios.get(`https://api-iwork.onrender.com/portafolio/profesional/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -88,7 +88,7 @@ export const EditarPerfilPro = () => {
   const asignarProfesion = () => {
     if (selectedProfesion) {
       const idProfesion = selectedProfesion.id_profesion;
-      axios.post(`http://localhost:4000/profesional/asignar-profesion/${idProfesion}`,
+      axios.post(`https://api-iwork.onrender.com/profesional/asignar-profesion/${idProfesion}`,
         {
           id_profesion: idProfesion,
         },
@@ -142,7 +142,7 @@ export const EditarPerfilPro = () => {
     }
 
     try {
-      const response = await axios.patch(`http://localhost:4000/profesional/${userId}`, updateData, {
+      const response = await axios.patch(`https://api-iwork.onrender.com/profesional/${userId}`, updateData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -167,7 +167,7 @@ export const EditarPerfilPro = () => {
     }
 
     try {
-      const response = await axios.patch(`http://localhost:4000/portafolio/${idPortafolio}`, updatePortafolio, {
+      const response = await axios.patch(`https://api-iwork.onrender.com/portafolio/${idPortafolio}`, updatePortafolio, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

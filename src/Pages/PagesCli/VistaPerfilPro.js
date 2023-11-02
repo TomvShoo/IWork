@@ -24,7 +24,7 @@ const VistaPerfilPro = () => {
     const fetchProfesionalData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/profesional/id/${id}`
+          `https://api-iwork.onrender.com/profesional/id/${id}`
         );
         setProfesionalData(response.data);
         console.log(response.data);
@@ -36,7 +36,7 @@ const VistaPerfilPro = () => {
     const fetchPortafolioData = async () => {
       try {
         const portafolioResponse = await axios.get(
-          `http://localhost:4000/portafolio/profesional/${id}`
+          `https://api-iwork.onrender.com/portafolio/profesional/${id}`
         );
         setPortafolio(portafolioResponse.data);
         console.log(portafolioResponse.data);
@@ -48,7 +48,7 @@ const VistaPerfilPro = () => {
     const fetchResenas = async () => {
       try {
         const resenasResponse = await axios.get(
-          `http://localhost:4000/resena/profesional/${id}`
+          `https://api-iwork.onrender.com/resena/profesional/${id}`
         );
         setResenas(resenasResponse.data);
         console.log(resenasResponse.data);
@@ -124,8 +124,8 @@ const VistaPerfilPro = () => {
             )}
           </div>
           <div className={styles.contactoPerfilProfesional}>
-            <BotonesRedes />
-            {/* <div className={styles.botonesRedes}>
+            {/* <BotonesRedes /> */}
+            <div className={styles.botonesRedes}>
               <Button
                 className={styles.botonRed}
                 icon="pi pi-envelope"
@@ -142,7 +142,7 @@ const VistaPerfilPro = () => {
                 onClick={handleWhatsAppClick}
                 rounded
               />
-            </div> */}
+            </div>
           </div>
 
           <div className={styles.botonesEditarAgregar}>

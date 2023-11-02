@@ -11,7 +11,7 @@ const BotonAdmin = () => {
   const [profesionales, setProfesionales] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/users")
+    axios.get("https://api-iwork.onrender.com/users")
       .then((response) => {
         setUsers(response.data);
         console.log(response.data);
@@ -19,7 +19,7 @@ const BotonAdmin = () => {
       .catch((error) => {
         console.log("Error al traer los datos de usuarios", error);
       });
-    axios.get("http://localhost:4000/profesional")
+    axios.get("https://api-iwork.onrender.com/profesional")
       .then((response) => {
         setProfesionales(response.data);
         console.log(response.data);
@@ -30,14 +30,13 @@ const BotonAdmin = () => {
   }, []);
 
   const handleDeleteUser = (user) => {
-    const deleteEndpoint = user.tipoCuenta === "cliente" ? `http://localhost:4000/users/${user.id}` : `http://localhost:4000/profesional/${user.id}`;
-  
-    axios
-      .delete(deleteEndpoint)
+    const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${user.id}` : `https://api-iwork.onrender.com/profesional/${user.id}`;
+
+    axios.delete(deleteEndpoint)
       .then((response) => {
         console.log("Usuario eliminado con éxito", response.data);
         if (user.tipoCuenta === "cliente") {
-          axios.get("http://localhost:4000/users")
+          axios.get("https://api-iwork.onrender.com/users")
             .then((response) => {
               setUsers(response.data);
             })
@@ -45,7 +44,7 @@ const BotonAdmin = () => {
               console.log("Error al traer los datos de usuarios", error);
             });
         } else {
-          axios.get("http://localhost:4000/profesional")
+          axios.get("https://api-iwork.onrender.com/profesional")
             .then((response) => {
               setProfesionales(response.data);
             })
@@ -61,18 +60,19 @@ const BotonAdmin = () => {
 
   return (
     <div className={styles.botonesAdminContainer}>
+      <span>Listado de usuarios</span>
       <div className={styles.buscarBotonesAdmin}>
         <Button label="Usuario" icon="pi pi-search" />
         <InputText placeholder="Nombre de usuario" />
       </div>
-      <div className={styles.botonesAdmin}>
+      {/* <div className={styles.botonesAdmin}>
         <Button icon="pi pi-times" className="p-button-danger" rounded />
         <Button icon="pi pi-check" className="p-button-success" rounded />
-      </div>
+      </div> */}
       <div>
         <DataTable paginator rows={5} value={[...users, ...profesionales]}>
           <Column field="nombre" header="Nombre" />
-          <Column field="correo" header="Correo"/>
+          <Column field="correo" header="Correo" />
           <Column field="tipoCuenta" header="Tipo de cuenta" />
           <Column
             body={(rowData) => (

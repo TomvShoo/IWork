@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import axios from "axios";
 import Footer from "../../components/Footer";
+import CalificacionPro from "../../components/RatingPro";
 
 const Estilo = {
   card: {
@@ -31,27 +32,46 @@ const Estilo = {
 
 const PerfilCliente = () => {
   const [usuario, setUsuario] = useState(null);
+  const [resenas, setResenas] = useState(null);
 
   useEffect(() => {
-    // obtener el token del almacenamiento local
     const token = localStorage.getItem("accessToken");
-
     if (token) {
-      //se realiza la solicitud al servidor
-      axios
-        .get("http://localhost:4000/auth/perfil", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+      const decodedToken = parseJwt(token);
+      const userId = decodedToken.id;
+      axios.get("https://api-iwork.onrender.com/auth/perfil", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((response) => {
           setUsuario(response.data);
         })
         .catch((error) => {
           console.error("error al obtener los datos del usuario", error);
         });
+
+      const fetchResenas = async () => {
+        try {
+          const resenasResponse = await axios.get(`https://api-iwork.onrender.com/resena/cliente/${userId}`
+          );
+          setResenas(resenasResponse.data);
+          console.log(resenasResponse.data);
+        } catch (error) {
+          console.error("Error fetching resenas data:", error);
+        }
+      };
+      fetchResenas();
     }
-  });
+  }, []);
+
+  function parseJwt(token) {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  }
 
   return (
     <div>
@@ -73,6 +93,27 @@ const PerfilCliente = () => {
           </Button>
         </Link>
       </Card>
+
+      <div>
+        {resenas &&
+          resenas.map((resena, index) => (
+            <span key={index} >
+              <div>
+                <div>
+                  <Avatar
+                    label="U"
+                    style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                    shape="circle"
+                  />
+                  <span>{resena.dueno.nombre}</span>
+                  <span>{resena.dueno.apellido}</span>
+                </div>
+                <CalificacionPro promedio={resena.calificacion} />
+              </div>
+              <span>{resena.resena}</span>
+            </span>
+          ))}
+      </div>
       <div className="divFooter">
         <Footer />
       </div>

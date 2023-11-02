@@ -52,7 +52,7 @@ export const EditarPerfilCli = () => {
     }
 
     try {
-      const response = await axios.patch(`http://localhost:4000/users/${userId}`, updateData, {
+      const response = await axios.patch(`https://api-iwork.onrender.com/users/${userId}`, updateData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
