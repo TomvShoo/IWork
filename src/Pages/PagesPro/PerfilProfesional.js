@@ -43,11 +43,14 @@ export const PerfilPro = () => {
 
         const userId = decodedToken.id;
         axios
-          .get(`https://api-iwork.onrender.com/portafolio/profesional/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
+          .get(
+            `https://api-iwork.onrender.com/portafolio/profesional/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
           .then((response) => {
             setPortafolio(response.data);
             console.log("Datos del portafolio:", response.data);
@@ -96,6 +99,7 @@ export const PerfilPro = () => {
       )
       .then((response) => {
         console.log(response.data);
+        window.location.reload(true);
       })
       .catch((error) => {
         console.error("error al eliminar la profesion", error);
@@ -119,18 +123,23 @@ export const PerfilPro = () => {
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
           <div className={styles.headerPerfilProfesional}>
-            <Avatar label="P" size="xlarge" shape="circle" />
+            {/* <Avatar label="P" size="xlarge" shape="circle" /> */}
+            {profesionalData && (
+              <h4 className={styles.headerNombre}>
+                {profesionalData.nombre} {profesionalData.apellido}
+              </h4>
+            )}
             <CalificacionPro promedio={promedioCalificacion} />
           </div>
 
           <div className={styles.descriptionPerfilProfesional}>
             {profesionalData && (
               <div>
-                <h3>
+                {/* <h3>
                   {profesionalData.nombre} {profesionalData.apellido}
-                </h3>
+                </h3> */}
                 <div>
-                  <h4>Profesiones:</h4>
+                  <h5>Profesiones:</h5>
                   {profesionalData.tipoProfesion &&
                   profesionalData.tipoProfesion.length > 0 ? (
                     <div className={styles.profesionChips}>
@@ -263,16 +272,20 @@ export const PerfilPro = () => {
                 <span key={index} className={styles.resenaBloque}>
                   <div className={styles.resenaBloqueData}>
                     <div className={styles.resenaBloqueUser}>
-                      <Avatar
+                      {/* <Avatar
                         label="U"
                         style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
                         shape="circle"
-                      />
-                      <span>{resena.nombreUsuario}</span>
+                      /> */}
+                      <span className={styles.resenaNombre}>
+                        {resena.nombreUsuario}
+                      </span>
                     </div>
                     <CalificacionPro promedio={resena.calificacion} />
                   </div>
-                  <span className={styles.resenaComent}>{resena.resena}</span>
+                  <div className={styles.resenaBloqueComent}>
+                    <span className={styles.resenaComent}>{resena.resena}</span>
+                  </div>
                 </span>
               ))}
           </div>

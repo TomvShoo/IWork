@@ -46,9 +46,9 @@
     height: 75%;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .dialogo {
     width: 45%;
-    height: 75%;
+    height: 65%;
   }
 }

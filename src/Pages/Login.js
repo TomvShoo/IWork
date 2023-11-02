@@ -1,17 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from "react-router-dom";
+
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import SwitchButton from "../components/SwitchButton";
-import axios from "axios";
-import styles from "./Login.module.css";
+
+import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
-//theme
+import axios from "axios";
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-//core
 import "primereact/resources/primereact.min.css";
+import styles from "./Login.module.css";
 
 export const Login = () => {
   const [formData, setFormData] = useState({

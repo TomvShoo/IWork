@@ -95,36 +95,37 @@ const VistaPerfilPro = () => {
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
           <div className={styles.headerPerfilProfesional}>
-            <Avatar label="P" size="xlarge" shape="circle" />
+            {/* <Avatar label="P" size="xlarge" shape="circle" /> */}
+            {profesionalData && (
+              <h4 className={styles.headerNombre}>
+                {profesionalData.nombre} {profesionalData.apellido}
+              </h4>
+            )}
             <CalificacionPro promedio={promedioCalificacion} />
           </div>
 
           <div className={styles.descriptionPerfilProfesional}>
             {profesionalData && (
               <div>
-                <h3>
+                {/* <h3>
                   {profesionalData.nombre} {profesionalData.apellido}
-                </h3>
+                </h3> */}
                 <div>
-                  <h4>Profesiones:</h4>
-
-                    {profesionalData.tipoProfesion &&
-                    profesionalData.tipoProfesion.length > 0 ? (
-                      <ul className={styles.profesionChips}>
-                        {profesionalData.tipoProfesion.map(
-                          (profesion, index) => (
-                            <Chip
-                              key={index}
-                              label={profesion.nombre_profesion}
-                              className={styles.chip}
-                            />
-                          )
-                        )}
-                      </ul>
-                    ) : (
-                      <p>Aún no se han asignado profesiones</p>
-                    )}
-
+                  <h5>Profesiones:</h5>
+                  {profesionalData.tipoProfesion &&
+                  profesionalData.tipoProfesion.length > 0 ? (
+                    <ul className={styles.profesionChips}>
+                      {profesionalData.tipoProfesion.map((profesion, index) => (
+                        <Chip
+                          key={index}
+                          label={profesion.nombre_profesion}
+                          className={styles.chip}
+                        />
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Aún no se han asignado profesiones</p>
+                  )}
                 </div>
               </div>
             )}
@@ -205,11 +206,11 @@ const VistaPerfilPro = () => {
                 <span key={index} className={styles.resenaBloque}>
                   <div className={styles.resenaBloqueData}>
                     <div className={styles.resenaBloqueUser}>
-                      <Avatar
+                      {/* <Avatar
                         label="U"
                         style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
                         shape="circle"
-                      />
+                      /> */}
                       <span className={styles.resenaNombre}>
                         {resena.nombreUsuario}
                       </span>

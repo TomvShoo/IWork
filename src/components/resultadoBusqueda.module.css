@@ -30,7 +30,9 @@
 }
 .chip {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
+  flex-wrap: wrap-reverse;
 }
 @media (min-width: 768px) {
   .busqueda {

@@ -30,6 +30,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
+}
+.headerNombre {
+  text-align: left;
 }
 .descriptionPerfilProfesional {
   display: flex;
@@ -41,18 +45,19 @@
   display: flex;
   padding: 0rem;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   justify-content: center;
 }
 .chip {
   display: flex;
   align-items: center;
-  background-color: #DEE2E6;
+  background-color: #dee2e6;
   border-radius: 2rem;
   padding: 0rem 0.5rem;
 }
 .eliminar {
   color: black;
+  cursor: pointer;
 }
 .eliminar:hover {
   color: rgba(0, 0, 0, 0.65);
@@ -122,6 +127,7 @@
   background-color: #f8f9fa;
 }
 .resenaBloqueData {
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -133,10 +139,18 @@
   align-items: center;
   gap: 1rem;
 }
-.resenaComent {
+.resenaNombre {
   flex: 1;
+  font-weight: bold;
+}
+.resenaNombre::first-letter {
+  text-transform: uppercase;
+}
+.resenaBloqueComent {
+  flex: 6;
+}
+.resenaComent {
   padding-top: 1rem;
-  border-top: 1px solid #e1e4e8;
 }
 
 @media (min-width: 320px) {
@@ -235,11 +249,13 @@
   .dataResena {
     margin-bottom: 0rem;
   }
+  .resenaBloqueComent {
+    border-left: 1px solid #e1e4e8;
+  }
   .resenaComent {
     flex: 1;
     padding-top: 0rem;
     padding-left: 1rem;
-    border-left: 1px solid #e1e4e8;
     border-top: 0px;
   }
   .divFooter {
@@ -249,9 +265,9 @@
 @media (min-width: 1200px) {
   .vistaPerfilProfesional,
   .vistaPerfilProfesionalDatos {
-    margin: 0rem 20rem;
+    margin: 0rem 15rem;
   }
   .vistaInfoResena {
-    margin: 0rem 20rem;
+    margin: 0rem 15rem;
   }
 }
