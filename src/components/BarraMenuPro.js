@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Menubar } from "primereact/menubar";
-import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 // Estilos
 import styles from "./BarraMenuPro.module.css";

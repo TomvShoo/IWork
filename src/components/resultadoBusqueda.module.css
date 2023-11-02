@@ -8,9 +8,8 @@
   display: flex;
   flex-direction: column;
 }
-
 .resultado {
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,16 +18,19 @@
   border-bottom: 1px solid #e1e4e8;
   border-left: 1px solid #e1e4e8;
   border-right: 1px solid #e1e4e8;
+  cursor: pointer;
 }
-
 .resultado:hover {
-  background-color: #e1e4e8;
+  background-color: #ffffff;
 }
 .nombre {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: center;
+}
+.chip {
+  display: flex;
+  gap: 0.5rem;
 }
 @media (min-width: 768px) {
   .busqueda {

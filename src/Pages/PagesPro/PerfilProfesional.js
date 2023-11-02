@@ -112,7 +112,9 @@ export const PerfilPro = () => {
 
   return (
     <div className={styles.perfilProfesionalContainer}>
-      <BarraMenuPro />
+      <div className={styles.navMenu}>
+        <BarraMenuPro />
+      </div>
 
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
@@ -130,7 +132,7 @@ export const PerfilPro = () => {
                 <div>
                   <h4>Profesiones:</h4>
                   {profesionalData.tipoProfesion &&
-                    profesionalData.tipoProfesion.length > 0 ? (
+                  profesionalData.tipoProfesion.length > 0 ? (
                     <div className={styles.profesionChips}>
                       {profesionalData.tipoProfesion.map((profesion, index) => (
                         <div className={styles.chip}>
@@ -151,6 +153,7 @@ export const PerfilPro = () => {
                             xmlns="http://www.w3.org/2000/svg"
                             aria-hidden="true"
                             data-pc-section="removetokenicon"
+                            className={styles.eliminar}
                           >
                             <g clip-path="url(#pr_icon_clip_5)">
                               <path
@@ -241,8 +244,8 @@ export const PerfilPro = () => {
             <div>
               <span>
                 {portafolio &&
-                  portafolio.data &&
-                  portafolio.data[0].certificaciones
+                portafolio.data &&
+                portafolio.data[0].certificaciones
                   ? portafolio.data[0].certificaciones
                   : "Cargando..."}
               </span>

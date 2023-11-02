@@ -88,7 +88,9 @@ const VistaPerfilPro = () => {
 
   return (
     <div className={styles.perfilProfesionalContainer}>
-      <BarraMenuCli />
+      <div className={styles.navMenu}>
+        <BarraMenuCli />
+      </div>
 
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
@@ -105,20 +107,24 @@ const VistaPerfilPro = () => {
                 </h3>
                 <div>
                   <h4>Profesiones:</h4>
-                  {profesionalData.tipoProfesion &&
-                  profesionalData.tipoProfesion.length > 0 ? (
-                    <ul>
-                      {profesionalData.tipoProfesion.map((profesion, index) => (
-                        <Chip
-                          key={index}
-                          label={profesion.nombre_profesion}
-                          className="p-mr-2"
-                        />
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>Aún no se han asignado profesiones</p>
-                  )}
+
+                    {profesionalData.tipoProfesion &&
+                    profesionalData.tipoProfesion.length > 0 ? (
+                      <ul className={styles.profesionChips}>
+                        {profesionalData.tipoProfesion.map(
+                          (profesion, index) => (
+                            <Chip
+                              key={index}
+                              label={profesion.nombre_profesion}
+                              className={styles.chip}
+                            />
+                          )
+                        )}
+                      </ul>
+                    ) : (
+                      <p>Aún no se han asignado profesiones</p>
+                    )}
+
                 </div>
               </div>
             )}
@@ -204,11 +210,15 @@ const VistaPerfilPro = () => {
                         style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
                         shape="circle"
                       />
-                      <span>{resena.nombreUsuario}</span>
+                      <span className={styles.resenaNombre}>
+                        {resena.nombreUsuario}
+                      </span>
                     </div>
                     <CalificacionPro promedio={resena.calificacion} />
                   </div>
-                  <span className={styles.resenaComent}>{resena.resena}</span>
+                  <div className={styles.resenaBloqueComent}>
+                    <span className={styles.resenaComent}>{resena.resena}</span>
+                  </div>
                 </span>
               ))}
           </div>

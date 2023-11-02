@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Stack from "@mui/material/Stack";
 import { Button } from "primereact/button";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 import styles from "./BotonesRedes.module.css";
 

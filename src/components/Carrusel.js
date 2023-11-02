@@ -7,9 +7,9 @@ import "primeicons/primeicons.css";
 
 const Estilo = {
   caruselImagen: {
-    maxWidth: "100%", // Asegura que la imagen no sea más ancha que su contenedor
-    maxHeight: "300px", // Limita la altura máxima de la imagen
-    objectFit: "cover", // Ajusta el tamaño de la imagen para que cubra completamente su contenedor manteniendo la relación de aspecto
+    maxWidth: "100%",
+    maxHeight: "250px",
+    objectFit: "cover",
   },
 };
 

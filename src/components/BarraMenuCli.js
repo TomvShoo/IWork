@@ -3,7 +3,6 @@ import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button } from "primereact/button";
 import Busqueda from "./resultadoBusqueda";
 // Estilos
 import styles from "./BarraMenuCli.module.css";
