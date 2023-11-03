@@ -3,6 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import styles from "./Correo.module.css";
+import axios from "axios";
 
 const Correo = () => {
   const [recipient, setRecipient] = useState("");
@@ -10,7 +11,28 @@ const Correo = () => {
   const [message, setMessage] = useState("");
 
   const sendEmail = () => {
-    // Lógica para enviar el correo
+    const token = localStorage.getItem("accessToken");
+    const emailData = {
+      recipient: recipient,
+      subject: subject,
+      message: message,
+    }
+
+    try {
+      axios.post('https://api-iwork.onrender.com/email/send',
+        emailData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log('Mensaje enviado con exito',response.data);
+      })
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

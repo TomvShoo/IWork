@@ -17,10 +17,16 @@ const AdminView = () => {
   const [nuevaProfesion, setNuevaProfesion] = useState("");
   const [selectedReclamo, setSelectedReclamo] = useState(null);
   const [mensajeVisible, setMensajeVisible] = useState(false);
+  const [emailData, setEmailData] = useState({
+    destinatario: "",
+    asunto: "",
+    mensaje: "",
+  });
 
   useEffect(() => {
     axios
       .get("https://api-iwork.onrender.com/profesion")
+
       .then((response) => {
         setProfesiones(response.data);
         console.log(response.data);
@@ -37,6 +43,10 @@ const AdminView = () => {
       console.log(reclamos);
     });
   }, []);
+
+  const handleEmailSend = () => {
+ 
+  }
 
   const handleMensaje = (reclamo) => {
     setSelectedReclamo(reclamo);

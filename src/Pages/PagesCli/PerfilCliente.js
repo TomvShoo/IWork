@@ -42,8 +42,7 @@ const PerfilCliente = () => {
     if (token) {
       const decodedToken = parseJwt(token);
       const userId = decodedToken.id;
-      axios
-        .get("https://api-iwork.onrender.com/auth/perfil", {
+      axios.get("https://api-iwork.onrender.com/auth/perfil", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
