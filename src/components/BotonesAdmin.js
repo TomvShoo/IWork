@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import styles from "./BotonesAdmin.module.css";
-import axios from "axios";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import axios from "axios";
+import styles from "./BotonesAdmin.module.css";
 
 const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
@@ -60,17 +60,13 @@ const BotonAdmin = () => {
 
   return (
     <div className={styles.botonesAdminContainer}>
-      <span>Listado de usuarios</span>
+      <h5>Listado de usuarios</h5>
       <div className={styles.buscarBotonesAdmin}>
         <Button label="Usuario" icon="pi pi-search" />
         <InputText placeholder="Nombre de usuario" />
       </div>
-      {/* <div className={styles.botonesAdmin}>
-        <Button icon="pi pi-times" className="p-button-danger" rounded />
-        <Button icon="pi pi-check" className="p-button-success" rounded />
-      </div> */}
-      <div>
-        <DataTable paginator rows={5} value={[...users, ...profesionales]}>
+      <div className={styles.listado}>
+        <DataTable className={styles.tabla} paginator rows={5} value={[...users, ...profesionales]}>
           <Column field="nombre" header="Nombre" />
           <Column field="correo" header="Correo" />
           <Column field="tipoCuenta" header="Tipo de cuenta" />

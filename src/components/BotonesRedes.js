@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import { Button } from "primereact/button";
+
 import axios from "axios";
+
 import styles from "./BotonesRedes.module.css";
 
 export default function BotonesRedes() {

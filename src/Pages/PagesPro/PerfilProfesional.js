@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { Avatar } from "primereact/avatar";
-import { Button } from "primereact/button";
-import BotonesRedes from "../../components/BotonesRedes";
-import ImageCarousel from "../../components/Carrusel";
+import React, { useEffect, useState } from "react";
 import BarraMenuPro from "../../components/BarraMenuPro";
+import ImageCarousel from "../../components/Carrusel";
+import CalificacionPro from "../../components/RatingPro";
+import BotonesRedes from "../../components/BotonesRedes";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
-import CalificacionPro from "../../components/RatingPro";
+// import { Avatar } from "primereact/avatar";
+import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
-// Estilos
+import axios from "axios";
 import styles from "./PerfilProfesional.module.css";
 
 export const PerfilPro = () => {
@@ -139,7 +138,7 @@ export const PerfilPro = () => {
                   {profesionalData.nombre} {profesionalData.apellido}
                 </h3> */}
                 <div>
-                  <h5>Profesiones:</h5>
+                  <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
                   profesionalData.tipoProfesion.length > 0 ? (
                     <div className={styles.profesionChips}>
@@ -194,6 +193,7 @@ export const PerfilPro = () => {
           </div>
 
           <div className={styles.contactoPerfilProfesional}>
+            <h5>Contacto</h5>
             <BotonesRedes />
           </div>
 

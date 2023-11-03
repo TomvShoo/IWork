@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import { Menubar } from "primereact/menubar";
-import { Link } from "react-router-dom";
+import styles from "./BarraMenuAdmin.module.css";
 
 const BarraMenuAdmin = () => {
   const cerrarSesion = () => {
@@ -9,7 +10,7 @@ const BarraMenuAdmin = () => {
   const menu = [
     {
       label: 
-      (<Link to="/" onClick={cerrarSesion} className="link">
+      (<Link to="/" onClick={cerrarSesion} className={styles.link}>
         Cerrar sesion
       </Link>),
       icon: "pi pi-fw pi-power-off",
@@ -21,7 +22,7 @@ const BarraMenuAdmin = () => {
       alt="logo"
       src="https://cdn-icons-png.flaticon.com/512/2416/2416666.png"
       height="40"
-      className="mr-2"
+      className={styles.logo}
     ></img>
   );
 

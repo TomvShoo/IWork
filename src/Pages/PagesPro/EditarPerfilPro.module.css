@@ -3,8 +3,9 @@
   flex-direction: column;
   text-align: center;
   user-select: none;
+  gap: 1rem;
 }
-.menuBackNav {
+.navMenu {
   display: flex;
   align-items: center;
   padding: 0.4rem;
@@ -15,14 +16,27 @@
   box-shadow: 3px 3px 10px #dddddd;
 }
 .editarProfesion {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+}
+.contentEditar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0rem 1rem;
+  margin-bottom: 1rem;
 }
 .editarData {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 1rem 1rem;
-  gap: 5rem;
+  padding: 1rem;
+  gap: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  box-shadow: 3px 3px 10px #dddddd;
+  background-color: #f8f9fa;
 }
 .editarInputs {
   display: flex;
@@ -36,38 +50,69 @@
 .botonGuardar {
   width: 100%;
 }
-.contentEditar {
-  display: flex;
-}
 .editarPortafolio {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* justify-content: start; */
-  margin: 1rem 1rem;
-  gap: 5rem;
-  margin: 1rem 1rem;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  box-shadow: 3px 3px 10px #dddddd;
+  background-color: #f8f9fa;
 }
 .contentEditarPortafolio {
   display: flex;
   gap: 1rem;
   flex-direction: column;
 }
-
-@media (min-width: 480px) {
-  .registerData {
-    margin: 0rem 5rem;
-  }
+.inputTextArea {
+  height: 7.5rem;
 }
+.agregarButtons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+}
+.agregarImagenes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.agregarGuardarBoton {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
 @media (min-width: 768px) {
-  .editarData,
-  .editarInputs {
+  .contentEditar {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+  }
+  .editarData {
+    align-items: center;
+    transition: transform 0.1s ease;
+  }
+  .editarData:hover {
+    transform: scale(1.01);
+  }
+  .editarPortafolio {
+    transition: transform 0.1s ease;
+  }
+  .editarPortafolio:hover {
+    transform: scale(1.01);
+  }
+  .agregarImagenes {
     align-items: center;
   }
-  .editarButton {
-    display: flex;
-    justify-content: center;
+}
+@media (min-width: 1200px) {
+  .contentEditar {
+    margin: 0rem 15rem;
   }
 }

@@ -62,7 +62,7 @@ export default function BarraMenuCli() {
       alt="logo"
       src="https://cdn-icons-png.flaticon.com/512/11107/11107584.png"
       height="40"
-      className="mr-2"
+      className={styles.logo}
     ></img>
   );
 

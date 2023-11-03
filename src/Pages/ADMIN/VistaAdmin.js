@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import BarraMenuAdmin from "../../components/BarraMenuAdmin";
+import BotonAdmin from "../../components/BotonesAdmin";
+import Correo from "../../components/Correo";
+import Grafico from "./Grafico";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import BarraMenuAdmin from "../../components/BarraMenuAdmin";
-import BotonAdmin from "../../components/BotonesAdmin";
-import Correo from "../../components/Correo";
-import styles from "./VistaAdmin.module.css";
 import axios from "axios";
-import Grafico from "./Grafico";
+import styles from "./VistaAdmin.module.css";
 
 const AdminView = () => {
   const [searchText, setSearchText] = useState("");
@@ -39,10 +39,13 @@ const AdminView = () => {
   const handleAddProfesion = () => {
     if (nuevaProfesion.trim() !== "") {
       axios
-        .post("https://api-iwork.onrender.com/profesion", { nombre_profesion: nuevaProfesion })
+        .post("https://api-iwork.onrender.com/profesion", {
+          nombre_profesion: nuevaProfesion,
+        })
         .then((response) => {
           console.log("Profesión agregada con éxito", response.data);
-          axios.get("https://api-iwork.onrender.com/profesion")
+          axios
+            .get("https://api-iwork.onrender.com/profesion")
             .then((response) => {
               setProfesiones(response.data);
             })
@@ -56,25 +59,31 @@ const AdminView = () => {
     }
   };
 
-  const handleDeleteProfesion = () => {
-
-  }
+  const handleDeleteProfesion = () => {};
 
   return (
     <div className={styles.vistaAdminContainer}>
-      <BarraMenuAdmin />
+      <div className={styles.navMenu}>
+        <BarraMenuAdmin />
+      </div>
       <div className={styles.vistaAdminData}>
         <div className={styles.vistaAdminContent1}>
-          <BotonAdmin />
+          <div className={styles.listaUsuarios}>
+            <BotonAdmin />
+          </div>
           <div className={styles.adminBuscarMensajes}>
-            <span>Gestor de mensajes;</span>
+            <h5>Gestor de mensajes</h5>
             <div className={styles.buscarMensajes}>
               <InputText
                 placeholder="Buscar mensajes"
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
-              <Button label="Buscar" icon="pi pi-search" onClick={handleSearch} />
+              <Button
+                label="Buscar"
+                icon="pi pi-search"
+                onClick={handleSearch}
+              />
             </div>
             <DataTable value={messages}>
               <Column field="subject" header="Asunto" />
@@ -91,36 +100,37 @@ const AdminView = () => {
             </DataTable>
           </div>
 
+          <div className={styles.correoAdmin}>
+            <Correo />
+          </div>
+        </div>
 
+        <div className={styles.vistaAdminContent2}>
           <div className={styles.vistaAdminProfesion}>
+            <h5>Profesiones</h5>
             <InputText
-              placeholder="Agregar profesion"
+              placeholder="Ingresar nueva profesión"
               value={nuevaProfesion}
               onChange={(e) => setNuevaProfesion(e.target.value)}
             />
-            <Button label="Agregar" onClick={handleAddProfesion} />
+            <Button label="Agregar" onClick={handleAddProfesion} rounded />
             <DataTable paginator rows={5} value={profesion}>
               <Column field="nombre_profesion" header="Profesiones">
                 <Column
                   body={(rowData) => (
-                    <Button icon="pi pi-check" className="p-button-success" rounded onClick={() => handleDeleteProfesion(rowData)} />
+                    <Button
+                      icon="pi pi-check"
+                      className="p-button-success"
+                      rounded
+                      onClick={() => handleDeleteProfesion(rowData)}
+                    />
                   )}
                 />
               </Column>
-
             </DataTable>
-            <div className={styles.botonesAdmin}>
-            </div>
           </div>
-        </div>
-        <div>
-          <div className={styles.vistaAdminContent2}>
-            <div className={styles.correoAdmin}>
-              <Correo />
-            </div>
-            <div className={styles.graficoAdmin}>
-              <Grafico />
-            </div>
+          <div className={styles.graficoAdmin}>
+            <Grafico />
           </div>
         </div>
       </div>

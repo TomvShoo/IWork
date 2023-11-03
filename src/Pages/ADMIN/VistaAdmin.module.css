@@ -2,19 +2,12 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-image: url(/src/Images/background.png);
-  position: absolute;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
   gap: 1rem;
+  user-select: none;
 }
-
+.navMenu {
+  box-shadow: 3px 3px 10px #dddddd;
+}
 .vistaAdminData {
   display: flex;
   flex-direction: column;
@@ -22,51 +15,53 @@
   margin: 0rem 1rem;
   gap: 1rem;
 }
-
 .vistaAdminContent1 {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  gap: 1rem;
 }
-.vistaAdminContent2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.listaUsuarios {
+  flex: 1;
 }
-
-.correoAdmin {
-  flex: 2 1;
-}
-
-.graficoAdmin {
-  flex: 3 1;
-}
-
 .adminBuscarMensajes {
-  flex: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   border-radius: 0.5rem;
   border: 1px solid #e1e4e8;
   background-color: #f8f9fa;
   padding: 1rem;
+  gap: 1rem;
 }
-
 .buscarMensajes {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
-
 .vistaAdminProfesion {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  background-color: #f8f9fa;
+  padding: 1rem;
   gap: 1rem;
 }
-
-/* @media (min-width: 768px) {
-  .vistaAdminData {
-    display: flex;
-    flex-direction: row;
-  }
-} */
+.vistaAdminContent2 {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.correoAdmin {
+  flex: 1;
+}
+.graficoAdmin {
+  flex: 2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e1e4e8;
+  background-color: #f8f9fa;
+}

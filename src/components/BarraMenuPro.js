@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Menubar } from "primereact/menubar";
 import { Link } from "react-router-dom";
-// Estilos
+import { Menubar } from "primereact/menubar";
 import styles from "./BarraMenuPro.module.css";
 
 const BarraMenuPro = () => {
@@ -16,14 +15,6 @@ const BarraMenuPro = () => {
       label: "Perfil",
       icon: "pi pi-fw pi-user",
       items: [
-        // {
-        //   label: (
-        //     <Link to="/PerfilProfesional" className={styles.link}>
-        //       Ver Perfil
-        //     </Link>
-        //   ),
-        //   icon: "pi pi-eye",
-        // },
         {
           label: (
             <Link to="/EditarPerfilPro" className={styles.link}>
@@ -48,8 +39,7 @@ const BarraMenuPro = () => {
     <img
       alt="logo"
       src="https://cdn-icons-png.flaticon.com/512/2880/2880841.png"
-      height="40"
-      className="mr-2"
+      className={styles.logo}
     ></img>
   );
 

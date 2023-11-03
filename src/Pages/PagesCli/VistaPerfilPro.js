@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
-import { Avatar } from "primereact/avatar";
-import { Button } from "primereact/button";
-import ImageCarousel from "../../components/Carrusel";
-import { Chip } from "primereact/chip";
-import BotonCalificacion from "../../components/AgregarCalificacion";
-import Footer from "../../components/Footer";
+import React, { useEffect, useState } from "react";
 import BarraMenuCli from "../../components/BarraMenuCli";
-import BotonesRedes from "../../components/BotonesRedes";
+import BotonCalificacion from "../../components/AgregarCalificacion";
+// import BotonesRedes from "../../components/BotonesRedes";
 import CalificacionPro from "../../components/RatingPro";
+import ImageCarousel from "../../components/Carrusel";
+import Footer from "../../components/Footer";
+// import { Avatar } from "primereact/avatar";
+import { Button } from "primereact/button";
+import { Chip } from "primereact/chip";
+import axios from "axios";
 import styles from "./VistaPerfilPro.module.css";
 
 const VistaPerfilPro = () => {

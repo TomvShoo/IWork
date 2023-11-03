@@ -1,12 +1,13 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import BarraMenuCli from "../../components/BarraMenuCli";
+import CalificacionPro from "../../components/RatingPro";
+import Footer from "../../components/Footer";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
-import { Link } from "react-router-dom";
-import BarraMenuCli from "../../components/BarraMenuCli";
 import axios from "axios";
-import Footer from "../../components/Footer";
-import CalificacionPro from "../../components/RatingPro";
+import styles from "./PerfilCliente.module.css";
 
 const Estilo = {
   card: {
@@ -39,11 +40,12 @@ const PerfilCliente = () => {
     if (token) {
       const decodedToken = parseJwt(token);
       const userId = decodedToken.id;
-      axios.get("https://api-iwork.onrender.com/auth/perfil", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      axios
+        .get("https://api-iwork.onrender.com/auth/perfil", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           setUsuario(response.data);
         })
@@ -53,7 +55,8 @@ const PerfilCliente = () => {
 
       const fetchResenas = async () => {
         try {
-          const resenasResponse = await axios.get(`https://api-iwork.onrender.com/resena/cliente/${userId}`
+          const resenasResponse = await axios.get(
+            `https://api-iwork.onrender.com/resena/cliente/${userId}`
           );
           setResenas(resenasResponse.data);
           console.log(resenasResponse.data);
@@ -75,7 +78,9 @@ const PerfilCliente = () => {
 
   return (
     <div>
-      <BarraMenuCli />
+      <div className={styles.navMenu}>
+        <BarraMenuCli />
+      </div>
       <Card style={Estilo.card}>
         <p>
           <Avatar style={Estilo.imagen} size="xlarge" />
@@ -97,7 +102,7 @@ const PerfilCliente = () => {
       <div>
         {resenas &&
           resenas.map((resena, index) => (
-            <span key={index} >
+            <span key={index}>
               <div>
                 <div>
                   <Avatar

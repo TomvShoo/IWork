@@ -1,19 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import * as React from "react";
+import React from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-//theme
+import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-//core
 import "primereact/resources/primereact.min.css";
 import styles from "./EditarPerfilCli.module.css";
 
 export const EditarPerfilCli = () => {
   const token = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const { setError, formState: { errors } } = useForm();
+  const {
+    setError,
+    formState: { errors },
+  } = useForm();
   const [newData, setNewData] = React.useState({
     nombre: "",
     apellido: "",
@@ -26,11 +27,11 @@ export const EditarPerfilCli = () => {
     e.preventDefault();
     editarDatosPerfil(e);
     navigate("/PerfilCliente");
-  }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewData({ ...newData, [name]: value });
-  }
+  };
   const editarDatosPerfil = async (e) => {
     e.preventDefault();
     const decodedToken = parseJwt(token);
@@ -39,30 +40,40 @@ export const EditarPerfilCli = () => {
 
     if (newData.nombre !== "") updateData.nombre = newData.nombre;
     if (newData.apellido !== "") updateData.apellido = newData.apellido;
-    if (newData.nroTelefono !== "") updateData.nombnroTelefonore = newData.nonroTelefonombre;
-    if (newData.contrasena !== "" && newData.contrasena === newData.confirmarContrasena) {
+    if (newData.nroTelefono !== "")
+      updateData.nombnroTelefonore = newData.nonroTelefonombre;
+    if (
+      newData.contrasena !== "" &&
+      newData.contrasena === newData.confirmarContrasena
+    ) {
       updateData.contrasena = newData.contrasena;
       updateData.confirmarContrasena = newData.confirmarContrasena;
-    } else if (newData.contrasena !== "" && newData.contrasena !== newData.confirmarContrasena) {
+    } else if (
+      newData.contrasena !== "" &&
+      newData.contrasena !== newData.confirmarContrasena
+    ) {
       setError("confirmarContrasena", {
         type: "manual",
         message: "las contraseñas no coinciden",
       });
       return;
     }
-
     try {
-      const response = await axios.patch(`https://api-iwork.onrender.com/users/${userId}`, updateData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const response = await axios.patch(
+        `https://api-iwork.onrender.com/users/${userId}`,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       console.log("datos editados correctamentes", response.data);
     } catch (error) {
-      console.error("Error al editar los datos del perfil", error)
+      console.error("Error al editar los datos del perfil", error);
     }
-  }
+  };
   function parseJwt(token) {
     try {
       return JSON.parse(atob(token.split(".")[1]));
@@ -73,7 +84,7 @@ export const EditarPerfilCli = () => {
 
   return (
     <div className={styles.editarPerfilCliContainer}>
-      <div className={styles.menuBackNav}>
+      <div className={styles.navMenu}>
         <Link to="/PerfilCliente">
           <Button severity="secondary" text>
             <i
@@ -85,13 +96,43 @@ export const EditarPerfilCli = () => {
         <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
       <div className={styles.editarData}>
-        <form onSubmit={(e) => { editarDatosPerfil(e) }}>
+        <form
+          onSubmit={(e) => {
+            editarDatosPerfil(e);
+          }}
+        >
           <div className={styles.editarInputs}>
-            <InputText onChange={handleInputChange} name="nombre" value={newData.nombre} placeholder="Cambiar nombre"></InputText>
-            <InputText onChange={handleInputChange} name="apellido" value={newData.apellido} placeholder="Cambiar apellido"></InputText>
-            <InputText onChange={handleInputChange} name="nroTelefono" value={newData.nroTelefono} placeholder="Cambiar teléfono" type="phone"></InputText>
-            <InputText onChange={handleInputChange} name="contrasena" value={newData.contrasena} placeholder="Nueva contraseña"></InputText>
-            <InputText onChange={handleInputChange} name="confirmarContrasena" value={newData.confirmarContrasena} placeholder="Verificar contraseña"></InputText>
+            <InputText
+              onChange={handleInputChange}
+              name="nombre"
+              value={newData.nombre}
+              placeholder="Cambiar nombre"
+            ></InputText>
+            <InputText
+              onChange={handleInputChange}
+              name="apellido"
+              value={newData.apellido}
+              placeholder="Cambiar apellido"
+            ></InputText>
+            <InputText
+              onChange={handleInputChange}
+              name="nroTelefono"
+              value={newData.nroTelefono}
+              placeholder="Cambiar teléfono"
+              type="phone"
+            ></InputText>
+            <InputText
+              onChange={handleInputChange}
+              name="contrasena"
+              value={newData.contrasena}
+              placeholder="Nueva contraseña"
+            ></InputText>
+            <InputText
+              onChange={handleInputChange}
+              name="confirmarContrasena"
+              value={newData.confirmarContrasena}
+              placeholder="Verificar contraseña"
+            ></InputText>
           </div>
         </form>
         <div className={styles.editarButton}>

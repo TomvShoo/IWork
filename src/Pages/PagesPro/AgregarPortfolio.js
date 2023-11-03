@@ -1,11 +1,10 @@
-// Estilos
-import styles from "./AgregarPortfolio.module.css";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import styles from "./AgregarPortfolio.module.css";
 
 const AgregarPortfolio = () => {
   const [imagen, setImages] = useState("");
@@ -77,7 +76,7 @@ const AgregarPortfolio = () => {
 
   return (
     <div className={styles.agregarPortafolioContainer}>
-      <div className={styles.menuBackNav}>
+      <div className={styles.navMenu}>
         <Link to="/PerfilProfesional">
           <Button severity="secondary" text>
             <i
@@ -91,11 +90,11 @@ const AgregarPortfolio = () => {
 
       <div className={styles.agregarCarta}>
         <div className={styles.agregarData}>
+          <h5>Agregar Información</h5>
           <div className={styles.agregarInputs}>
             <span>Descripción</span>
             <InputTextarea
               className={styles.inputTextArea}
-              autoResize
               value={descripcion}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -104,7 +103,6 @@ const AgregarPortfolio = () => {
             <span>Certificados</span>
             <InputTextarea
               className={styles.inputTextArea}
-              autoResize
               value={certificaciones}
               onChange={(e) => setCertificates(e.target.value)}
             />
@@ -112,6 +110,7 @@ const AgregarPortfolio = () => {
         </div>
 
         <div className={styles.agregarButtons}>
+          <h5>Agregar Imágenes</h5>
           <div>
             {imagen && (
               <div className={styles.agregarImagenes}>
@@ -132,7 +131,7 @@ const AgregarPortfolio = () => {
             <input type="file" accept="image/*" onChange={handleImageUpload} />
           </div>
           <Button
-            label="Subir imágenes"
+            label="Añadir imágenes"
             icon="pi pi-image"
             type="file"
             accept="image/*"
@@ -141,14 +140,14 @@ const AgregarPortfolio = () => {
             onChange={handleImageUpload}
           />
         </div>
-        <div className={styles.agregarGuardarBoton}>
-          <Button
-            label="Guardar cambios"
-            icon="pi pi-save"
-            rounded
-            onClick={handleSave}
-          />
-        </div>
+      </div>
+      <div className={styles.agregarGuardarBoton}>
+        <Button
+          label="Guardar cambios"
+          icon="pi pi-save"
+          rounded
+          onClick={handleSave}
+        />
       </div>
     </div>
   );

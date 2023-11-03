@@ -15,7 +15,7 @@ const Correo = () => {
 
   return (
     <div className={styles.correoContainer}>
-      <span>Mandar mensaje:</span>
+      <h5>Enviar Mensaje</h5>
       <span>
         <InputText
           className={styles.correoInputText}

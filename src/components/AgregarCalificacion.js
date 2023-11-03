@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import Calificacion from "./Rating";
+
+import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import Calificacion from "./Rating";
-import { InputTextarea } from "primereact/inputtextarea";
+
 import axios from "axios";
-import { useParams } from "react-router-dom";
-// Estilos
+
 import styles from "./AgregarCalificacion.module.css";
 
 const BotonCalificacion = () => {

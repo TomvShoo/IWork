@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import { Rating } from "primereact/rating";
+
 import styles from "./Ratting.module.css";
 
 class Calificacion extends Component {

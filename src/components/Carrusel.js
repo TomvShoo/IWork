@@ -1,17 +1,11 @@
 import React from "react";
+
 import { Carousel } from "primereact/carousel";
+
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-// Estilos
-
-const Estilo = {
-  caruselImagen: {
-    maxWidth: "100%",
-    maxHeight: "250px",
-    objectFit: "cover",
-  },
-};
+import styles from "./Carrusel.module.css";
 
 const ImageCarousel = ({ images }) => {
   const itemTemplate = (image) => {
@@ -21,7 +15,7 @@ const ImageCarousel = ({ images }) => {
           <img
             src={`data:image/jpeg;base64, ${image}`} // Utiliza directamente la imagen
             alt="Imagen"
-            style={Estilo.caruselImagen}
+            className={styles.imagen}
           />
         </div>
       </div>
@@ -29,7 +23,7 @@ const ImageCarousel = ({ images }) => {
   };
 
   return (
-    <div className="carousel-demo">
+    <div className={styles.carruselContainer}>
       <Carousel
         value={images}
         itemTemplate={itemTemplate}

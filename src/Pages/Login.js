@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import React, { useEffect, useRef, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import styles from "./Login.module.css";
@@ -19,8 +16,8 @@ export const Login = () => {
     contrasena: "",
   });
   const [validationErrors, setValidationErrors] = useState({
-    emailError: '',
-    passwordError: '',
+    emailError: "",
+    passwordError: "",
   });
   const {
     register,
@@ -42,71 +39,58 @@ export const Login = () => {
     }
   }, [loginMessage]);
 
-  // useEffect(() => {
-  //   if (loginMessage.severity === "success") {
-  //     const timer = setTimeout(() => {
-  //       navigate("/MenuPro");
-  //     }, 5000);
-
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [loginMessage, navigate]);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // const handleUserTypeChange = (userType) => {
-  //   setSelectedUserType(userType);
-  // };
-
   const handlesubmit = async () => {
     setValidationErrors({
-      emailError: '',
-      passwordError: '',
+      emailError: "",
+      passwordError: "",
     });
-  
     if (!formData.correo) {
       setValidationErrors((prevState) => ({
         ...prevState,
-        emailError: 'Ingresar un correo electrónico.',
+        emailError: "Ingresa un correo electrónico válido",
       }));
       return;
     }
     if (!formData.contrasena) {
       setValidationErrors((prevState) => ({
         ...prevState,
-        passwordError: 'Ingresa una contraseña.',
+        passwordError: "Ingresa una contraseña válida",
       }));
       return;
     }
-    
+
     try {
-      const response = await axios.post("https://api-iwork.onrender.com/auth/login", {
-        correo: formData.correo,
-        contrasena: formData.contrasena,
-      });
+      const response = await axios.post(
+        "https://api-iwork.onrender.com/auth/login",
+        {
+          correo: formData.correo,
+          contrasena: formData.contrasena,
+        }
+      );
 
       if (response.data.success) {
         console.log("inicio de sesion exitoso :D");
         console.log("Respuesta del servidor:", response.data);
         localStorage.setItem("accessToken", response.data.data);
         setLoginMessage({ text: "Inicio de sesión exitoso", style: "success" });
-      
+
         const token = response.data.data;
-        const decodedToken = jwt_decode(token)
+        const decodedToken = jwt_decode(token);
         const userType = decodedToken.role;
 
         if (userType === "cliente") {
           navigate("/PerfilCliente");
         } else if (userType === "profesional") {
-          navigate("PerfilProfesional")
+          navigate("PerfilProfesional");
         } else if (userType === "admin") {
-          navigate("/AdminView")
+          navigate("/AdminView");
         }
       } else {
-        
       }
     } catch (error) {
       console.error("error en el inicio de sesion", error);
@@ -147,19 +131,15 @@ export const Login = () => {
       </div>
 
       <div className={styles.loginData}>
-        {/* <div className={styles.loginSwitchButton}>
-          <SwitchButton
-            onUserTypeChange={handleUserTypeChange}
-            setSelectedUserType={setSelectedUserType}
-          />
-        </div> */}
-
-        <form className={styles.loginForm} onSubmit={handleSubmit(handlesubmit)}>
+        <form
+          className={styles.loginForm}
+          onSubmit={handleSubmit(handlesubmit)}
+        >
           <InputText
             type="email"
             placeholder="Correo electrónico"
             name="correo"
-            {...register('correo', { required: true })}
+            {...register("correo", { required: true })}
             value={formData.correo}
             onChange={handleInputChange}
           ></InputText>
@@ -169,14 +149,20 @@ export const Login = () => {
             placeholder="Contraseña"
             type="password"
             name="contrasena"
-            {...register('contrasena', { required: true })}
+            {...register("contrasena", { required: true })}
             value={formData.contrasena}
             onChange={handleInputChange}
           ></InputText>
           {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>
           <Toast ref={(el) => (mensaje.current = el)} />
-          <Button className={styles.button} label="Iniciar sesión" type="submit" variant="contained" rounded />
+          <Button
+            className={styles.button}
+            label="Iniciar sesión"
+            type="submit"
+            variant="contained"
+            rounded
+          />
         </form>
       </div>
 
@@ -184,7 +170,12 @@ export const Login = () => {
         <p>¿No tienes una cuenta?</p>
         <Link className={styles.link} to="/Registro">
           <div className={styles.loginRegisterButton}>
-            <Button className={styles.button} label="Crear cuenta" outlined rounded />
+            <Button
+              className={styles.button}
+              label="Crear cuenta"
+              outlined
+              rounded
+            />
           </div>
         </Link>
       </div>

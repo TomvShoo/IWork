@@ -1,16 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import BotonRegistro from "../components/BotonRegistro";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import BotonRegistro from "../components/BotonRegistro";
-// primeicons
 import "primeicons/primeicons.css";
-// Estilos
 import styles from "./Registro.module.css";
 
 export const Registro = () => {
@@ -70,15 +68,17 @@ export const Registro = () => {
     }
     try {
       // dejar asi los links!!!
-      const response = await axios.post("https://api-iwork.onrender.com/auth/register", {
-        nombre: formData.nombre,
-        apellido: formData.apellido,
-        nroTelefono: formData.nroTelefono,
-        correo: formData.correo,
-        contrasena: formData.contrasena,
-        tipoCuenta: formData.tipoCuenta,
-      });
-
+      const response = await axios.post(
+        "https://api-iwork.onrender.com/auth/register",
+        {
+          nombre: formData.nombre,
+          apellido: formData.apellido,
+          nroTelefono: formData.nroTelefono,
+          correo: formData.correo,
+          contrasena: formData.contrasena,
+          tipoCuenta: formData.tipoCuenta,
+        }
+      );
       if (response.data.success) {
         console.log("Registro exitoso :D");
         console.log(response.data);
@@ -97,7 +97,7 @@ export const Registro = () => {
 
   return (
     <div className={styles.registerContainer}>
-      <div className={styles.menuBackNav}>
+      <div className={styles.navMenu}>
         <Link to="/">
           <Button severity="secondary" text>
             <i

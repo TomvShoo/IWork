@@ -14,7 +14,7 @@
   height: 100%;
   user-select: none;
 }
-.menuBackNav {
+.navMenu {
   display: flex;
   align-items: center;
   padding: 0.5rem 0.5rem;
@@ -22,6 +22,7 @@
   background-color: #f8f9fa;
   border-bottom: 1px solid #00000026;
   gap: 0.5rem;
+  box-shadow: 3px 3px 10px #dddddd;
 }
 .registerData {
   flex: 1;
@@ -87,7 +88,8 @@
 }
 .registerButton {
   flex: 0.5;
-  display: flex-end;
+  display: flex;
+  justify-content: end;
   flex-direction: column;
 }
 @media (min-width: 768px) {
