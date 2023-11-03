@@ -6,8 +6,9 @@ import Footer from "../../components/Footer";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
+import { DataScroller } from 'primereact/datascroller';
 import axios from "axios";
-import styles from "./PerfilCliente.module.css";
+import styles from "./PerfilCliente.module.css"
 
 const Estilo = {
   card: {
@@ -34,6 +35,7 @@ const Estilo = {
 const PerfilCliente = () => {
   const [usuario, setUsuario] = useState(null);
   const [resenas, setResenas] = useState(null);
+  const [totalResenas, setTotalResenas] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -59,6 +61,7 @@ const PerfilCliente = () => {
             `https://api-iwork.onrender.com/resena/cliente/${userId}`
           );
           setResenas(resenasResponse.data);
+          setTotalResenas(resenasResponse.data.length)
           console.log(resenasResponse.data);
         } catch (error) {
           console.error("Error fetching resenas data:", error);
@@ -74,6 +77,27 @@ const PerfilCliente = () => {
     } catch (e) {
       return null;
     }
+  }
+
+  const itemTemplate = (data) => {
+    return (
+      <div className={styles.resenas}>
+        <div className={styles.resenaBloqueData}>
+          <div className={styles.resenaBloqueUser}>
+            <Avatar
+              label="U"
+              style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+              shape="circle"
+            />
+            <span className={styles.resenaNombre}>{data.dueno.nombre} {data.dueno.apellido}</span>
+          </div>
+          <CalificacionPro promedio={data.calificacion} />
+        </div>
+        <div className={styles.resenaBloqueComent}>
+          <span>{data.resena}</span>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -99,25 +123,21 @@ const PerfilCliente = () => {
         </Link>
       </Card>
 
-      <div>
-        {resenas &&
-          resenas.map((resena, index) => (
-            <span key={index}>
-              <div>
-                <div>
-                  <Avatar
-                    label="U"
-                    style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                    shape="circle"
-                  />
-                  <span>{resena.dueno.nombre}</span>
-                  <span>{resena.dueno.apellido}</span>
-                </div>
-                <CalificacionPro promedio={resena.calificacion} />
-              </div>
-              <span>{resena.resena}</span>
-            </span>
-          ))}
+      <div className={styles.dataResena}>
+        <div>
+          <h5>Reseñas Escritas</h5>
+        </div>
+        <div>
+          {resenas && (
+            <DataScroller
+              value={resenas}
+              itemTemplate={itemTemplate}
+              scrollHeight="80vh"
+              rows={totalResenas}
+              inline
+            />
+          )}
+        </div>
       </div>
       <div className="divFooter">
         <Footer />
@@ -126,4 +146,4 @@ const PerfilCliente = () => {
   );
 };
 
-export default PerfilCliente;
+export default PerfilCliente

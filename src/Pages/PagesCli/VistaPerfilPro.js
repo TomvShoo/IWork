@@ -1,14 +1,14 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import BarraMenuCli from "../../components/BarraMenuCli";
-import BotonCalificacion from "../../components/AgregarCalificacion";
-// import BotonesRedes from "../../components/BotonesRedes";
-import CalificacionPro from "../../components/RatingPro";
 import ImageCarousel from "../../components/Carrusel";
+import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
-// import { Avatar } from "primereact/avatar";
+import BarraMenuCli from "../../components/BarraMenuCli";
+import CalificacionPro from "../../components/RatingPro";
 import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
+import { DataScroller } from "primereact/datascroller";
+// import { Avatar } from "primereact/avatar";
 import axios from "axios";
 import styles from "./VistaPerfilPro.module.css";
 
@@ -17,7 +17,7 @@ const VistaPerfilPro = () => {
   const [portafolio, setPortafolio] = useState(null);
   const [promedioCalificacion, setPromedioCalificacion] = useState(0);
   const [resenas, setResenas] = useState(null);
-  // const location = useLocation();
+  const [totalResenas, setTotalResenas] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
@@ -51,6 +51,7 @@ const VistaPerfilPro = () => {
           `https://api-iwork.onrender.com/resena/profesional/${id}`
         );
         setResenas(resenasResponse.data);
+        setTotalResenas(resenasResponse.data.length);
         console.log(resenasResponse.data);
 
         const sum = resenasResponse.data.reduce(
@@ -72,6 +73,12 @@ const VistaPerfilPro = () => {
     fetchResenas();
   }, [id]);
 
+  let comentariosResenas = [];
+  if (resenas) {
+    comentariosResenas = resenas.filter(
+      (resena) => resena.tipo === "comentario"
+    );
+  }
   const handleWhatsAppClick = () => {
     if (profesionalData && profesionalData.nroTelefono) {
       const whatsappURL = `https://api.whatsapp.com/send?phone=569${profesionalData.nroTelefono}`;
@@ -84,6 +91,22 @@ const VistaPerfilPro = () => {
       const mailtoLink = `mailto:${profesionalData.correo}`;
       window.open(mailtoLink, "_blank");
     }
+  };
+
+  const itemTemplate = (data) => {
+    return (
+      <div className={styles.resenas}>
+        <div className={styles.resenaBloqueData}>
+          <div className={styles.resenaBloqueUser}>
+            <span className={styles.resenaNombre}>{data.nombreUsuario}</span>
+          </div>
+          <CalificacionPro promedio={data.calificacion} />
+        </div>
+        <div className={styles.resenaBloqueComent}>
+          <span className={styles.resenaComent}>{data.resena}</span>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -200,28 +223,16 @@ const VistaPerfilPro = () => {
           <div>
             <h5>Reseñas</h5>
           </div>
-          <div className={styles.resenas}>
-            {resenas &&
-              resenas.map((resena, index) => (
-                <span key={index} className={styles.resenaBloque}>
-                  <div className={styles.resenaBloqueData}>
-                    <div className={styles.resenaBloqueUser}>
-                      {/* <Avatar
-                        label="U"
-                        style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                        shape="circle"
-                      /> */}
-                      <span className={styles.resenaNombre}>
-                        {resena.nombreUsuario}
-                      </span>
-                    </div>
-                    <CalificacionPro promedio={resena.calificacion} />
-                  </div>
-                  <div className={styles.resenaBloqueComent}>
-                    <span className={styles.resenaComent}>{resena.resena}</span>
-                  </div>
-                </span>
-              ))}
+          <div>
+            {resenas && (
+              <DataScroller
+                value={comentariosResenas}
+                itemTemplate={itemTemplate}
+                scrollHeight="80vh"
+                rows={totalResenas}
+                inline
+              />
+            )}
           </div>
         </div>
       </div>

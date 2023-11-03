@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BarraMenuAdmin from "../../components/BarraMenuAdmin";
 import BotonAdmin from "../../components/BotonesAdmin";
 import Correo from "../../components/Correo";
+import MensajeReclamo from "./MensajeReclamo";
 import Grafico from "./Grafico";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -11,10 +12,11 @@ import axios from "axios";
 import styles from "./VistaAdmin.module.css";
 
 const AdminView = () => {
-  const [searchText, setSearchText] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [reclamos, setReclamos] = useState([]);
   const [profesion, setProfesiones] = useState([]);
   const [nuevaProfesion, setNuevaProfesion] = useState("");
+  const [selectedReclamo, setSelectedReclamo] = useState(null);
+  const [mensajeVisible, setMensajeVisible] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,14 +28,35 @@ const AdminView = () => {
       .catch((error) => {
         console.log("Error al traer los datos", error);
       });
+
+    axios.get("https://api-iwork.onrender.com/resena").then((response) => {
+      const reclamos = response.data.filter(
+        (resena) => resena.tipo === "reclamo"
+      );
+      setReclamos(reclamos);
+      console.log(reclamos);
+    });
   }, []);
 
-  const handleDelete = (message) => {
-    console.log("Mensaje eliminado:", message);
+  const handleMensaje = (reclamo) => {
+    setSelectedReclamo(reclamo);
+    setMensajeVisible(true);
+  };
+  const onHide = () => {
+    setMensajeVisible(false);
   };
 
-  const handleSearch = () => {
-    console.log("Buscar mensajes:", searchText);
+  const handleDelete = (resena) => {
+    const resenaId = resena.resenaId;
+    axios
+      .delete(`https://api-iwork.onrender.com/resena/${resenaId}`)
+      .then((response) => {
+        console.log("Mensaje eliminado:", response.data);
+        const updateReclamos = reclamos.filter(
+          (item) => item.resenaId !== resenaId
+        );
+        setReclamos(updateReclamos);
+      });
   };
 
   const handleAddProfesion = () => {
@@ -72,23 +95,21 @@ const AdminView = () => {
             <BotonAdmin />
           </div>
           <div className={styles.adminBuscarMensajes}>
-            <h5>Gestor de mensajes</h5>
-            <div className={styles.buscarMensajes}>
-              <InputText
-                placeholder="Buscar mensajes"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
+            <span>Gestor de mensajes:</span>
+            <div className={styles.buscarMensajes}></div>
+            <DataTable paginator rows={5} value={reclamos}>
+              <Column field="tipo" header="Asunto" />
+              <Column field="escritor.nombre" header="Cliente" />
+              <Column field="escritor.correo" header="Correo Cliente" />
+              <Column field="CreatedAt" header="Fecha" />
+              <Column
+                body={(reclamo) => (
+                  <Button
+                    label="Ver Reclamo"
+                    onClick={() => handleMensaje(reclamo)}
+                  />
+                )}
               />
-              <Button
-                label="Buscar"
-                icon="pi pi-search"
-                onClick={handleSearch}
-              />
-            </div>
-            <DataTable value={messages}>
-              <Column field="subject" header="Asunto" />
-              <Column field="sender" header="Remitente" />
-              <Column field="date" header="Fecha" />
               <Column
                 body={(rowData) => (
                   <Button
@@ -134,6 +155,13 @@ const AdminView = () => {
           </div>
         </div>
       </div>
+      {mensajeVisible && selectedReclamo && (
+        <MensajeReclamo
+          visible={mensajeVisible}
+          onHide={onHide}
+          reclamoData={selectedReclamo}
+        />
+      )}
     </div>
   );
 };
