@@ -4,6 +4,7 @@ import { Dialog } from "primereact/dialog";
 import Calificacion from "./Rating";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
+import { Dropdown } from "primereact/dropdown";
 import { useParams } from "react-router-dom";
 // Estilos
 import styles from "./AgregarCalificacion.module.css";
@@ -12,7 +13,13 @@ const BotonCalificacion = () => {
   const [visible, setVisible] = useState(false);
   const [calificacion, setCalificacion] = useState(null);
   const [resena, setResena] = useState("");
+  const [tipoResena, setTipoResena] = useState(null);
   let { id } = useParams();
+  const tipoResenaOptions = [
+    { label: "Comentario", value: "comentario" },
+    { label: "Reclamo", value: "reclamo" },
+  ]
+
 
   const handleRateChange = (value) => {
     setCalificacion(value);
@@ -22,6 +29,7 @@ const BotonCalificacion = () => {
     const data = {
       calificacion: calificacion,
       resena: resena,
+      tipo: tipoResena,
       profesionalId: parseInt(id),
     };
 
@@ -86,6 +94,14 @@ const BotonCalificacion = () => {
         onHide={() => setVisible(false)}
       >
         <div className={styles.contentModal}>
+          <div>
+            <Dropdown
+              value={tipoResena}
+              options={tipoResenaOptions}
+              placeholder="Selecione el tipo de reseña"
+              onChange={(e) => setTipoResena(e.value)}
+            />
+          </div>
           <div className={styles.calificacion}>
             <div>
               <span>Califica al profesional:</span>

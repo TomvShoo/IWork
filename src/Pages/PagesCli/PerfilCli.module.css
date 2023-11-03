@@ -1,0 +1,46 @@
+.dataResena {
+    margin-bottom: 1rem;
+  }
+  .resenas {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .resenaBloque {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #e1e4e8;
+    text-align: left;
+    gap: 1rem;
+    background-color: #f8f9fa;
+  }
+  .resenaBloqueData {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .resenaBloqueUser {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .resenaNombre {
+    flex: 1;
+    font-weight: bold;
+  }
+  .resenaNombre::first-letter {
+    text-transform: uppercase;
+  }
+  .resenaBloqueComent {
+    flex: 6;
+  }
+  .resenaComent {
+    padding-top: 1rem;
+  }
