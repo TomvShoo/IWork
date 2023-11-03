@@ -95,6 +95,7 @@ export const EditarPerfilCli = () => {
         </Link>
         <span style={{ color: "#6C757D" }}>Editar perfil</span>
       </div>
+
       <div className={styles.editarData}>
         <form
           onSubmit={(e) => {
@@ -102,6 +103,7 @@ export const EditarPerfilCli = () => {
           }}
         >
           <div className={styles.editarInputs}>
+            <h5>Editar Datos</h5>
             <InputText
               onChange={handleInputChange}
               name="nombre"

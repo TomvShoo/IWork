@@ -224,6 +224,7 @@ export const EditarPerfilPro = () => {
 
       <div className={styles.contentEditar}>
         <div className={styles.editarData}>
+          <h5>Editar Datos</h5>
           <div className={styles.editarProfesion}>
             <Dropdown
               value={selectedProfesion}
@@ -287,6 +288,7 @@ export const EditarPerfilPro = () => {
         </div>
 
         <div className={styles.editarPortafolio}>
+          <h5>Editar Portafolio</h5>
           <form
             onSubmit={(e) => {
               editarPortafolio(e);

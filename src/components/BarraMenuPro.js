@@ -23,6 +23,14 @@ const BarraMenuPro = () => {
           ),
           icon: "pi pi-pencil",
         },
+        {
+          label: (
+            <Link to="/AgregarPortfolio" className={styles.link}>
+              Agregar Portafolio
+            </Link>
+          ),
+          icon: "pi pi-plus",
+        },
       ],
     },
     {
