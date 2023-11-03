@@ -59,9 +59,14 @@ export const PerfilPro = () => {
           });
 
         const fetchResenas = async () => {
+          const token = localStorage.getItem("accessToken");
           try {
             const resenasResponse = await axios.get(
-              `https://api-iwork.onrender.com/resena/profesional/${userId}`
+              `https://api-iwork.onrender.com/resena/profesional/${userId}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
             );
             setResenas(resenasResponse.data);
             console.log(resenasResponse.data);

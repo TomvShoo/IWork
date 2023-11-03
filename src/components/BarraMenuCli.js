@@ -79,8 +79,13 @@ export default function BarraMenuCli() {
   };
 
   const fetchResults = (query) => {
+    const token = localStorage.getItem("accessToken");
     axios
-      .get(`https://api-iwork.onrender.com/profesional/search?query=${query}`)
+      .get(`https://api-iwork.onrender.com/profesional/search?query=${query}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         setResultadosBusqueda(response.data); // Guarda los resultados de la búsqueda en el estado

@@ -22,9 +22,14 @@ const VistaPerfilPro = () => {
 
   useEffect(() => {
     const fetchProfesionalData = async () => {
+      const token = localStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `https://api-iwork.onrender.com/profesional/id/${id}`
+          `https://api-iwork.onrender.com/profesional/id/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setProfesionalData(response.data);
         console.log(response.data);
@@ -34,9 +39,14 @@ const VistaPerfilPro = () => {
     };
 
     const fetchPortafolioData = async () => {
+      const token = localStorage.getItem("accessToken");
       try {
         const portafolioResponse = await axios.get(
-          `https://api-iwork.onrender.com/portafolio/profesional/${id}`
+          `https://api-iwork.onrender.com/portafolio/profesional/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setPortafolio(portafolioResponse.data);
         console.log(portafolioResponse.data);
@@ -46,9 +56,14 @@ const VistaPerfilPro = () => {
     };
 
     const fetchResenas = async () => {
+      const token = localStorage.getItem("accessToken");
       try {
         const resenasResponse = await axios.get(
-          `https://api-iwork.onrender.com/resena/profesional/${id}`
+          `https://api-iwork.onrender.com/resena/profesional/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setResenas(resenasResponse.data);
         setTotalResenas(resenasResponse.data.length);

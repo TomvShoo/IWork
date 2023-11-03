@@ -70,10 +70,15 @@ const AdminView = () => {
   };
 
   const handleAddProfesion = () => {
+    const token = localStorage.getItem("accessToken");
     if (nuevaProfesion.trim() !== "") {
       axios
         .post("https://api-iwork.onrender.com/profesion", {
-          nombre_profesion: nuevaProfesion,
+          nombre_profesion: nuevaProfesion, 
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
         .then((response) => {
           console.log("Profesión agregada con éxito", response.data);
