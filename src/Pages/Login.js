@@ -11,6 +11,7 @@ import "primereact/resources/primereact.min.css";
 import styles from "./Login.module.css";
 
 export const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
@@ -145,14 +146,20 @@ export const Login = () => {
           ></InputText>
           {errors.correo && <span>Correo es requerido</span>}
           {/* color: #ff6f6f */}
-          <InputText
-            placeholder="Contraseña"
-            type="password"
-            name="contrasena"
-            {...register("contrasena", { required: true })}
-            value={formData.contrasena}
-            onChange={handleInputChange}
-          ></InputText>
+          <div className={styles.loginContrasena}>
+            <InputText
+              className={styles.contrasena}
+              placeholder="Contraseña"
+              type={showPassword ? "text" : "password"}
+              name="contrasena"
+              {...register("contrasena", { required: true })}
+              value={formData.contrasena}
+              onChange={handleInputChange}
+            ></InputText>
+            <Button severity="secondary" onClick={() => setShowPassword(!showPassword)}>
+              <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
+            </Button>
+          </div>
           {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>
           <Toast ref={(el) => (mensaje.current = el)} />

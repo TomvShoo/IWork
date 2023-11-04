@@ -92,6 +92,13 @@
   justify-content: end;
   flex-direction: column;
 }
+.registerContrasena {
+  display: flex;
+  flex-direction: row;
+}
+.contrasena {
+  flex: 1;
+}
 @media (min-width: 768px) {
   .registerData,
   .registerSelectContainer {

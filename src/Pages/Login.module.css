@@ -47,6 +47,13 @@
   display: flex;
   flex-direction: column;
 }
+.loginContrasena {
+  display: flex;
+  flex-direction: row;
+}
+.contrasena {
+  flex: 1;
+}
 @media (min-width: 320px) {
   .loginData {
     margin: 0rem 1rem;

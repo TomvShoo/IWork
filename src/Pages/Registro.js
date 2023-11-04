@@ -12,6 +12,7 @@ import "primeicons/primeicons.css";
 import styles from "./Registro.module.css";
 
 export const Registro = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     formState: { errors },
@@ -157,12 +158,19 @@ export const Registro = () => {
                 onChange={handleInputChange}
               ></InputText>
               {errors.correo && <span>Correo es requerido</span>}
-              <InputText
-                placeholder="Contraseña"
-                name="contrasena"
-                value={formData.contrasena}
-                onChange={handleInputChange}
-              ></InputText>
+              <div className={styles.registerContrasena}>
+                <InputText
+                  className={styles.contrasena}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Contraseña"
+                  name="contrasena"
+                  value={formData.contrasena}
+                  onChange={handleInputChange}
+                ></InputText>
+                <Button severity="secondary" onClick={() => setShowPassword(!showPassword)}>
+                  <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
+                </Button>
+              </div>
               <InputText
                 placeholder="Verificar contraseña"
                 name="confirmarContrasena"
