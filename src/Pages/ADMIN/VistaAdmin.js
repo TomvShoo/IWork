@@ -35,7 +35,7 @@ const AdminView = () => {
         console.log("Error al traer los datos", error);
       });
 
-    axios.get("https://api-iwork.onrender.com/resena").then((response) => {
+    axios.get("https://api-iwork.onrender.com/resena/all").then((response) => {
       const reclamos = response.data.filter(
         (resena) => resena.tipo === "reclamo"
       );

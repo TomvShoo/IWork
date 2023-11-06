@@ -88,6 +88,12 @@ export const PerfilPro = () => {
       }
     }
   }, []);
+  let comentariosResenas = [];
+  if (resenas) {
+    comentariosResenas = resenas.filter(
+      (resena) => resena.tipo === "comentario"
+    );
+  }
 
   const deleteProfesion = (id_profesion) => {
     const token = localStorage.getItem("accessToken");

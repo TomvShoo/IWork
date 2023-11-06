@@ -1,0 +1,23 @@
+.menuCartas {
+    display: grid;
+    grid-gap: 20px;
+    margin: 0rem 15rem;
+    justify-content: center;
+}
+.cartaCalificados {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+.cartaProfesional {
+    border: solid;
+    display: grid;
+    grid-gap: 20px;
+}
+.footer {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    bottom: 0px
+}
+

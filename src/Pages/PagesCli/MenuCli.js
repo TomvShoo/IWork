@@ -1,17 +1,11 @@
-import { Outlet, Link } from "react-router-dom";
+
 import React, { useState } from "react";
-import { Button } from "primereact/button";
-import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
-import Calificacion from "../../components/Rating";
-import Carrusel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
-import CartasMenu from "../../components/CartasMenu";
 import Footer from "../../components/Footer";
-
 import { Rating } from "primereact/rating";
-import BotonCalificacion from "../../components/AgregarCalificacion";
+import styles from "./MenuCli.module.css"
 
 export const MenuCli = () => {
   return (
@@ -22,57 +16,60 @@ export const MenuCli = () => {
       <div>
         <BarraMenuCli />
       </div>
-      <div className="menuCartasMenu">
-        {/* <CartasMenu /> */}
-      </div>
-      <section className="menuCartas">
+
+      <div className={styles.menuCartas}>
         <div className="tituloCard">
           <h3>Profesionales mejor calificados</h3>
         </div>
-        <div className="servicios">
-          <div className="calificadosPro">
-            <div>
-              <div className="cartaMenu">
-                <div className="cartaHeader">
-                  <div>
-                    <Avatar
-                      label="U"
-                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                      shape="circle"
-                    />
-                    <span>Nombre Apellido</span>
-                  </div>
-                  <div>
-                    <span>Profesión</span>
-                    <Rating value={4} readOnly cancel={false} />
-                  </div>
-                </div>
+        {/* <div className="calificadosPro">
+          <div>
+            <Avatar
+              label="U"
+              style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+              shape="circle"
+            />
+            <span>Nombre Apellido</span>
+          </div>
+          <div>
+            <span>Profesión</span>
+            <Rating value={4} readOnly cancel={false} />
+          </div>
+        </div> */}
+        <div className={styles.cartaCalificados}>
+          <div className={styles.cartaBody}>
+            <div className={styles.cartaProfesional}>
+              <Avatar
+                label="U"
+                style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                shape="circle"
+              />
+              <span>Nombre Apellido</span>
+              <div>
+                <span>Profesión</span>
+                <Rating value={4} readOnly cancel={false} />
               </div>
             </div>
+          </div>
 
-            <div>
-              <div className="cartaMenu">
-                <div className="cartaHeader">
-                  <div>
-                    <Avatar
-                      label="U"
-                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                      shape="circle"
-                    />
-                    <span>Nombre Apellido</span>
-                  </div>
-                  <div>
-                    <span>Profesión</span>
-                    <Rating value={4} readOnly cancel={false} />
-                  </div>
-                </div>
+
+          <div className={styles.cartaBody}>
+            <div className={styles.cartaProfesional}>
+              <Avatar
+                label="U"
+                style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
+                shape="circle"
+              />
+              <span>Nombre Apellido</span>
+              <div>
+                <span>Profesión</span>
+                <Rating value={4} readOnly cancel={false} />
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className="menuCartas">
+      {/* <section className="menuCartas">
         <div className="tituloCard">
           <h3>Servicios</h3>
         </div>
@@ -109,8 +106,8 @@ export const MenuCli = () => {
             <span>Construccion</span>
           </div>
         </div>
-      </section>
-      <div className="divFooter">
+      </section> */}
+      <div className={styles.footer}>
         <Footer />
       </div>
     </div>
