@@ -149,7 +149,7 @@ const VistaPerfilPro = () => {
                   {profesionalData.nombre} {profesionalData.apellido}
                 </h3> */}
                 <div>
-                  <h5>Profesiones:</h5>
+                  <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
                   profesionalData.tipoProfesion.length > 0 ? (
                     <ul className={styles.profesionChips}>
@@ -170,6 +170,7 @@ const VistaPerfilPro = () => {
           </div>
           <div className={styles.contactoPerfilProfesional}>
             {/* <BotonesRedes /> */}
+            <h5>Contacto</h5>
             <div className={styles.botonesRedes}>
               <Button
                 className={styles.botonRed}

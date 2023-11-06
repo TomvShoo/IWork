@@ -3,114 +3,60 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
+import { Rating } from "primereact/rating";
 import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
 import CartasMenu from "../../components/CartasMenu";
 import Footer from "../../components/Footer";
-
-import { Rating } from "primereact/rating";
 import BotonCalificacion from "../../components/AgregarCalificacion";
+import styles from "./MenuCli.module.css";
+
+import SheshoImage from "../../Images/Shesho.jpeg";
 
 export const MenuCli = () => {
   return (
-    <div className="menuContainer">
-      <div>
-        <ModalAdvertenciaCli />
-      </div>
-      <div>
+    <div className={styles.menuContainer}>
+      {/* <ModalAdvertenciaCli /> */}
+
+      <div className={styles.navMenu}>
         <BarraMenuCli />
       </div>
-      <div className="menuCartasMenu">
-        {/* <CartasMenu /> */}
-      </div>
-      <section className="menuCartas">
-        <div className="tituloCard">
+
+      <section className={styles.cartasSection}>
+        <div className={styles.titleSection}>
           <h3>Profesionales mejor calificados</h3>
         </div>
-        <div className="servicios">
-          <div className="calificadosPro">
-            <div>
-              <div className="cartaMenu">
-                <div className="cartaHeader">
-                  <div>
-                    <Avatar
-                      label="U"
-                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                      shape="circle"
-                    />
-                    <span>Nombre Apellido</span>
-                  </div>
-                  <div>
-                    <span>Profesión</span>
-                    <Rating value={4} readOnly cancel={false} />
-                  </div>
-                </div>
+
+        <div className={styles.cartaContainer}>
+          <div className={styles.cartaProfesional}>
+            <img src={SheshoImage} alt="Shesho" className={styles.imagen} />
+
+            <div className={styles.cartaDatos}>
+              <span>Nombre Apellido</span>
+              <Rating value={4} readOnly cancel={false} />
+              <div>
+                <span>Aquí van las etiquetas</span>
               </div>
             </div>
+          </div>
 
-            <div>
-              <div className="cartaMenu">
-                <div className="cartaHeader">
-                  <div>
-                    <Avatar
-                      label="U"
-                      style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                      shape="circle"
-                    />
-                    <span>Nombre Apellido</span>
-                  </div>
-                  <div>
-                    <span>Profesión</span>
-                    <Rating value={4} readOnly cancel={false} />
-                  </div>
-                </div>
+          <div className={styles.cartaProfesional}>
+            <img src={SheshoImage} alt="Shesho" className={styles.imagen} />
+
+            <div className={styles.cartaDatos}>
+              <span>Nombre Apellido</span>
+              <Rating value={4} readOnly cancel={false} />
+              <div>
+                <span>Aquí van las etiquetas</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="menuCartas">
-        <div className="tituloCard">
-          <h3>Servicios</h3>
-        </div>
-        <div className="servicios">
-          <div className="contentServicios">
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Carpinteria</span>
-
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Electricista</span>
-
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Gasfiteria</span>
-
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Construccion</span>
-
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Construccion</span>
-
-            <div>
-              <i className="pi pi-user"></i>
-            </div>
-            <span>Construccion</span>
-          </div>
-        </div>
-      </section>
-      <div className="divFooter">
+      <div className={styles.divFooter}>
         <Footer />
       </div>
     </div>

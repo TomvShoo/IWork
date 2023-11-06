@@ -145,7 +145,6 @@ export const Login = () => {
             onChange={handleInputChange}
           ></InputText>
           {errors.correo && <span>Correo es requerido</span>}
-          {/* color: #ff6f6f */}
           <div className={styles.loginContrasena}>
             <InputText
               className={styles.contrasena}

@@ -6,9 +6,9 @@ import Footer from "../../components/Footer";
 import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
-import { DataScroller } from 'primereact/datascroller';
+import { DataScroller } from "primereact/datascroller";
 import axios from "axios";
-import styles from "./PerfilCliente.module.css"
+import styles from "./PerfilCliente.module.css";
 
 const Estilo = {
   card: {
@@ -42,7 +42,8 @@ const PerfilCliente = () => {
     if (token) {
       const decodedToken = parseJwt(token);
       const userId = decodedToken.id;
-      axios.get("https://api-iwork.onrender.com/auth/perfil", {
+      axios
+        .get("https://api-iwork.onrender.com/auth/perfil", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -60,7 +61,7 @@ const PerfilCliente = () => {
             `https://api-iwork.onrender.com/resena/cliente/${userId}`
           );
           setResenas(resenasResponse.data);
-          setTotalResenas(resenasResponse.data.length)
+          setTotalResenas(resenasResponse.data.length);
           console.log(resenasResponse.data);
         } catch (error) {
           console.error("Error fetching resenas data:", error);
@@ -88,7 +89,9 @@ const PerfilCliente = () => {
               style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
               shape="circle"
             />
-            <span className={styles.resenaNombre}>{data.dueno.nombre} {data.dueno.apellido}</span>
+            <span className={styles.resenaNombre}>
+              {data.dueno.nombre} {data.dueno.apellido}
+            </span>
           </div>
           <CalificacionPro promedio={data.calificacion} />
         </div>
@@ -97,7 +100,7 @@ const PerfilCliente = () => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <div>
@@ -145,4 +148,4 @@ const PerfilCliente = () => {
   );
 };
 
-export default PerfilCliente
+export default PerfilCliente;
