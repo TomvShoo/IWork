@@ -45,7 +45,8 @@ export const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handlesubmit = async () => {
+  const handlesubmit = async (e) => {
+    console.log(e);
     setValidationErrors({
       emailError: "",
       passwordError: "",
@@ -155,9 +156,9 @@ export const Login = () => {
               value={formData.contrasena}
               onChange={handleInputChange}
             ></InputText>
-            <Button severity="secondary" onClick={() => setShowPassword(!showPassword)}>
+            <div type="text" severity="secondary" onClick={() => setShowPassword(!showPassword)}>
               <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
-            </Button>
+            </div>
           </div>
           {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>

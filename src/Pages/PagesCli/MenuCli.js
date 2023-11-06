@@ -1,14 +1,11 @@
-import { Outlet, Link } from "react-router-dom";
+
 import React, { useState } from "react";
-import { Button } from "primereact/button";
-import { Card } from "primereact/card";
 import { Avatar } from "primereact/avatar";
 import { Rating } from "primereact/rating";
 import Calificacion from "../../components/Rating";
 import Carrusel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
-import CartasMenu from "../../components/CartasMenu";
 import Footer from "../../components/Footer";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import styles from "./MenuCli.module.css";
