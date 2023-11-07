@@ -1,15 +1,8 @@
-
 import React, { useState } from "react";
-import { Avatar } from "primereact/avatar";
 import { Rating } from "primereact/rating";
-import Calificacion from "../../components/Rating";
-import Carrusel from "../../components/Carrusel";
 import BarraMenuCli from "../../components/BarraMenuCli";
-import ModalAdvertenciaCli from "../../components/ModalAdvertenciaCli";
 import Footer from "../../components/Footer";
-import BotonCalificacion from "../../components/AgregarCalificacion";
 import styles from "./MenuCli.module.css";
-
 import SheshoImage from "../../Images/Shesho.jpeg";
 
 export const MenuCli = () => {

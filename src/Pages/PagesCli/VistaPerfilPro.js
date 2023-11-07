@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ImageCarousel from "../../components/Carrusel";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
@@ -7,8 +7,6 @@ import BarraMenuCli from "../../components/BarraMenuCli";
 import CalificacionPro from "../../components/RatingPro";
 import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
-import { DataScroller } from "primereact/datascroller";
-// import { Avatar } from "primereact/avatar";
 import axios from "axios";
 import styles from "./VistaPerfilPro.module.css";
 
@@ -19,13 +17,15 @@ const VistaPerfilPro = () => {
   const [resenas, setResenas] = useState(null);
   const [totalResenas, setTotalResenas] = useState(0);
   const { id } = useParams();
+  const resenasContainerRef = useRef(null);
 
   useEffect(() => {
     const fetchProfesionalData = async () => {
       const token = localStorage.getItem("accessToken");
       try {
         const response = await axios.get(
-          `https://api-iwork.onrender.com/profesional/id/${id}`, {
+          `https://api-iwork.onrender.com/profesional/id/${id}`,
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -42,7 +42,8 @@ const VistaPerfilPro = () => {
       const token = localStorage.getItem("accessToken");
       try {
         const portafolioResponse = await axios.get(
-          `https://api-iwork.onrender.com/portafolio/profesional/${id}`, {
+          `https://api-iwork.onrender.com/portafolio/profesional/${id}`,
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -59,7 +60,8 @@ const VistaPerfilPro = () => {
       const token = localStorage.getItem("accessToken");
       try {
         const resenasResponse = await axios.get(
-          `https://api-iwork.onrender.com/resena/profesional/${id}`, {
+          `https://api-iwork.onrender.com/resena/profesional/${id}`,
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -133,7 +135,6 @@ const VistaPerfilPro = () => {
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
           <div className={styles.headerPerfilProfesional}>
-            {/* <Avatar label="P" size="xlarge" shape="circle" /> */}
             {profesionalData && (
               <h4 className={styles.headerNombre}>
                 {profesionalData.nombre} {profesionalData.apellido}
@@ -145,9 +146,6 @@ const VistaPerfilPro = () => {
           <div className={styles.descriptionPerfilProfesional}>
             {profesionalData && (
               <div>
-                {/* <h3>
-                  {profesionalData.nombre} {profesionalData.apellido}
-                </h3> */}
                 <div>
                   <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
@@ -169,7 +167,6 @@ const VistaPerfilPro = () => {
             )}
           </div>
           <div className={styles.contactoPerfilProfesional}>
-            {/* <BotonesRedes /> */}
             <h5>Contacto</h5>
             <div className={styles.botonesRedes}>
               <Button
@@ -239,16 +236,32 @@ const VistaPerfilPro = () => {
           <div>
             <h5>Reseñas</h5>
           </div>
-          <div>
-            {resenas && (
-              <DataScroller
-                value={comentariosResenas}
-                itemTemplate={itemTemplate}
-                scrollHeight="80vh"
-                rows={totalResenas}
-                inline
-              />
-            )}
+          <div
+            className={`${styles.dataResena} ${
+              totalResenas > 10 ? styles.scrollableResenas : ""
+            }`}
+            ref={resenasContainerRef}
+          >
+            <div className={styles.resenas}>
+              {resenas &&
+                resenas.map((resena, index) => (
+                  <span key={index} className={styles.resenaBloque}>
+                    <div className={styles.resenaBloqueData}>
+                      <div className={styles.resenaBloqueUser}>
+                        <span className={styles.resenaNombre}>
+                          {resena.nombreUsuario}
+                        </span>
+                      </div>
+                      <CalificacionPro promedio={resena.calificacion} />
+                    </div>
+                    <div className={styles.resenaBloqueComent}>
+                      <span className={styles.resenaComent}>
+                        {resena.resena}
+                      </span>
+                    </div>
+                  </span>
+                ))}
+            </div>
           </div>
         </div>
       </div>

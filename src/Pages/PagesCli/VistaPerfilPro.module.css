@@ -121,6 +121,10 @@
 .dataResena {
   margin-bottom: 1rem;
 }
+.scrollableResenas {
+  max-height: 25rem;
+  overflow-x: hidden;
+}
 .resenas {
   display: flex;
   text-align: left;
@@ -232,6 +236,7 @@
     margin: 1rem;
   }
   .resenaBloque {
+    margin: 0rem 0.5rem;
     flex-direction: row;
     transition: transform 0.1s ease;
   }
@@ -247,6 +252,13 @@
   }
   .dataResena {
     margin-bottom: 0rem;
+  }
+  .scrollableResenas {
+    max-height: 45rem;
+    overflow-x: hidden
+  }
+  .resenas {
+    padding: 0.5rem;
   }
   .resenaBloqueComent {
     border-left: 1px solid #e1e4e8;
