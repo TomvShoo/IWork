@@ -54,6 +54,14 @@
 .contrasena {
   flex: 1;
 }
+.botonOcultar {
+  display: flex;
+  align-items: center;
+  background-color: #607D8B;
+  color: white;
+  border-radius: 1px;
+  padding: 0.9rem;
+}
 @media (min-width: 320px) {
   .loginData {
     margin: 0rem 1rem;
