@@ -11,7 +11,7 @@ const ImageCarousel = ({ images }) => {
       <div className="p-grid p-nogutter">
         <div className="p-col">
           <img
-            src={`data:image/jpeg;base64, ${image}`} // Utiliza directamente la imagen
+            src={`data:image/jpeg;base64, ${image}`}
             alt="Imagen"
             className={styles.imagen}
           />
