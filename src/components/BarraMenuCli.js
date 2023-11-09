@@ -20,7 +20,7 @@ export default function BarraMenuCli() {
     {
       label: (
         <Link to="/MenuCli" className={styles.link}>
-          Menú
+          Muro
         </Link>
       ),
       icon: "pi pi-home",
@@ -46,6 +46,14 @@ export default function BarraMenuCli() {
           icon: "pi pi-pencil",
         },
       ],
+    },
+    {
+      label: (
+        <Link to="/PreguntasFrecuentes" className={styles.link}>
+          FAQ
+        </Link>
+      ),
+      icon: "pi pi-info-circle",
     },
     {
       label: (

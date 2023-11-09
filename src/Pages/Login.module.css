@@ -57,10 +57,12 @@
 .botonOcultar {
   display: flex;
   align-items: center;
-  background-color: #607D8B;
+  cursor: pointer;
+  background-color: #00000026;
   color: white;
-  border-radius: 1px;
-  padding: 0.9rem;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  padding: 0rem 1rem;
+
 }
 @media (min-width: 320px) {
   .loginData {

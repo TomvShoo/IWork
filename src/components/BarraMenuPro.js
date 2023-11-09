@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
 import styles from "./BarraMenuPro.module.css";
+import { classNames } from "primereact/utils";
 
 const BarraMenuPro = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -32,6 +33,14 @@ const BarraMenuPro = () => {
           icon: "pi pi-plus",
         },
       ],
+    },
+    {
+      label: (
+        <Link to="/PreguntasFrecuentes" className={styles.link}>
+          FAQ
+        </Link>
+      ),
+      icon: "pi pi-info-circle",
     },
     {
       label: (
