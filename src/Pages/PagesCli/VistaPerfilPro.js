@@ -105,8 +105,10 @@ const VistaPerfilPro = () => {
 
   const handleGmailClick = () => {
     if (profesionalData && profesionalData.correo) {
-      const mailtoLink = `mailto:${profesionalData.correo}`;
-      window.open(mailtoLink, "_blank");
+      const asunto = encodeURIComponent("Contratacion de servicio mediante IWork");
+      const mensaje = encodeURIComponent("Hola, estoy interesado/a en contratar tus servicios, por favor, hazme saber los detalles. Saludos!")
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${profesionalData.correo}&su=${asunto}&body=${mensaje}`;
+      window.open(gmailLink,"_blank");
     }
   };
 
@@ -149,7 +151,7 @@ const VistaPerfilPro = () => {
                 <div>
                   <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
-                  profesionalData.tipoProfesion.length > 0 ? (
+                    profesionalData.tipoProfesion.length > 0 ? (
                     <ul className={styles.profesionChips}>
                       {profesionalData.tipoProfesion.map((profesion, index) => (
                         <Chip
@@ -223,8 +225,8 @@ const VistaPerfilPro = () => {
             <div>
               <span>
                 {portafolio &&
-                portafolio.data &&
-                portafolio.data[0].certificaciones
+                  portafolio.data &&
+                  portafolio.data[0].certificaciones
                   ? portafolio.data[0].certificaciones
                   : "Cargando..."}
               </span>
@@ -237,9 +239,8 @@ const VistaPerfilPro = () => {
             <h5>Reseñas</h5>
           </div>
           <div
-            className={`${styles.dataResena} ${
-              totalResenas > 10 ? styles.scrollableResenas : ""
-            }`}
+            className={`${styles.dataResena} ${totalResenas > 10 ? styles.scrollableResenas : ""
+              }`}
             ref={resenasContainerRef}
           >
             <div className={styles.resenas}>

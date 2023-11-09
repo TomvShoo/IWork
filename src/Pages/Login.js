@@ -156,15 +156,9 @@ export const Login = () => {
               value={formData.contrasena}
               onChange={handleInputChange}
             ></InputText>
-            <Button
-              severity="secondary"
-              onClick={() => setShowPassword(!showPassword)}
-              outlined
-            >
-              <span
-                className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}
-              ></span>
-            </Button>
+            <div className={styles.botonOcultar} type="text" severity="secondary" onClick={() => setShowPassword(!showPassword)}>
+              <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
+            </div>
           </div>
           {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>
