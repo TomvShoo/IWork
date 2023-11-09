@@ -99,6 +99,15 @@
 .contrasena {
   flex: 1;
 }
+.errorContainer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: 1rem;
+}
+
 @media (min-width: 768px) {
   .registerData,
   .registerSelectContainer {

@@ -11,6 +11,8 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import styles from "./Registro.module.css";
 
+import { Message } from "primereact/message";
+
 export const Registro = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -50,7 +52,7 @@ export const Registro = () => {
     if (formData.contrasena !== formData.confirmarContrasena) {
       setError("confirmarContrasena", {
         type: "manual",
-        message: "Las contraseñas no coinciden",
+        message: "Las contraseñas no coinciden.",
       });
       return;
     }
@@ -63,7 +65,7 @@ export const Registro = () => {
       setError("contrasena", {
         type: "manual",
         message:
-          "La contraseña debe contener al menos 8 caracteres, debe tener una mayuscula y un número.",
+          "La contraseña debe contener al menos 8 carácteres, una mayúscula y un número.",
       });
       return;
     }
@@ -167,8 +169,14 @@ export const Registro = () => {
                   value={formData.contrasena}
                   onChange={handleInputChange}
                 ></InputText>
-                <Button severity="secondary" onClick={() => setShowPassword(!showPassword)}>
-                  <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
+                <Button
+                  severity="secondary"
+                  onClick={() => setShowPassword(!showPassword)}
+                  outlined
+                >
+                  <span
+                    className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}
+                  ></span>
                 </Button>
               </div>
               <InputText
@@ -180,11 +188,16 @@ export const Registro = () => {
               {errors.confirmarContrasena && (
                 <span>{errors.confirmarContrasena.message}</span>
               )}
-              {errors.contrasena && (
-                <span style={{ color: "red" }}>
-                  {errors.contrasena.message}
-                </span>
-              )}
+
+              <div className={styles.errorContainer}>
+                {errors.contrasena && (
+                  <Message
+                    className={styles.error}
+                    severity="error"
+                    text={errors.contrasena.message}
+                  ></Message>
+                )}
+              </div>
             </div>
           </div>
 

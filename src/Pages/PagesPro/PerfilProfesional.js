@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import BarraMenuPro from "../../components/BarraMenuPro";
 import ImageCarousel from "../../components/Carrusel";
 import CalificacionPro from "../../components/RatingPro";
 import BotonesRedes from "../../components/BotonesRedes";
 import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
-// import { Avatar } from "primereact/avatar";
 import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
 import axios from "axios";
@@ -18,6 +17,8 @@ export const PerfilPro = () => {
   const [promedioCalificacion, setPromedioCalificacion] = useState(0);
   const [resenas, setResenas] = useState(null);
   const [userRole, setUserRole] = useState("");
+  const [totalResenas, setTotalResenas] = useState(0);
+  const resenasContainerRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -62,13 +63,15 @@ export const PerfilPro = () => {
           const token = localStorage.getItem("accessToken");
           try {
             const resenasResponse = await axios.get(
-              `https://api-iwork.onrender.com/resena/profesional/${userId}`, {
+              `https://api-iwork.onrender.com/resena/profesional/${userId}`,
+              {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
               }
             );
             setResenas(resenasResponse.data);
+            setTotalResenas(resenasResponse.data.length);
             console.log(resenasResponse.data);
 
             const sum = resenasResponse.data.reduce(
@@ -133,7 +136,6 @@ export const PerfilPro = () => {
       <div className={styles.vistaPerfilProfesional}>
         <div className={styles.dataPerfilProfesional}>
           <div className={styles.headerPerfilProfesional}>
-            {/* <Avatar label="P" size="xlarge" shape="circle" /> */}
             {profesionalData && (
               <h4 className={styles.headerNombre}>
                 {profesionalData.nombre} {profesionalData.apellido}
@@ -145,9 +147,6 @@ export const PerfilPro = () => {
           <div className={styles.descriptionPerfilProfesional}>
             {profesionalData && (
               <div>
-                {/* <h3>
-                  {profesionalData.nombre} {profesionalData.apellido}
-                </h3> */}
                 <div>
                   <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
@@ -277,28 +276,32 @@ export const PerfilPro = () => {
           <div>
             <h5>Reseñas</h5>
           </div>
-          <div className={styles.resenas}>
-            {resenas &&
-              resenas.map((resena, index) => (
-                <span key={index} className={styles.resenaBloque}>
-                  <div className={styles.resenaBloqueData}>
-                    <div className={styles.resenaBloqueUser}>
-                      {/* <Avatar
-                        label="U"
-                        style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
-                        shape="circle"
-                      /> */}
-                      <span className={styles.resenaNombre}>
-                        {resena.nombreUsuario}
+          <div
+            className={`${styles.dataResena} ${
+              totalResenas > 10 ? styles.scrollableResenas : ""
+            }`}
+            ref={resenasContainerRef}
+          >
+            <div className={styles.resenas}>
+              {resenas &&
+                resenas.map((resena, index) => (
+                  <span key={index} className={styles.resenaBloque}>
+                    <div className={styles.resenaBloqueData}>
+                      <div className={styles.resenaBloqueUser}>
+                        <span className={styles.resenaNombre}>
+                          {resena.nombreUsuario}
+                        </span>
+                      </div>
+                      <CalificacionPro promedio={resena.calificacion} />
+                    </div>
+                    <div className={styles.resenaBloqueComent}>
+                      <span className={styles.resenaComent}>
+                        {resena.resena}
                       </span>
                     </div>
-                    <CalificacionPro promedio={resena.calificacion} />
-                  </div>
-                  <div className={styles.resenaBloqueComent}>
-                    <span className={styles.resenaComent}>{resena.resena}</span>
-                  </div>
-                </span>
-              ))}
+                  </span>
+                ))}
+            </div>
           </div>
         </div>
       </div>
