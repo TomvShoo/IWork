@@ -26,6 +26,28 @@
 .parrafo {
   text-align: left;
 }
+.button {
+  display: flex;
+}
+.dialogoTerCon {
+  width: 90%;
+  height: 75%;
+}
+.update {
+  font-style: italic;
+  font-weight: lighter;
+}
+.tittle {
+  font-weight: bolder;
+}
+
+@media (min-width: 768px) {
+  .dialogoTerCon {
+    width: 50%;
+    height: 65%;
+  }
+}
+
 
 @media (min-width: 1200px) {
   .preguntasLista{
