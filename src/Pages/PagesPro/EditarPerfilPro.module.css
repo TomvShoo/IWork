@@ -37,6 +37,7 @@
   border: 1px solid #e1e4e8;
   box-shadow: 3px 3px 10px #dddddd;
   background-color: #f8f9fa;
+  justify-content: space-between;
 }
 .editarInputs {
   display: flex;

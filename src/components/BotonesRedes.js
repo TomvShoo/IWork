@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-
 import { Button } from "primereact/button";
-
 import axios from "axios";
-
 import styles from "./BotonesRedes.module.css";
 
 export default function BotonesRedes() {
   const [usuario, setUsuario] = useState(null);
-  // obtener el token del almacenamiento local
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (token) {
-      //se realiza la solicitud al servidor
       axios
         .get("https://api-iwork.onrender.com/auth/perfil", {
           headers: {
@@ -32,27 +27,16 @@ export default function BotonesRedes() {
   const handleWhatsAppClick = () => {
     if (usuario.nroTelefono) {
       const whatsappURL = `https://api.whatsapp.com/send?phone=569${usuario.nroTelefono}`;
-      // URL de WhatsApp con el número de teléfono que desea
       window.open(whatsappURL, "_blank");
     }
   };
 
-  // const handleGmailClick = () => {
-  //   if (usuario.correo) {
-  //     // // Dirección de correo electrónico predefinida
-  //     // const email = ${usuario.correo};
-  //     // Crear el enlace "mailto"
-  //     const mailtoLink = `mailto:${correo}`;
-
-  //     // Abrir el enlace en una nueva pestaña o ventana
-  //     window.open(mailtoLink, '_blank');
-
-  //   }
-  // };
   const handleGmailClick = () => {
-    if (usuario.correo) {
-      const mailtoLink = `mailto:${usuario.correo}`;
-      window.open(mailtoLink, "_blank");
+    if (usuario && usuario.correo) {
+      const asunto = encodeURIComponent("Contratacion de servicio mediante IWork");
+      const mensaje = encodeURIComponent("Hola, estoy interesado/a en contratar tus servicios, por favor, hazme saber los detalles. Saludos!")
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${usuario.correo}&su=${asunto}&body=${mensaje}`;
+      window.open(gmailLink,"_blank");
     }
   };
 

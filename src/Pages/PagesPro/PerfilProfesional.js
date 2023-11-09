@@ -8,6 +8,8 @@ import BotonCalificacion from "../../components/AgregarCalificacion";
 import Footer from "../../components/Footer";
 import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
+import { ConfirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./PerfilProfesional.module.css";
 
@@ -18,7 +20,10 @@ export const PerfilPro = () => {
   const [resenas, setResenas] = useState(null);
   const [userRole, setUserRole] = useState("");
   const [totalResenas, setTotalResenas] = useState(0);
+  const toast = useRef(null);
   const resenasContainerRef = useRef(null);
+  const [showConfirmDialog, setConfirmDialog] = useState(false);
+  const [profesionToDelete, setProfesionToDelete] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -53,6 +58,9 @@ export const PerfilPro = () => {
           )
           .then((response) => {
             setPortafolio(response.data);
+            if (response.data.success === false) {
+              toast.current.show({ severity: "info", summary: "Portafolio", detail: "Parece que aun no agregas tu portafolio." })
+            }
             console.log("Datos del portafolio:", response.data);
           })
           .catch((error) => {
@@ -91,33 +99,38 @@ export const PerfilPro = () => {
       }
     }
   }, []);
-  let comentariosResenas = [];
-  if (resenas) {
-    comentariosResenas = resenas.filter(
-      (resena) => resena.tipo === "comentario"
-    );
-  }
+
+  const comentariosResenas = resenas ? resenas.filter(resena => resena.tipo === "comentario") : [];
 
   const deleteProfesion = (id_profesion) => {
+    setProfesionToDelete(id_profesion)
+    setConfirmDialog(true);
+  }
+
+  const onConfirm = (id_profesion) => {
     const token = localStorage.getItem("accessToken");
-    axios
-      .patch(
-        `https://api-iwork.onrender.com/profesional/eliminar-profesion/${id_profesion}`,
+    if (profesionToDelete) {
+      axios.patch(`https://api-iwork.onrender.com/profesional/eliminar-profesion/${id_profesion}`,
         null,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
-      )
-      .then((response) => {
+      ).then((response) => {
         console.log(response.data);
         window.location.reload(true);
       })
-      .catch((error) => {
-        console.error("error al eliminar la profesion", error);
-      });
+        .catch((error) => {
+          console.error("error al eliminar la profesion", error);
+        });
+    }
+    setConfirmDialog(false);
   };
+
+  const onHide = () => {
+    setConfirmDialog(false);
+  }
 
   function parseJwt(token) {
     try {
@@ -150,7 +163,7 @@ export const PerfilPro = () => {
                 <div>
                   <h5>Profesiones</h5>
                   {profesionalData.tipoProfesion &&
-                  profesionalData.tipoProfesion.length > 0 ? (
+                    profesionalData.tipoProfesion.length > 0 ? (
                     <div className={styles.profesionChips}>
                       {profesionalData.tipoProfesion.map((profesion, index) => (
                         <div className={styles.chip}>
@@ -193,6 +206,15 @@ export const PerfilPro = () => {
                           </svg>
                         </div>
                       ))}
+                      <ConfirmDialog
+                        visible={showConfirmDialog}
+                        onHide={onHide}
+                        message="¿Estas seguro que deseas quitarte esta profesion?"
+                        header="Confirmacion"
+                        icon="pi pi-exclamation-triangle"
+                        accept={() => onConfirm(profesionToDelete)}
+                        reject={onHide}
+                      />
                     </div>
                   ) : (
                     <p>Aún no se han asignado profesiones</p>
@@ -263,13 +285,14 @@ export const PerfilPro = () => {
             <div>
               <span>
                 {portafolio &&
-                portafolio.data &&
-                portafolio.data[0].certificaciones
+                  portafolio.data &&
+                  portafolio.data[0].certificaciones
                   ? portafolio.data[0].certificaciones
                   : "Cargando..."}
               </span>
             </div>
           </div>
+          <Toast ref={toast} />
         </div>
 
         <div className={styles.dataResena}>
@@ -277,14 +300,13 @@ export const PerfilPro = () => {
             <h5>Reseñas</h5>
           </div>
           <div
-            className={`${styles.dataResena} ${
-              totalResenas > 10 ? styles.scrollableResenas : ""
-            }`}
+            className={`${styles.dataResena} ${totalResenas > 10 ? styles.scrollableResenas : ""
+              }`}
             ref={resenasContainerRef}
           >
             <div className={styles.resenas}>
-              {resenas &&
-                resenas.map((resena, index) => (
+              {comentariosResenas &&
+                comentariosResenas.map((resena, index) => (
                   <span key={index} className={styles.resenaBloque}>
                     <div className={styles.resenaBloqueData}>
                       <div className={styles.resenaBloqueUser}>

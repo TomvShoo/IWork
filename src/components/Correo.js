@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
+import { Toast } from 'primereact/toast';
 import styles from "./Correo.module.css";
 import axios from "axios";
 
@@ -9,6 +10,7 @@ const Correo = () => {
   const [recipient, setRecipient] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const toast = useRef(null);
 
   const sendEmail = () => {
     const token = localStorage.getItem("accessToken");
@@ -29,8 +31,14 @@ const Correo = () => {
       )
       .then((response) => {
         console.log('Mensaje enviado con exito',response.data);
+        if (toast.current) {
+          toast.current.show({ severity: "success", summary: "Exito", detail: "Correo enviado con exito!" })
+        }
       })
     } catch (error) {
+      if (toast.current) {
+        toast.current.show({ severity: "error", summary: "Error", detail: "Error al querer Enviar el correo" })
+      }
       console.error(error);
     }
   };
@@ -73,6 +81,7 @@ const Correo = () => {
       </span>
 
       <Button label="Enviar correo" onClick={sendEmail} rounded />
+      <Toast ref={toast} />
     </div>
   );
 };

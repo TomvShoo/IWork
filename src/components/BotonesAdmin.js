@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
+import { ConfirmPopup } from 'primereact/confirmpopup';
+import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./BotonesAdmin.module.css";
 
 const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
   const [profesionales, setProfesionales] = useState([]);
+  const [UserToDelete, setUserToDelete] = useState(null);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const toast = useRef(null);
 
   useEffect(() => {
     axios.get("https://api-iwork.onrender.com/users")
@@ -29,33 +34,62 @@ const BotonAdmin = () => {
       });
   }, []);
 
-  const handleDeleteUser = (user) => {
-    const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${user.id}` : `https://api-iwork.onrender.com/profesional/${user.id}`;
+  const confirmDelete = (user) => {
+    setUserToDelete(user);
+    setShowConfirm(true);
+  }
+  const rejectDelete = () => {
+    setShowConfirm(false);
+  }
 
-    axios.delete(deleteEndpoint)
-      .then((response) => {
-        console.log("Usuario eliminado con éxito", response.data);
-        if (user.tipoCuenta === "cliente") {
-          axios.get("https://api-iwork.onrender.com/users")
-            .then((response) => {
-              setUsers(response.data);
-            })
-            .catch((error) => {
-              console.log("Error al traer los datos de usuarios", error);
-            });
-        } else {
-          axios.get("https://api-iwork.onrender.com/profesional")
-            .then((response) => {
-              setProfesionales(response.data);
-            })
-            .catch((error) => {
-              console.log("Error al traer los datos de profesionales", error);
-            });
-        }
+  const handleDeleteUser = (user) => {
+    const token = localStorage.getItem("accessToken");
+    const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${UserToDelete.id}` : `https://api-iwork.onrender.com/profesional/${UserToDelete.id}`;
+    try {
+      axios.delete(deleteEndpoint, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch((error) => {
-        console.log("Error al eliminar el usuario", error);
-      });
+        .then((response) => {
+          console.log("Usuario eliminado con éxito", response.data);
+          if (user.tipoCuenta === "cliente") {
+            axios.get("https://api-iwork.onrender.com/users")
+              .then((response) => {
+                setUsers(response.data);
+              })
+              .catch((error) => {
+                console.log("Error al traer los datos de usuarios", error);
+              });
+          } else {
+            axios.get("https://api-iwork.onrender.com/profesional")
+              .then((response) => {
+                setProfesionales(response.data);
+              })
+              .catch((error) => {
+                console.log("Error al traer los datos de profesionales", error);
+              });
+          }
+          setShowConfirm(false);
+          if (toast.current) {
+            toast.current.show({
+              severity: "success",
+              summary: "Exito",
+              detail: "Usuario eliminado con exito!"
+            });
+          }
+        })
+    } catch (error) {
+      console.log("Error al eliminar el usuario", error);
+      setShowConfirm(false);
+      if (toast.current) {
+        toast.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: "Ocurrio un error al eliminar el usuario"
+        });
+      }
+    }
   };
 
   return (
@@ -75,12 +109,22 @@ const BotonAdmin = () => {
               <Button
                 icon="pi pi-times"
                 className="p-button-danger"
-                onClick={() => handleDeleteUser(rowData)}
+                onClick={() => confirmDelete(rowData)}
                 rounded
               />
             )}
           />
         </DataTable>
+        <ConfirmPopup
+          visible={showConfirm}
+          onHide={() => setShowConfirm(false)}
+          message="¿Estas seguro de eliminar al usuario?, Esto eliminara todo lo relacionado a el usuario"
+          header="Confirmar eliminacion"
+          icon="pi pi-exclamation-triangle"
+          accept={handleDeleteUser}
+          reject={rejectDelete}
+        />
+        <Toast ref={toast} />
       </div>
     </div>
   );

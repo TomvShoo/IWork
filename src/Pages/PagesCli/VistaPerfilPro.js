@@ -90,12 +90,15 @@ const VistaPerfilPro = () => {
     fetchResenas();
   }, [id]);
 
-  let comentariosResenas = [];
-  if (resenas) {
-    comentariosResenas = resenas.filter(
-      (resena) => resena.tipo === "comentario"
-    );
-  }
+
+  // let comentariosResenas = [];
+  // if (resenas) {
+  //   comentariosResenas = resenas.filter(
+  //     (resena) => resena.tipo === "comentario"
+  //   );
+  // }
+  const comentariosResenas = resenas ? resenas.filter(resena => resena.tipo === "comentario") : [];
+
   const handleWhatsAppClick = () => {
     if (profesionalData && profesionalData.nroTelefono) {
       const whatsappURL = `https://api.whatsapp.com/send?phone=569${profesionalData.nroTelefono}`;
@@ -108,25 +111,25 @@ const VistaPerfilPro = () => {
       const asunto = encodeURIComponent("Contratacion de servicio mediante IWork");
       const mensaje = encodeURIComponent("Hola, estoy interesado/a en contratar tus servicios, por favor, hazme saber los detalles. Saludos!")
       const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${profesionalData.correo}&su=${asunto}&body=${mensaje}`;
-      window.open(gmailLink,"_blank");
+      window.open(gmailLink, "_blank");
     }
   };
 
-  const itemTemplate = (data) => {
-    return (
-      <div className={styles.resenas}>
-        <div className={styles.resenaBloqueData}>
-          <div className={styles.resenaBloqueUser}>
-            <span className={styles.resenaNombre}>{data.nombreUsuario}</span>
-          </div>
-          <CalificacionPro promedio={data.calificacion} />
-        </div>
-        <div className={styles.resenaBloqueComent}>
-          <span className={styles.resenaComent}>{data.resena}</span>
-        </div>
-      </div>
-    );
-  };
+  // const itemTemplate = (data) => {
+  //   return (
+  //     <div className={styles.resenas}>
+  //       <div className={styles.resenaBloqueData}>
+  //         <div className={styles.resenaBloqueUser}>
+  //           <span className={styles.resenaNombre}>{data.nombreUsuario}</span>
+  //         </div>
+  //         <CalificacionPro promedio={data.calificacion} />
+  //       </div>
+  //       <div className={styles.resenaBloqueComent}>
+  //         <span className={styles.resenaComent}>{data.resena}</span>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className={styles.perfilProfesionalContainer}>
@@ -244,8 +247,8 @@ const VistaPerfilPro = () => {
             ref={resenasContainerRef}
           >
             <div className={styles.resenas}>
-              {resenas &&
-                resenas.map((resena, index) => (
+              {comentariosResenas &&
+                comentariosResenas.map((resena, index) => (
                   <span key={index} className={styles.resenaBloque}>
                     <div className={styles.resenaBloqueData}>
                       <div className={styles.resenaBloqueUser}>

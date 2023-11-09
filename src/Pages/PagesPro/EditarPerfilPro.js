@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Toast } from 'primereact/toast';
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
@@ -13,8 +14,8 @@ import styles from "./EditarPerfilPro.module.css";
 export const EditarPerfilPro = () => {
   const [portafolio, SetPortafolio] = useState(null);
   const [selectedProfesion, setSelectedProfesion] = useState(null);
+  const toast = useRef(null);
   const [imagen, setImages] = useState("");
-  const [imagenActual, setImagenActual] = useState("");
   const [profesiones, setProfesiones] = useState([]);
   const token = localStorage.getItem("accessToken");
   const {
@@ -86,6 +87,9 @@ export const EditarPerfilPro = () => {
     e.preventDefault();
     asignarProfesion();
     editarDatosPerfil(e);
+    if (toast.current) {
+      toast.current.show({ severity: "success", summary: "Exito", detail:"Cambios del perfil guardados con exito"})
+    }
   };
 
   const asignarProfesion = () => {
@@ -179,7 +183,6 @@ export const EditarPerfilPro = () => {
       updatePortafolio.descripcion = newPortafolio.descripcion;
     if (newPortafolio.certificaciones !== "")
       updatePortafolio.certificaciones = newPortafolio.certificaciones;
-    // if (newPortafolio.imagen !== "") updatePortafolio.imagen = newPortafolio.imagen;
     if (imagen) {
       updatePortafolio.imagen = imagen.split(",")[1];
     }
@@ -196,6 +199,9 @@ export const EditarPerfilPro = () => {
         }
       );
       console.log("Portafolio editado correctamente", response.data);
+      if (toast.current) {
+        toast.current.show({ severity: "success", summary: "Exito", detail:"Cambios del portafolio guardados con exito"})
+      }
     } catch (error) {
       console.error("Error al editar el portafolio", error);
     }
@@ -241,18 +247,6 @@ export const EditarPerfilPro = () => {
             }}
           >
             <div className={styles.editarInputs}>
-              <InputText
-                onChange={handleInputChange}
-                name="nombre"
-                value={newData.nombre}
-                placeholder="Cambiar nombre"
-              ></InputText>
-              <InputText
-                onChange={handleInputChange}
-                name="apellido"
-                value={newData.apellido}
-                placeholder="Cambiar apellido"
-              ></InputText>
               <InputText
                 onChange={handleInputChange}
                 name="nroTelefono"
@@ -349,6 +343,7 @@ export const EditarPerfilPro = () => {
             </div>
           </form>
         </div>
+        <Toast ref={toast}/>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Menubar } from "primereact/menubar";
 import styles from "./BarraMenuPro.module.css";
 
 const BarraMenuPro = () => {
-  const [searchValue, setSearchValue] = useState("");
+  // const [searchValue, setSearchValue] = useState("");
 
   const cerrarSesion = () => {
     localStorage.removeItem("accessToken");

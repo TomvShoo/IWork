@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Calificacion from "./Rating";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
+import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./AgregarCalificacion.module.css";
 
@@ -12,13 +13,13 @@ const BotonCalificacion = () => {
   const [visible, setVisible] = useState(false);
   const [calificacion, setCalificacion] = useState(null);
   const [resena, setResena] = useState("");
+  const toast = useRef(null);
   const [tipoResena, setTipoResena] = useState(null);
   let { id } = useParams();
   const tipoResenaOptions = [
     { label: "Comentario", value: "comentario" },
     { label: "Reclamo", value: "reclamo" },
   ]
-
 
   const handleRateChange = (value) => {
     setCalificacion(value);
@@ -46,9 +47,17 @@ const BotonCalificacion = () => {
 
       if (response.data) {
         console.log(data);
+        if (toast.current) {
+          toast.current.show({ 
+            severity: "success", 
+            summary: "Exito", 
+            detail: "Reseña agregada!" })
+        }
+        setVisible(false);
+        window.location.reload(true);
       } else {
         console.error("hubo un error al mandar la reseña");
-      } // Cierra el diálogo después de enviar la calificación
+      }
     } catch (error) {
       console.error("Error al comunicarse con el servidor", error);
       console.log(data);
@@ -119,6 +128,7 @@ const BotonCalificacion = () => {
           </div>
         </div>
       </Dialog>
+      <Toast ref={toast} />
     </div>
   );
 };

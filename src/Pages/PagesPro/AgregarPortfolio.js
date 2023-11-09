@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Toast } from 'primereact/toast';
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import styles from "./AgregarPortfolio.module.css";
@@ -10,15 +11,7 @@ const AgregarPortfolio = () => {
   const [imagen, setImages] = useState("");
   const [descripcion, setDescription] = useState("");
   const [certificaciones, setCertificates] = useState("");
-  const [profesionalId, setProfessionalId] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      const decodedToken = jwt_decode(token);
-      setProfessionalId(decodedToken.id);
-    }
-  }, []);
+  const toast = useRef(null);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -26,7 +19,6 @@ const AgregarPortfolio = () => {
 
     reader.onload = (event) => {
       const base64Image = event.target.result;
-      // setImages((prevImages) => [...prevImages, base64Image]);
       setImages(base64Image);
     };
 
@@ -45,7 +37,6 @@ const AgregarPortfolio = () => {
       descripcion,
       certificaciones,
       imagen: imagen.split(",")[1],
-      // profesionalId,
     };
 
     try {
@@ -61,9 +52,15 @@ const AgregarPortfolio = () => {
       );
 
       if (response.data.success) {
+        if (toast.current) {
+          toast.current.show({ severity: "success", summary: "Exito", detail: "Portafolio agregado con exito!" })
+        }
         console.log("Se guardó exitosamente en la base de datos");
         console.log(requestData);
       } else {
+        if (toast.current) {
+          toast.current.show({ severity: "error", summary: "Error", detail: "Error al querer crear el portafolio" })
+        }
         console.error(
           "Hubo un error al guardar el portafolio en la base de datos"
         );
@@ -149,6 +146,7 @@ const AgregarPortfolio = () => {
           onClick={handleSave}
         />
       </div>
+      <Toast ref={toast} />
     </div>
   );
 };

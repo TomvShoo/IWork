@@ -93,7 +93,7 @@ const Grafico = () => {
   return (
     <div className={styles.graficoContainer}>
       <h5>Gráfico</h5>
-      <div>
+      <div className={styles.dropdownContainer}>
         <Dropdown
           value={selectedProfesion}
           onChange={(e) => setSelectedProfesion(e.value)}
@@ -101,8 +101,15 @@ const Grafico = () => {
           optionLabel="nombre_profesion"
           placeholder="Seleccionar profesión"
         />
+        {selectedProfesion && selectedProfesion.profesionales.length === 0 &&(
+          <p className={styles.message}>La profesion eleigida no posee profesionales asociados.</p>
+        )}
       </div>
-      <Chart type="bar" data={chartData} options={chartOptions} />
+      <div>
+        {selectedProfesion && selectedProfesion.profesionales.length > 0 ? (
+          <Chart type="bar" data={chartData} options={chartOptions} />
+        ) : null}
+      </div>
     </div>
   );
 };

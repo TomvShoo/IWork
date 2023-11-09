@@ -45,8 +45,8 @@ export const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handlesubmit = async (e) => {
-    console.log(e);
+  const handlesubmit = async () => {
+    // console.log(e);
     setValidationErrors({
       emailError: "",
       passwordError: "",
