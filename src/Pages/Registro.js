@@ -4,14 +4,13 @@ import BotonRegistro from "../components/BotonRegistro";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
+import { Message } from "primereact/message";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import styles from "./Registro.module.css";
-
-import { Message } from "primereact/message";
 
 export const Registro = () => {
   const [showPassword, setShowPassword] = useState(false);

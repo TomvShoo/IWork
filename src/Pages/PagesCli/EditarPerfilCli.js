@@ -16,8 +16,6 @@ export const EditarPerfilCli = () => {
     formState: { errors },
   } = useForm();
   const [newData, setNewData] = React.useState({
-    nombre: "",
-    apellido: "",
     nroTelefono: "",
     contrasena: "",
     confirmarContrasena: "",
@@ -38,8 +36,6 @@ export const EditarPerfilCli = () => {
     const userId = decodedToken.id;
     const updateData = {};
 
-    if (newData.nombre !== "") updateData.nombre = newData.nombre;
-    if (newData.apellido !== "") updateData.apellido = newData.apellido;
     if (newData.nroTelefono !== "")
       updateData.nombnroTelefonore = newData.nonroTelefonombre;
     if (
@@ -54,7 +50,7 @@ export const EditarPerfilCli = () => {
     ) {
       setError("confirmarContrasena", {
         type: "manual",
-        message: "las contraseñas no coinciden",
+        message: "Las contraseñas no coinciden.",
       });
       return;
     }
@@ -69,9 +65,9 @@ export const EditarPerfilCli = () => {
           },
         }
       );
-      console.log("datos editados correctamentes", response.data);
+      console.log("Datos editados correctamente.", response.data);
     } catch (error) {
-      console.error("Error al editar los datos del perfil", error);
+      console.error("Error al editar los datos del perfil.", error);
     }
   };
   function parseJwt(token) {
@@ -104,18 +100,6 @@ export const EditarPerfilCli = () => {
         >
           <div className={styles.editarInputs}>
             <h5>Editar Datos</h5>
-            <InputText
-              onChange={handleInputChange}
-              name="nombre"
-              value={newData.nombre}
-              placeholder="Cambiar nombre"
-            ></InputText>
-            <InputText
-              onChange={handleInputChange}
-              name="apellido"
-              value={newData.apellido}
-              placeholder="Cambiar apellido"
-            ></InputText>
             <InputText
               onChange={handleInputChange}
               name="nroTelefono"

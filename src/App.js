@@ -9,6 +9,7 @@ import { PerfilPro } from "./Pages/PagesPro/PerfilProfesional";
 import AgregarPortfolio from "./Pages/PagesPro/AgregarPortfolio";
 import AdminView from "./Pages/ADMIN/VistaAdmin";
 import VistaPerfilPro from "./Pages/PagesCli/VistaPerfilPro";
+import { PreguntasFrecuentes } from "./Pages/PreguntasFrecuentes";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             element={<AgregarPortfolio />}
           ></Route>
           <Route path="/AdminView" element={<AdminView />}></Route>
+          <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />}></Route>
           <Route path="/perfil-profesional/:id" element={<VistaPerfilPro />} />
         </Routes>
       </header>

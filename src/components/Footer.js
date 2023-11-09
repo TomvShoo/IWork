@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import React from "react";
-
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -7,40 +7,36 @@ const Footer = () => {
     <footer className={styles.footerContainer}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ textAlign: "left" }}>
-          <h4>Nuestras Redes</h4>
+          <h5>Contacto</h5>
+          <p>Nrtdevops@gmail.com</p>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <Link className={styles.link} to="/PreguntasFrecuentes">
+            <h5>Preguntas Frecuentes</h5>
+          </Link>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <h5>Nuestras Redes</h5>
           <div className={styles.footerRedes}>
             <a
               href="[Enlace a Facebook]"
               style={{ color: "white", marginRight: "10px" }}
             >
-              <i
-                className="pi pi-facebook"
-                style={{ fontSize: "1.5rem", color: "black" }}
-              ></i>
+              <i className={`pi pi-facebook ${styles.redes}`}></i>
             </a>
             <a
               href="[Enlace a Twitter]"
               style={{ color: "white", marginRight: "10px" }}
             >
-              <i
-                className="pi pi-twitter"
-                style={{ fontSize: "1.5rem", color: "black" }}
-              ></i>
+              <i className={`pi pi-twitter ${styles.redes}`}></i>
             </a>
             <a
               href="[Enlace a Instagram]"
               style={{ color: "white", marginRight: "10px" }}
             >
-              <i
-                className="pi pi-instagram"
-                style={{ fontSize: "1.5rem", color: "black" }}
-              ></i>
+              <i className={`pi pi-instagram ${styles.redes}`}></i>
             </a>
           </div>
-        </div>
-        <div style={{ textAlign: "right" }}>
-          <h4>Contacto</h4>
-          <p>nrtdevops@gmail.com</p>
         </div>
       </div>
     </footer>
