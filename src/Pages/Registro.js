@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BotonRegistro from "../components/BotonRegistro";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Rating } from "primereact/rating";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import Footer from "../../components/Footer";

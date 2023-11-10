@@ -102,7 +102,7 @@ const Grafico = () => {
           placeholder="Seleccionar profesión"
         />
         {selectedProfesion && selectedProfesion.profesionales.length === 0 &&(
-          <p className={styles.message}>La profesion eleigida no posee profesionales asociados.</p>
+          <p className={styles.message}>La profesion elegida no posee profesionales asociados.</p>
         )}
       </div>
       <div>

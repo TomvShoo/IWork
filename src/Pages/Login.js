@@ -16,7 +16,7 @@ export const Login = () => {
     correo: "",
     contrasena: "",
   });
-  const [validationErrors, setValidationErrors] = useState({
+  const [ validationErrors, setValidationErrors] = useState({
     emailError: "",
     passwordError: "",
   });

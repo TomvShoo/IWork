@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Calificacion from "./Rating";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";

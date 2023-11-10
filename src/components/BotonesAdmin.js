@@ -3,7 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { ConfirmPopup } from 'primereact/confirmpopup';
+// import { ConfirmPopup } from 'primereact/confirmpopup';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./BotonesAdmin.module.css";
@@ -11,7 +11,7 @@ import styles from "./BotonesAdmin.module.css";
 const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
   const [profesionales, setProfesionales] = useState([]);
-  const [UserToDelete, setUserToDelete] = useState(null);
+  // const [UserToDelete, setUserToDelete] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const toast = useRef(null);
 
@@ -34,22 +34,22 @@ const BotonAdmin = () => {
       });
   }, []);
 
-  const confirmDelete = (user) => {
-    setUserToDelete(user);
-    setShowConfirm(true);
-  }
-  const rejectDelete = () => {
-    setShowConfirm(false);
-  }
+  // const confirmDelete = (user) => {
+  //   setUserToDelete(user);
+  //   setShowConfirm(true);
+  // }
+  // const rejectDelete = () => {
+  //   setShowConfirm(false);
+  // }
 
   const handleDeleteUser = (user) => {
     const token = localStorage.getItem("accessToken");
-    const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${UserToDelete.id}` : `https://api-iwork.onrender.com/profesional/${UserToDelete.id}`;
+    const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${user.id}` : `https://api-iwork.onrender.com/profesional/${user.id}`;
     try {
       axios.delete(deleteEndpoint, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       })
         .then((response) => {
           console.log("Usuario eliminado con éxito", response.data);
@@ -109,13 +109,13 @@ const BotonAdmin = () => {
               <Button
                 icon="pi pi-times"
                 className="p-button-danger"
-                onClick={() => confirmDelete(rowData)}
+                onClick={() => handleDeleteUser(rowData)}
                 rounded
               />
             )}
           />
         </DataTable>
-        <ConfirmPopup
+        {/* <ConfirmPopup
           visible={showConfirm}
           onHide={() => setShowConfirm(false)}
           message="¿Estas seguro de eliminar al usuario?, Esto eliminara todo lo relacionado a el usuario"
@@ -123,7 +123,7 @@ const BotonAdmin = () => {
           icon="pi pi-exclamation-triangle"
           accept={handleDeleteUser}
           reject={rejectDelete}
-        />
+        /> */}
         <Toast ref={toast} />
       </div>
     </div>

@@ -22,11 +22,6 @@ const AdminView = () => {
   const [mensajeVisible, setMensajeVisible] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const toast = useRef(null);
-  const [emailData, setEmailData] = useState({
-    destinatario: "",
-    asunto: "",
-    mensaje: "",
-  });
 
   useEffect(() => {
     axios.get("https://api-iwork.onrender.com/profesion")
