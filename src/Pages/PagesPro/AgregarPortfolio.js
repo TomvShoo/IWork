@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import styles from "./AgregarPortfolio.module.css";
 
 const AgregarPortfolio = () => {

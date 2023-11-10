@@ -20,7 +20,7 @@ export const EditarPerfilPro = () => {
   const token = localStorage.getItem("accessToken");
   const {
     setError,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   const [newData, setNewData] = useState({
     nombre: "",

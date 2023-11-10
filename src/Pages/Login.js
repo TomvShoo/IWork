@@ -160,6 +160,7 @@ export const Login = () => {
               <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
             </div>
           </div>
+          
           {errors.contrasena && <span>Constraseña es requerida</span>}
           <Link to="/MenuPro"></Link>
           <Toast ref={(el) => (mensaje.current = el)} />

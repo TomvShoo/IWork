@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { Accordion, AccordionTab } from "primereact/accordion";
@@ -7,9 +7,9 @@ import styles from "./PreguntasFrecuentes.module.css";
 
 export const PreguntasFrecuentes = () => {
   const [visible, setVisible] = useState(false);
-  const handleAccept = () => {
-    setVisible(false);
-  };
+  // const handleAccept = () => {
+  //   setVisible(false);
+  // };
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate(-1);

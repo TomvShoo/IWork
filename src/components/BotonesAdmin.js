@@ -12,7 +12,7 @@ const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
   const [profesionales, setProfesionales] = useState([]);
   // const [UserToDelete, setUserToDelete] = useState(null);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [setShowConfirm] = useState(false);
   const toast = useRef(null);
 
   useEffect(() => {

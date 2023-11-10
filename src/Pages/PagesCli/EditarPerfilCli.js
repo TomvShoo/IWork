@@ -13,7 +13,7 @@ export const EditarPerfilCli = () => {
   const navigate = useNavigate();
   const {
     setError,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   const [newData, setNewData] = React.useState({
     nroTelefono: "",
