@@ -83,7 +83,7 @@ export default function BarraMenuCli() {
 
   const onSearch = (e) => {
     setSearchQuery(e.target.value);
-    fetchResults(e.target.value); // Llama a la función fetchResults cuando se realice la búsqueda
+    fetchResults(e.target.value); 
   };
 
   const fetchResults = (query) => {
@@ -96,7 +96,7 @@ export default function BarraMenuCli() {
       })
       .then((response) => {
         console.log(response.data);
-        setResultadosBusqueda(response.data); // Guarda los resultados de la búsqueda en el estado
+        setResultadosBusqueda(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -122,13 +122,12 @@ export default function BarraMenuCli() {
   return (
     <div>
       <Menubar model={menu} start={MarcaCli} end={barra} />
-      {/* Renderiza el componente ResultadoModal si hay resultados */}
       <div className={styles.busqueda}>
         {resultadosBusqueda.length > 0 && (
           <Busqueda
             resultados={resultadosBusqueda}
             visible={showModal}
-            onHide={onHide} // Cambiado de setShowModal(true) a setShowModal(false)
+            onHide={onHide}
           />
         )}
       </div>
