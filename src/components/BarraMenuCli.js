@@ -95,7 +95,7 @@ export default function BarraMenuCli() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setResultadosBusqueda(response.data);
       })
       .catch((error) => {

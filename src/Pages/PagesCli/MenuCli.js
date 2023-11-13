@@ -16,7 +16,7 @@ export const MenuCli = () => {
     axios.get("https://api-iwork.onrender.com/profesion")
       .then((response) => {
         setData(response.data);
-        console.log(response.data)
+        // console.log(response.data)
       });
   }, [])
 

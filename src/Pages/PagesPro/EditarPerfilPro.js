@@ -43,10 +43,10 @@ export const EditarPerfilPro = () => {
           a.nombre_profesion.localeCompare(b.nombre_profesion)
         );
         setProfesiones(profesionesOrdenadas);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
-        console.log("Error al traer los datos", error);
+        // console.log("Error al traer los datos", error);
       });
   }, []);
 
@@ -60,7 +60,7 @@ export const EditarPerfilPro = () => {
         },
       })
       .then((response) => {
-        console.log("Datos del portafolio:", response.data);
+        // console.log("Datos del portafolio:", response.data);
         SetPortafolio(response.data);
       })
       .catch((error) => {
@@ -109,11 +109,11 @@ export const EditarPerfilPro = () => {
           }
         )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch((error) => {
           console.error("Error al asignar la profesión", error);
-          console.log(error.response.data);
+          // console.log(error.response.data);
         });
     } else {
       console.error("No se ha seleccionado ninguna profesión.");
@@ -168,7 +168,7 @@ export const EditarPerfilPro = () => {
           },
         }
       );
-      console.log("datos editados correctamentes", response.data);
+      // console.log("datos editados correctamentes", response.data);
     } catch (error) {
       console.error("Error al editar los datos del perfil", error);
     }
@@ -198,12 +198,12 @@ export const EditarPerfilPro = () => {
           },
         }
       );
-      console.log("Portafolio editado correctamente", response.data);
+      // console.log("Portafolio editado correctamente", response.data);
       if (toast.current) {
         toast.current.show({ severity: "success", summary: "Exito", detail:"Cambios del portafolio guardados con exito"})
       }
     } catch (error) {
-      console.error("Error al editar el portafolio", error);
+      // console.error("Error al editar el portafolio", error);
     }
   };
 

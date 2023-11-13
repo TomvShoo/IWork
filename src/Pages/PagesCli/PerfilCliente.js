@@ -38,7 +38,7 @@ const PerfilCliente = () => {
           );
           setResenas(resenasResponse.data);
           setTotalResenas(resenasResponse.data.length);
-          console.log(resenasResponse.data);
+          // console.log(resenasResponse.data);
         } catch (error) {
           console.error("Error fetching resenas data:", error);
         }

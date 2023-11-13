@@ -27,10 +27,10 @@ const AdminView = () => {
     axios.get("https://api-iwork.onrender.com/profesion")
       .then((response) => {
         setProfesiones(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
-        console.log("Error al traer los datos", error);
+        // console.log("Error al traer los datos", error);
       });
 
     axios.get("https://api-iwork.onrender.com/resena/all").then((response) => {
@@ -38,7 +38,7 @@ const AdminView = () => {
         (resena) => resena.tipo === "reclamo"
       );
       setReclamos(reclamos);
-      console.log(reclamos);
+      // console.log(reclamos);
     });
   }, []);
 
@@ -69,7 +69,7 @@ const AdminView = () => {
         },
       })
       .then((response) => {
-        console.log("Mensaje eliminado:", response.data);
+        // console.log("Mensaje eliminado:", response.data);
         const updateReclamos = reclamos.filter(
           (item) => item.resenaId !== resenaId
         );
@@ -94,7 +94,7 @@ const AdminView = () => {
           Authorization: `Bearer ${token}`,
         },
       }).then((response) => {
-        console.log("Profesión agregada con éxito", response.data);
+        // console.log("Profesión agregada con éxito", response.data);
         axios
           .get("https://api-iwork.onrender.com/profesion")
           .then((response) => {
@@ -107,7 +107,7 @@ const AdminView = () => {
             }
           })
           .catch((error) => {
-            console.log("Error al traer los datos", error);
+            // console.log("Error al traer los datos", error);
           });
       }).catch((error) => {
         console.error("Error al agregar la profesión", error);
@@ -126,7 +126,7 @@ const AdminView = () => {
           },
         })
         .then((response) => {
-          console.log("profesion eliminada", response.data);
+          // console.log("profesion eliminada", response.data);
           const updateProfesiones = profesiones.filter(
             (item) => item.id_profesion !== profesionId
           );

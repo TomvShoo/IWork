@@ -40,7 +40,7 @@ export const PerfilPro = () => {
           })
           .then((response) => {
             setProfesionalData(response.data);
-            console.log(response.data);
+            // console.log(response.data);
           })
           .catch((error) => {
             console.error("error al obtener los datos del usuario", error);
@@ -61,7 +61,7 @@ export const PerfilPro = () => {
             if (response.data.success === false) {
               toast.current.show({ severity: "info", summary: "Portafolio", detail: "Parece que aun no agregas tu portafolio." })
             }
-            console.log("Datos del portafolio:", response.data);
+            // console.log("Datos del portafolio:", response.data);
           })
           .catch((error) => {
             console.error("Error al obtener los datos del portafolio", error);
@@ -80,7 +80,7 @@ export const PerfilPro = () => {
             );
             setResenas(resenasResponse.data);
             setTotalResenas(resenasResponse.data.length);
-            console.log(resenasResponse.data);
+            // console.log(resenasResponse.data);
 
             const sum = resenasResponse.data.reduce(
               (total, resena) => total + resena.calificacion,
@@ -92,7 +92,7 @@ export const PerfilPro = () => {
                 : 0;
             setPromedioCalificacion(promedio);
           } catch (error) {
-            console.error("Error fetching resenas data:", error);
+            // console.error("Error fetching resenas data:", error);
           }
         };
         fetchResenas();
@@ -118,11 +118,11 @@ export const PerfilPro = () => {
           },
         }
       ).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.location.reload(true);
       })
         .catch((error) => {
-          console.error("error al eliminar la profesion", error);
+          // console.error("error al eliminar la profesion", error);
         });
     }
     setConfirmDialog(false);

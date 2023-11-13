@@ -76,8 +76,8 @@ export const Login = () => {
       );
 
       if (response.data.success) {
-        console.log("inicio de sesion exitoso :D");
-        console.log("Respuesta del servidor:", response.data);
+        // console.log("inicio de sesion exitoso :D");
+        // console.log("Respuesta del servidor:", response.data);
         localStorage.setItem("accessToken", response.data.data);
         setLoginMessage({ text: "Inicio de sesión exitoso", style: "success" });
 

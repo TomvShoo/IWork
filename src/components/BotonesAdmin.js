@@ -19,18 +19,18 @@ const BotonAdmin = () => {
     axios.get("https://api-iwork.onrender.com/users")
       .then((response) => {
         setUsers(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
-        console.log("Error al traer los datos de usuarios", error);
+        // console.log("Error al traer los datos de usuarios", error);
       });
     axios.get("https://api-iwork.onrender.com/profesional")
       .then((response) => {
         setProfesionales(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
-        console.log("Error al traer los datos de profesionales", error);
+        // console.log("Error al traer los datos de profesionales", error);
       });
   }, []);
 
@@ -52,14 +52,14 @@ const BotonAdmin = () => {
         }
       })
         .then((response) => {
-          console.log("Usuario eliminado con éxito", response.data);
+          // console.log("Usuario eliminado con éxito", response.data);
           if (user.tipoCuenta === "cliente") {
             axios.get("https://api-iwork.onrender.com/users")
               .then((response) => {
                 setUsers(response.data);
               })
               .catch((error) => {
-                console.log("Error al traer los datos de usuarios", error);
+                // console.log("Error al traer los datos de usuarios", error);
               });
           } else {
             axios.get("https://api-iwork.onrender.com/profesional")
@@ -67,7 +67,7 @@ const BotonAdmin = () => {
                 setProfesionales(response.data);
               })
               .catch((error) => {
-                console.log("Error al traer los datos de profesionales", error);
+                // console.log("Error al traer los datos de profesionales", error);
               });
           }
           setShowConfirm(false);
@@ -80,7 +80,7 @@ const BotonAdmin = () => {
           }
         })
     } catch (error) {
-      console.log("Error al eliminar el usuario", error);
+      // console.log("Error al eliminar el usuario", error);
       setShowConfirm(false);
       if (toast.current) {
         toast.current.show({

@@ -46,7 +46,7 @@ const BotonCalificacion = () => {
       );
 
       if (response.data) {
-        console.log(data);
+        // console.log(data);
         if (toast.current) {
           toast.current.show({ 
             severity: "success", 
@@ -60,7 +60,7 @@ const BotonCalificacion = () => {
       }
     } catch (error) {
       console.error("Error al comunicarse con el servidor", error);
-      console.log(data);
+      // console.log(data);
     }
   };
 

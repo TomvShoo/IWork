@@ -82,17 +82,17 @@ export const Registro = () => {
         }
       );
       if (response.data.success) {
-        console.log("Registro exitoso :D");
-        console.log(response.data);
+        // console.log("Registro exitoso :D");
+        // console.log(response.data);
         navigate("/");
       } else {
-        console.log("Registro fallido");
+        // console.log("Registro fallido");
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        console.log("Solicitud incorrecta: Verifica los datos ingresados");
+        // console.log("Solicitud incorrecta: Verifica los datos ingresados");
       } else {
-        console.log("error en el registro", error);
+        // console.log("error en el registro", error);
       }
     }
   };

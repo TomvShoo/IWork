@@ -65,7 +65,7 @@ export const EditarPerfilCli = () => {
           },
         }
       );
-      console.log("Datos editados correctamente.", response.data);
+      // console.log("Datos editados correctamente.", response.data);
     } catch (error) {
       console.error("Error al editar los datos del perfil.", error);
     }

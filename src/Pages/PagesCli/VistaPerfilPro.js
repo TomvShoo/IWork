@@ -32,7 +32,7 @@ const VistaPerfilPro = () => {
           }
         );
         setProfesionalData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -50,7 +50,7 @@ const VistaPerfilPro = () => {
           }
         );
         setPortafolio(portafolioResponse.data);
-        console.log(portafolioResponse.data);
+        // console.log(portafolioResponse.data);
       } catch (error) {
         console.error("Error fetching portafolio data:", error);
       }
@@ -69,7 +69,7 @@ const VistaPerfilPro = () => {
         );
         setResenas(resenasResponse.data);
         setTotalResenas(resenasResponse.data.length);
-        console.log(resenasResponse.data);
+        // console.log(resenasResponse.data);
 
         const sum = resenasResponse.data.reduce(
           (total, resena) => total + resena.calificacion,
@@ -91,12 +91,6 @@ const VistaPerfilPro = () => {
   }, [id]);
 
 
-  // let comentariosResenas = [];
-  // if (resenas) {
-  //   comentariosResenas = resenas.filter(
-  //     (resena) => resena.tipo === "comentario"
-  //   );
-  // }
   const comentariosResenas = resenas ? resenas.filter(resena => resena.tipo === "comentario") : [];
 
   const handleWhatsAppClick = () => {
@@ -114,22 +108,6 @@ const VistaPerfilPro = () => {
       window.open(gmailLink, "_blank");
     }
   };
-
-  // const itemTemplate = (data) => {
-  //   return (
-  //     <div className={styles.resenas}>
-  //       <div className={styles.resenaBloqueData}>
-  //         <div className={styles.resenaBloqueUser}>
-  //           <span className={styles.resenaNombre}>{data.nombreUsuario}</span>
-  //         </div>
-  //         <CalificacionPro promedio={data.calificacion} />
-  //       </div>
-  //       <div className={styles.resenaBloqueComent}>
-  //         <span className={styles.resenaComent}>{data.resena}</span>
-  //       </div>
-  //     </div>
-  //   );
-  // };
 
   return (
     <div className={styles.perfilProfesionalContainer}>

@@ -30,7 +30,7 @@ const Correo = () => {
         }
       )
       .then((response) => {
-        console.log('Mensaje enviado con exito',response.data);
+        // console.log('Mensaje enviado con exito',response.data);
         if (toast.current) {
           toast.current.show({ severity: "success", summary: "Exito", detail: "Correo enviado con exito!" })
         }

@@ -28,7 +28,7 @@ const AgregarPortfolio = () => {
     if (file) {
       reader.readAsDataURL(file);
     }
-    console.log(file);
+    // console.log(file);
   };
 
   const handleSave = async () => {
@@ -54,8 +54,8 @@ const AgregarPortfolio = () => {
         if (toast.current) {
           toast.current.show({ severity: "success", summary: "Exito", detail: "Portafolio agregado con exito!" })
         }
-        console.log("Se guardó exitosamente en la base de datos");
-        console.log(requestData);
+        // console.log("Se guardó exitosamente en la base de datos");
+        // console.log(requestData);
       } else {
         if (toast.current) {
           toast.current.show({ severity: "error", summary: "Error", detail: "Error al querer crear el portafolio" })
@@ -66,7 +66,7 @@ const AgregarPortfolio = () => {
       }
     } catch (error) {
       console.error("Error al comunicarse con el servidor", error);
-      console.log(requestData);
+      // console.log(requestData);
     }
   };
 
