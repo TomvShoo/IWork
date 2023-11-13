@@ -7,15 +7,12 @@ import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
 import axios from "axios";
 import styles from "./BarraMenuCli.module.css";
+import Cookies from "js-cookie";
 
 export default function BarraMenuCli() {
   const [searchQuery, setSearchQuery] = useState("");
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
-  // const cerrarSesion = () => {
-  //   localStorage.removeItem("accessToken");
-  // };
 
   const cerrarSesion = () => {
     confirmDialog({
@@ -25,7 +22,7 @@ export default function BarraMenuCli() {
       acceptLabel: "Cerrar Sesión",
       rejectLabel: "No",
       accept: () => {
-        localStorage.removeItem("accessToken");
+        Cookies.remove("accessToken");
         window.location.href = "/";
       },
     });
@@ -103,7 +100,7 @@ export default function BarraMenuCli() {
   };
 
   const fetchResults = (query) => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     axios
       .get(`https://api-iwork.onrender.com/profesional/search?query=${query}`, {
         headers: {

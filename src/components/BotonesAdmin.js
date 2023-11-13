@@ -7,6 +7,7 @@ import { DataTable } from "primereact/datatable";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./BotonesAdmin.module.css";
+import Cookies from "js-cookie";
 
 const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
@@ -43,7 +44,7 @@ const BotonAdmin = () => {
   // }
 
   const handleDeleteUser = (user) => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     const deleteEndpoint = user.tipoCuenta === "cliente" ? `https://api-iwork.onrender.com/users/${user.id}` : `https://api-iwork.onrender.com/profesional/${user.id}`;
     try {
       axios.delete(deleteEndpoint, {

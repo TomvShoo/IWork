@@ -5,6 +5,7 @@ import { Button } from "primereact/button";
 import { Toast } from 'primereact/toast';
 import styles from "./Correo.module.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Correo = () => {
   const [recipient, setRecipient] = useState("");
@@ -13,7 +14,7 @@ const Correo = () => {
   const toast = useRef(null);
 
   const sendEmail = () => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     const emailData = {
       recipient: recipient,
       subject: subject,

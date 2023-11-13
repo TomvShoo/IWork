@@ -5,6 +5,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./AgregarPortfolio.module.css";
+import Cookies from "js-cookie";
 
 const AgregarPortfolio = () => {
   const [imagen, setImages] = useState("");
@@ -45,7 +46,7 @@ const AgregarPortfolio = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
           },
         }
       );

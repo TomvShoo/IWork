@@ -12,6 +12,7 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./PerfilProfesional.module.css";
+import Cookies from "js-cookie";
 
 export const PerfilPro = () => {
   const [portafolio, setPortafolio] = useState(null);
@@ -26,7 +27,7 @@ export const PerfilPro = () => {
   const [profesionToDelete, setProfesionToDelete] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     if (token) {
       const decodedToken = parseJwt(token);
       setUserRole(decodedToken.role);
@@ -68,7 +69,7 @@ export const PerfilPro = () => {
           });
 
         const fetchResenas = async () => {
-          const token = localStorage.getItem("accessToken");
+          const token = Cookies.get("accessToken");
           try {
             const resenasResponse = await axios.get(
               `https://api-iwork.onrender.com/resena/profesional/${userId}`,
@@ -108,7 +109,7 @@ export const PerfilPro = () => {
   }
 
   const onConfirm = (id_profesion) => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     if (profesionToDelete) {
       axios.patch(`https://api-iwork.onrender.com/profesional/eliminar-profesion/${id_profesion}`,
         null,

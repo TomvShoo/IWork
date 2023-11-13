@@ -6,6 +6,7 @@ import { Toast } from "primereact/toast";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import Cookies from "js-cookie";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import styles from "./Login.module.css";
@@ -46,7 +47,6 @@ export const Login = () => {
   };
 
   const handlesubmit = async () => {
-    // console.log(e);
     setValidationErrors({
       emailError: "",
       passwordError: "",
@@ -76,9 +76,11 @@ export const Login = () => {
       );
 
       if (response.data.success) {
-        // console.log("inicio de sesion exitoso :D");
-        // console.log("Respuesta del servidor:", response.data);
-        localStorage.setItem("accessToken", response.data.data);
+        Cookies.set("accessToken", response.data.data, {
+          expires: 1,
+          secure: true,
+          sameSite: "Strict",
+        });
         setLoginMessage({ text: "Inicio de Sesión exitoso", style: "success" });
 
         const token = response.data.data;

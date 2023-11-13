@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import axios from "axios";
 import styles from "./BotonesRedes.module.css";
+import Cookies from "js-cookie";
 
 export default function BotonesRedes() {
   const [usuario, setUsuario] = useState(null);
-  const token = localStorage.getItem("accessToken");
+  const token = Cookies.get("accessToken");
 
   useEffect(() => {
     if (token) {

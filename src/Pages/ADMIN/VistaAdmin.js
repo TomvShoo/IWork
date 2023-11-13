@@ -12,6 +12,7 @@ import { ConfirmPopup } from 'primereact/confirmpopup';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./VistaAdmin.module.css";
+import Cookies from "js-cookie";
 
 const AdminView = () => {
   const [reclamos, setReclamos] = useState([]);
@@ -60,7 +61,7 @@ const AdminView = () => {
   }
 
   const handleDeleteResena = () => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     const resenaId = resenaToDelete.resenaId;
     axios.delete(`https://api-iwork.onrender.com/resena/${resenaId}`,
       {
@@ -85,7 +86,7 @@ const AdminView = () => {
   };
 
   const handleAddProfesion = () => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     if (nuevaProfesion.trim() !== "") {
       axios.post("https://api-iwork.onrender.com/profesion", {
         nombre_profesion: nuevaProfesion,
@@ -116,7 +117,7 @@ const AdminView = () => {
   };
 
   const handleDeleteProfesion = (profesion) => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     const profesionId = profesion.id_profesion;
     try {
       axios.delete(`https://api-iwork.onrender.com/profesion/eliminar/${profesionId}`,

@@ -8,6 +8,7 @@ import { Dialog } from "primereact/dialog";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./AgregarCalificacion.module.css";
+import Cookies from "js-cookie";
 
 const BotonCalificacion = () => {
   const [visible, setVisible] = useState(false);
@@ -40,7 +41,7 @@ const BotonCalificacion = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
           },
         }
       );

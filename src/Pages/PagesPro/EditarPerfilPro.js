@@ -10,6 +10,7 @@ import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import styles from "./EditarPerfilPro.module.css";
+import Cookies from "js-cookie";
 
 export const EditarPerfilPro = () => {
   const [portafolio, SetPortafolio] = useState(null);
@@ -17,7 +18,7 @@ export const EditarPerfilPro = () => {
   const toast = useRef(null);
   const [imagen, setImages] = useState("");
   const [profesiones, setProfesiones] = useState([]);
-  const token = localStorage.getItem("accessToken");
+  const token = Cookies.get("accessToken");
   const {
     setError,
     // formState: { errors },
@@ -108,7 +109,7 @@ export const EditarPerfilPro = () => {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              Authorization: `Bearer ${Cookies.get("accessToken")}`,
             },
           }
         )
@@ -168,7 +169,7 @@ export const EditarPerfilPro = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
           },
         }
       );
@@ -198,7 +199,7 @@ export const EditarPerfilPro = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${Cookies.get("accessToken")}`,
           },
         }
       );

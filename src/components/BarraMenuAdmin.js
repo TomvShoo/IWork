@@ -4,11 +4,9 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
 import styles from "./BarraMenuAdmin.module.css";
+import Cookies from "js-cookie";
 
 const BarraMenuAdmin = () => {
-  // const cerrarSesion = () => {
-  //   localStorage.removeItem("accessToken");
-  // };
 
   const cerrarSesion = () => {
     confirmDialog({
@@ -18,7 +16,7 @@ const BarraMenuAdmin = () => {
       acceptLabel: "Cerrar Sesión",
       rejectLabel: "No",
       accept: () => {
-        localStorage.removeItem("accessToken");
+        Cookies.remove("accessToken");
         window.location.href = "/";
       },
     });

@@ -9,6 +9,7 @@ import { Button } from "primereact/button";
 import { Chip } from "primereact/chip";
 import axios from "axios";
 import styles from "./VistaPerfilPro.module.css";
+import Cookies from "js-cookie";
 
 const VistaPerfilPro = () => {
   const [profesionalData, setProfesionalData] = useState(null);
@@ -21,7 +22,7 @@ const VistaPerfilPro = () => {
 
   useEffect(() => {
     const fetchProfesionalData = async () => {
-      const token = localStorage.getItem("accessToken");
+      const token = Cookies.get("accessToken");
       try {
         const response = await axios.get(
           `https://api-iwork.onrender.com/profesional/id/${id}`,
@@ -39,7 +40,7 @@ const VistaPerfilPro = () => {
     };
 
     const fetchPortafolioData = async () => {
-      const token = localStorage.getItem("accessToken");
+      const token = Cookies.get("accessToken");
       try {
         const portafolioResponse = await axios.get(
           `https://api-iwork.onrender.com/portafolio/profesional/${id}`,
@@ -57,7 +58,7 @@ const VistaPerfilPro = () => {
     };
 
     const fetchResenas = async () => {
-      const token = localStorage.getItem("accessToken");
+      const token = Cookies.get("accessToken");
       try {
         const resenasResponse = await axios.get(
           `https://api-iwork.onrender.com/resena/profesional/${id}`,

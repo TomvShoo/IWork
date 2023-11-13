@@ -4,13 +4,9 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
 import styles from "./BarraMenuPro.module.css";
+import Cookies from "js-cookie";
 
 const BarraMenuPro = () => {
-  // const [searchValue, setSearchValue] = useState("");
-
-  // const cerrarSesion = () => {
-  //   localStorage.removeItem("accessToken");
-  // };
 
   const cerrarSesion = () => {
     confirmDialog({
@@ -20,7 +16,7 @@ const BarraMenuPro = () => {
       acceptLabel: "Cerrar Sesión",
       rejectLabel: "No",
       accept: () => {
-        localStorage.removeItem("accessToken");
+        Cookies.remove("accessToken");
         window.location.href = "/";
       },
     });

@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import { Button } from "primereact/button";
 import axios from "axios";
 import styles from "./PerfilCliente.module.css";
+import Cookies from "js-cookie";
 
 const PerfilCliente = () => {
   const [usuario, setUsuario] = useState(null);
@@ -14,7 +15,7 @@ const PerfilCliente = () => {
   const resenasContainerRef = useRef(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = Cookies.get("accessToken");
     if (token) {
       const decodedToken = parseJwt(token);
       const userId = decodedToken.id;
