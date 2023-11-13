@@ -36,7 +36,7 @@
 .createNewUser {
   flex: 1;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   flex-direction: column;
   margin: 1rem 1rem;
 }
@@ -62,7 +62,10 @@
   color: white;
   border-radius: 0rem 0.5rem 0.5rem 0rem;
   padding: 0rem 1rem;
-
+}
+.error {
+  color: red;
+  font-weight: lighter;
 }
 @media (min-width: 320px) {
   .loginData {

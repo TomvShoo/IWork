@@ -14,6 +14,8 @@ import styles from "./Registro.module.css";
 
 export const Registro = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
   const {
     register,
     formState: { errors },
@@ -51,7 +53,7 @@ export const Registro = () => {
     if (formData.contrasena !== formData.confirmarContrasena) {
       setError("confirmarContrasena", {
         type: "manual",
-        message: "Las contraseñas no coinciden.",
+        message: "Las contraseñas no coinciden",
       });
       return;
     }
@@ -140,7 +142,7 @@ export const Registro = () => {
                 <span className={styles.number}>+56 9</span>
                 <InputText
                   className={styles.inputPhone}
-                  placeholder="Numero de Telefono"
+                  placeholder="Numero de Teléfono"
                   name="nroTelefono"
                   value={formData.nroTelefono}
                   onChange={handleInputChange}
@@ -152,7 +154,7 @@ export const Registro = () => {
 
             <div className={styles.registerEmailPass}>
               <InputText
-                placeholder="Correo"
+                placeholder="Correo electrónico"
                 name="correo"
                 value={formData.correo}
                 {...register("correo", { required: true })}
@@ -168,7 +170,17 @@ export const Registro = () => {
                   value={formData.contrasena}
                   onChange={handleInputChange}
                 ></InputText>
-                <Button
+                <div
+                  className={styles.botonOcultar}
+                  type="text"
+                  severity="secondary"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <i
+                    className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}
+                  ></i>
+                </div>
+                {/* <Button
                   severity="secondary"
                   onClick={() => setShowPassword(!showPassword)}
                   outlined
@@ -176,14 +188,30 @@ export const Registro = () => {
                   <span
                     className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}
                   ></span>
-                </Button>
+                </Button> */}
               </div>
-              <InputText
-                placeholder="Verificar contraseña"
-                name="confirmarContrasena"
-                value={formData.confirmarContrasena}
-                onChange={handleInputChange}
-              ></InputText>
+              <div className={styles.registerContrasena}>
+                <InputText
+                  className={styles.contrasena}
+                  type={showPasswordConfirm ? "text" : "password"}
+                  placeholder="Verificar contraseña"
+                  name="confirmarContrasena"
+                  value={formData.confirmarContrasena}
+                  onChange={handleInputChange}
+                ></InputText>
+                <div
+                  className={styles.botonOcultar}
+                  type="text"
+                  severity="secondary"
+                  onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
+                >
+                  <i
+                    className={
+                      showPasswordConfirm ? "pi pi-eye-slash" : "pi pi-eye"
+                    }
+                  ></i>
+                </div>
+              </div>
               {errors.confirmarContrasena && (
                 <span>{errors.confirmarContrasena.message}</span>
               )}

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Menubar } from "primereact/menubar";
-import { InputText } from "primereact/inputtext";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
 import Busqueda from "./resultadoBusqueda";
-// Estilos
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { InputText } from "primereact/inputtext";
+import { Menubar } from "primereact/menubar";
+import { Button } from "primereact/button";
+import axios from "axios";
 import styles from "./BarraMenuCli.module.css";
 
 export default function BarraMenuCli() {
@@ -12,8 +13,22 @@ export default function BarraMenuCli() {
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  // const cerrarSesion = () => {
+  //   localStorage.removeItem("accessToken");
+  // };
+
   const cerrarSesion = () => {
-    localStorage.removeItem("accessToken");
+    confirmDialog({
+      message: "Estás a punto de cerrar sesión, ¿seguro que quieres salir?",
+      header: "Cerrar Sesión",
+      icon: "pi pi-exclamation-triangle",
+      acceptLabel: "Cerrar Sesión",
+      rejectLabel: "No",
+      accept: () => {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+      },
+    });
   };
 
   const menu = [
@@ -57,11 +72,12 @@ export default function BarraMenuCli() {
     },
     {
       label: (
-        <Link to="/" onClick={cerrarSesion} className={styles.link}>
-          Cerrar sesion
-        </Link>
+        <Button
+          onClick={cerrarSesion}
+          icon="pi pi-fw pi-power-off"
+          label="Cerrar Sesión"
+        ></Button>
       ),
-      icon: "pi pi-fw pi-power-off",
     },
   ];
 
@@ -83,7 +99,7 @@ export default function BarraMenuCli() {
 
   const onSearch = (e) => {
     setSearchQuery(e.target.value);
-    fetchResults(e.target.value); 
+    fetchResults(e.target.value);
   };
 
   const fetchResults = (query) => {
@@ -116,11 +132,12 @@ export default function BarraMenuCli() {
     </div>
   );
   const onHide = () => {
-    setShowModal(false); // Oculta el modal al llamar a setShowModal con el valor false
+    setShowModal(false);
   };
 
   return (
     <div>
+      <ConfirmDialog />
       <Menubar model={menu} start={MarcaCli} end={barra} />
       <div className={styles.busqueda}>
         {resultadosBusqueda.length > 0 && (

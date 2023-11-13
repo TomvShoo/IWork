@@ -84,8 +84,8 @@ export const PreguntasFrecuentes = () => {
           </AccordionTab>
           <AccordionTab header="04. Políticas de Privacidad y Condiciones de Uso">
             <p className={styles.parrafo}>
-              Puedes visualizar nuestras políticas de privacidad y
-              condiciones de uso.
+              Puedes visualizar nuestras políticas de privacidad y condiciones
+              de uso.
             </p>
             <Button
               className={styles.button}

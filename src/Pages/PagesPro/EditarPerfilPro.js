@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
-import { Toast } from 'primereact/toast';
+import { Toast } from "primereact/toast";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
@@ -88,7 +88,11 @@ export const EditarPerfilPro = () => {
     asignarProfesion();
     editarDatosPerfil(e);
     if (toast.current) {
-      toast.current.show({ severity: "success", summary: "Exito", detail:"Cambios del perfil guardados con exito"})
+      toast.current.show({
+        severity: "success",
+        summary: "Exito",
+        detail: "Cambios del perfil guardados con exito",
+      });
     }
   };
 
@@ -200,7 +204,11 @@ export const EditarPerfilPro = () => {
       );
       // console.log("Portafolio editado correctamente", response.data);
       if (toast.current) {
-        toast.current.show({ severity: "success", summary: "Exito", detail:"Cambios del portafolio guardados con exito"})
+        toast.current.show({
+          severity: "success",
+          summary: "Exito",
+          detail: "Cambios del portafolio guardados con exito",
+        });
       }
     } catch (error) {
       // console.error("Error al editar el portafolio", error);
@@ -313,7 +321,7 @@ export const EditarPerfilPro = () => {
                     <span>Imágenes seleccionadas:</span>
                     <img
                       src={imagen}
-                      alt={`Image`}
+                      alt={`Imagen seleccionada`}
                       style={{
                         maxWidth: "200px",
                         maxHeight: "200px",
@@ -343,7 +351,7 @@ export const EditarPerfilPro = () => {
             </div>
           </form>
         </div>
-        <Toast ref={toast}/>
+        <Toast ref={toast} />
       </div>
     </div>
   );

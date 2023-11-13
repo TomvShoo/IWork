@@ -113,7 +113,7 @@ const AgregarPortfolio = () => {
                 <span>Imágenes seleccionadas:</span>
                 <img
                   src={imagen}
-                  alt={`Image`}
+                  alt={`Imagen seleccionada`}
                   style={{
                     maxWidth: "200px",
                     maxHeight: "200px",

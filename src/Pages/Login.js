@@ -16,7 +16,7 @@ export const Login = () => {
     correo: "",
     contrasena: "",
   });
-  const [ validationErrors, setValidationErrors] = useState({
+  const [validationErrors, setValidationErrors] = useState({
     emailError: "",
     passwordError: "",
   });
@@ -79,7 +79,7 @@ export const Login = () => {
         // console.log("inicio de sesion exitoso :D");
         // console.log("Respuesta del servidor:", response.data);
         localStorage.setItem("accessToken", response.data.data);
-        setLoginMessage({ text: "Inicio de sesión exitoso", style: "success" });
+        setLoginMessage({ text: "Inicio de Sesión exitoso", style: "success" });
 
         const token = response.data.data;
         const decodedToken = jwt_decode(token);
@@ -95,7 +95,7 @@ export const Login = () => {
       } else {
       }
     } catch (error) {
-      console.error("error en el inicio de sesion", error);
+      console.error("Error en el inicio de sesion", error);
       setLoginMessage({ text: "Error en el inicio de sesión", style: "error" });
 
       if (error.response) {
@@ -145,7 +145,9 @@ export const Login = () => {
             value={formData.correo}
             onChange={handleInputChange}
           ></InputText>
-          {errors.correo && <span>Correo es requerido</span>}
+          {errors.correo && (
+            <span className={styles.error}>Correo es requerido</span>
+          )}
           <div className={styles.loginContrasena}>
             <InputText
               className={styles.contrasena}
@@ -156,12 +158,19 @@ export const Login = () => {
               value={formData.contrasena}
               onChange={handleInputChange}
             ></InputText>
-            <div className={styles.botonOcultar} type="text" severity="secondary" onClick={() => setShowPassword(!showPassword)}>
+            <div
+              className={styles.botonOcultar}
+              type="text"
+              severity="secondary"
+              onClick={() => setShowPassword(!showPassword)}
+            >
               <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"}></i>
             </div>
           </div>
-          
-          {errors.contrasena && <span>Constraseña es requerida</span>}
+
+          {errors.contrasena && (
+            <span className={styles.error}>Constraseña es requerida</span>
+          )}
           <Link to="/MenuPro"></Link>
           <Toast ref={(el) => (mensaje.current = el)} />
           <Button

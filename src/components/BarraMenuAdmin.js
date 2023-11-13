@@ -1,19 +1,38 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import React from "react";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Menubar } from "primereact/menubar";
+import { Button } from "primereact/button";
 import styles from "./BarraMenuAdmin.module.css";
 
 const BarraMenuAdmin = () => {
+  // const cerrarSesion = () => {
+  //   localStorage.removeItem("accessToken");
+  // };
+
   const cerrarSesion = () => {
-    localStorage.removeItem("accessToken");
+    confirmDialog({
+      message: "Estás a punto de cerrar sesión, ¿seguro que quieres salir?",
+      header: "Cerrar Sesión",
+      icon: "pi pi-exclamation-triangle",
+      acceptLabel: "Cerrar Sesión",
+      rejectLabel: "No",
+      accept: () => {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+      },
+    });
   };
+
   const menu = [
     {
-      label: 
-      (<Link to="/" onClick={cerrarSesion} className={styles.link}>
-        Cerrar sesion
-      </Link>),
-      icon: "pi pi-fw pi-power-off",
+      label: (
+        <Button
+          onClick={cerrarSesion}
+          icon="pi pi-fw pi-power-off"
+          label="Cerrar Sesión"
+        ></Button>
+      ),
     },
   ];
 
@@ -35,8 +54,9 @@ const BarraMenuAdmin = () => {
 
   return (
     <div>
+      <ConfirmDialog />
       <Menubar model={menu} start={MarcaAdmin} />
     </div>
   );
-}
+};
 export default BarraMenuAdmin;

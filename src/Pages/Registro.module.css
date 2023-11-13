@@ -58,6 +58,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-weight: bold;
   color: #ffffff;
   background-color: #00000026;
   border-radius: 0.5rem;
@@ -90,7 +91,7 @@
 .registerButton {
   flex: 0.5;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   flex-direction: column;
 }
 .registerContrasena {
@@ -99,6 +100,15 @@
 }
 .contrasena {
   flex: 1;
+}
+.botonOcultar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #00000026;
+  color: white;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  padding: 0rem 1rem;
 }
 .errorContainer {
   position: absolute;
