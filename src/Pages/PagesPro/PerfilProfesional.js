@@ -25,6 +25,7 @@ export const PerfilPro = () => {
   const resenasContainerRef = useRef(null);
   const [showConfirmDialog, setConfirmDialog] = useState(false);
   const [profesionToDelete, setProfesionToDelete] = useState(null);
+  const [showButonPortafolio, setShowButonPortafolio] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
@@ -33,36 +34,32 @@ export const PerfilPro = () => {
       setUserRole(decodedToken.role);
 
       if (decodedToken.role === "profesional") {
-        axios
-          .get("https://api-iwork.onrender.com/auth/perfil", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
+        axios.get("https://api-iwork.onrender.com/auth/perfil", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
           .then((response) => {
             setProfesionalData(response.data);
-            // console.log(response.data);
           })
           .catch((error) => {
             console.error("error al obtener los datos del usuario", error);
           });
 
         const userId = decodedToken.id;
-        axios
-          .get(
-            `https://api-iwork.onrender.com/portafolio/profesional/${userId}`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
+        axios.get(`https://api-iwork.onrender.com/portafolio/profesional/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
           .then((response) => {
             setPortafolio(response.data);
+            setShowButonPortafolio(response.data.success === false);
             if (response.data.success === false) {
               toast.current.show({ severity: "info", summary: "Portafolio", detail: "Parece que aun no agregas tu portafolio." })
             }
-            // console.log("Datos del portafolio:", response.data);
           })
           .catch((error) => {
             console.error("Error al obtener los datos del portafolio", error);
@@ -81,8 +78,6 @@ export const PerfilPro = () => {
             );
             setResenas(resenasResponse.data);
             setTotalResenas(resenasResponse.data.length);
-            // console.log(resenasResponse.data);
-
             const sum = resenasResponse.data.reduce(
               (total, resena) => total + resena.calificacion,
               0
@@ -93,7 +88,6 @@ export const PerfilPro = () => {
                 : 0;
             setPromedioCalificacion(promedio);
           } catch (error) {
-            // console.error("Error fetching resenas data:", error);
           }
         };
         fetchResenas();
@@ -242,7 +236,7 @@ export const PerfilPro = () => {
                 />
               </Link>
             )}
-            {userRole === "profesional" && (
+            {userRole === "profesional" && portafolio && showButonPortafolio && (
               <Link to="/AgregarPortfolio">
                 <Button
                   className={styles.botonesPerfilProfesional}

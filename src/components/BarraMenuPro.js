@@ -56,6 +56,8 @@ const BarraMenuPro = () => {
     {
       label: (
         <Button
+          severity="info"
+          text raised
           onClick={cerrarSesion}
           icon="pi pi-fw pi-power-off"
           label="Cerrar Sesión"
