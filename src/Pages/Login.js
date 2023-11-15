@@ -9,6 +9,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import logo from "../Images/logo.png";
 import styles from "./Login.module.css";
 
 export const Login = () => {
@@ -131,7 +132,13 @@ export const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginLogo}>
-        <h1>iWork</h1>
+        <img
+          src={logo}
+          className={styles.logo}
+          alt="iwork logo"
+          draggable="false"
+          loading="eager"
+        />
       </div>
 
       <div className={styles.loginData}>
