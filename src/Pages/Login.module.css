@@ -14,7 +14,19 @@
   height: 100%;
   user-select: none;
 }
-.loginLogo,
+.loginLogo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem 1rem;
+  user-select: none;
+}
+.logo {
+  width: 17.5rem;
+  filter: drop-shadow(3px 3px 3px #00000025);
+}
 .loginData {
   flex: 1;
   display: flex;
