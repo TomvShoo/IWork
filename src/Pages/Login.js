@@ -13,14 +13,16 @@ import styles from "./Login.module.css";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorToast, setErrorToast] = useState(null);
   const [formData, setFormData] = useState({
     correo: "",
     contrasena: "",
   });
-  const [validationErrors, setValidationErrors] = useState({
-    emailError: "",
-    passwordError: "",
-  });
+  // const { setError } = useForm();
+  // const [validationErrors, setValidationErrors] = useState({
+  //   emailError: "",
+  //   passwordError: "",
+  // });
   const {
     register,
     handleSubmit,
@@ -46,25 +48,35 @@ export const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // const handleErrors = (error) => {
+  //   setErrorToast({
+  //     severity: "error",
+  //     summary: "Error en el inicio de sesion",
+  //     detail: 
+  //       error.response?.status === 401 ? "Correo o contraseña incorrectos": 
+  //       error.response?.status === 400 ? error.response.data.message: "Error desconocido",
+  //   });
+  // }
+
   const handlesubmit = async () => {
-    setValidationErrors({
-      emailError: "",
-      passwordError: "",
-    });
-    if (!formData.correo) {
-      setValidationErrors((prevState) => ({
-        ...prevState,
-        emailError: "Ingresa un correo electrónico válido",
-      }));
-      return;
-    }
-    if (!formData.contrasena) {
-      setValidationErrors((prevState) => ({
-        ...prevState,
-        passwordError: "Ingresa una contraseña válida",
-      }));
-      return;
-    }
+    // setValidationErrors({
+    //   emailError: "",
+    //   passwordError: "",
+    // });
+    // if (!formData.correo) {
+    //   setValidationErrors((prevState) => ({
+    //     ...prevState,
+    //     emailError: "Ingresa un correo electrónico válido",
+    //   }));
+    //   return;
+    // }
+    // if (!formData.contrasena) {
+    //   setValidationErrors((prevState) => ({
+    //     ...prevState,
+    //     passwordError: "Ingresa una contraseña válida",
+    //   }));
+    //   return;
+    // }
 
     try {
       const response = await axios.post(
@@ -97,34 +109,39 @@ export const Login = () => {
       } else {
       }
     } catch (error) {
+      // handleErrors(error);
       console.error("Error en el inicio de sesion", error);
-      setLoginMessage({ text: "Error en el inicio de sesión", style: "error" });
+      setLoginMessage({ text: "Correo o contraseña incorrectos", style: "error" });
 
-      if (error.response) {
-        if (error.response.status === 401) {
-          setLoginMessage({
-            text: error.response.data.message,
-            style: "error",
-          });
-        } else if (error.response.status === 400) {
-          setLoginMessage({
-            text: error.response.data.message,
-            style: "error",
-          });
-        } else {
-          console.error("Error en el inicio de sesión", error);
-          setLoginMessage({
-            text: "Error en el inicio de sesión",
-            style: "error",
-          });
-        }
-      } else {
-        console.error("Error en el inicio de sesión", error);
-        setLoginMessage({
-          text: "Error en el inicio de sesión",
-          style: "error",
-        });
-      }
+      // if (error.response) {
+      //   if (error.response.status === 401) {
+      //     setErrorToast({
+      //       severity: "error",
+      //       summary: "Error en el inicio de sesion",
+      //       detail: "Correo o contraseña incorrectos",
+      //     });
+      //   } else if (error.response.status === 400) {
+      //     setErrorToast({
+      //       severity: "error",
+      //       summary: "Error en el inicio de sesion",
+      //       detail: error.response.data.message,
+      //     });
+      //   } else {
+      //     console.error("Error en el inicio de sesión", error);
+      //     setErrorToast({
+      //       severity: "error",
+      //       summary: "Error en el inicio de sesion",
+      //       detail: "Error desconocido",
+      //     });
+      //   }
+      // } else {
+      //   console.error("Error en el inicio de sesión", error);
+      //   setErrorToast({
+      //     severity: "error",
+      //     summary: "Error en el inicio de sesion",
+      //     detail: "Error desconocido",
+      //   });
+      // }
     }
   };
 
@@ -143,12 +160,12 @@ export const Login = () => {
             type="email"
             placeholder="Correo electrónico"
             name="correo"
-            {...register("correo", { required: true })}
+            {...register("correo", { required: "Correo es requerido" })}
             value={formData.correo}
             onChange={handleInputChange}
           ></InputText>
           {errors.correo && (
-            <span className={styles.error}>Correo es requerido</span>
+            <span className={styles.error}>{errors.correo.message}</span>
           )}
           <div className={styles.loginContrasena}>
             <InputText
@@ -156,7 +173,7 @@ export const Login = () => {
               placeholder="Contraseña"
               type={showPassword ? "text" : "password"}
               name="contrasena"
-              {...register("contrasena", { required: true })}
+              {...register("contrasena", { required: "Constraseña es requerida" })}
               value={formData.contrasena}
               onChange={handleInputChange}
             ></InputText>
@@ -171,10 +188,19 @@ export const Login = () => {
           </div>
 
           {errors.contrasena && (
-            <span className={styles.error}>Constraseña es requerida</span>
+            <span className={styles.error}>{errors.contrasena.message}</span>
           )}
           <Link to="/MenuPro"></Link>
-          <Toast ref={(el) => (mensaje.current = el)} />
+          <Toast ref={(el) => (mensaje.current = el)}/>
+          {errorToast && (
+            <Toast
+              severity={errorToast.severity}
+              summary={errorToast.summary}
+              detail={errorToast.detail}
+              life={4000}
+              onClose={() => setErrorToast(null)}
+            />
+          )}
           <Button
             className={styles.button}
             label="Iniciar sesión"

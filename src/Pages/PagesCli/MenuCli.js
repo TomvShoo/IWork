@@ -3,7 +3,6 @@ import { Rating } from "primereact/rating";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import Footer from "../../components/Footer";
 import styles from "./MenuCli.module.css";
-import SheshoImage from "../../Images/Shesho.jpeg";
 import axios from "axios";
 import { Chip } from "primereact/chip";
 import { useNavigate } from "react-router-dom";
@@ -42,8 +41,7 @@ export const MenuCli = () => {
 
     profesiones.forEach((profesion) => {
       const promedioCalificaciones = profesion.resena.reduce(
-        (total, res) => total + res.calificacion, 0
-      );
+        (total, res) => total + res.calificacion, 0);
       const promedio = promedioCalificaciones / profesion.resena.length;
 
       const mejorResena = profesion.resena.find(
@@ -79,7 +77,7 @@ export const MenuCli = () => {
               key={index}
               onClick={() => redirigirPerfilProfesional(profesional.id)}
             >
-              <img src={SheshoImage} alt="Shesho" className={styles.imagen} />
+              {/* <img src={SheshoImage} alt="Shesho" className={styles.imagen} /> */}
               <div className={styles.cartaDatos}>
                 {profesional && profesional.nombre_profesional && profesional.apellido_profesional ? (
                   <span>{`${profesional.nombre_profesional} ${profesional.apellido_profesional}`}</span>

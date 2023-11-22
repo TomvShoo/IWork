@@ -13,11 +13,16 @@ const BotonAdmin = () => {
   const [users, setUsers] = useState([]);
   const [profesionales, setProfesionales] = useState([]);
   // const [UserToDelete, setUserToDelete] = useState(null);
-  const [setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const toast = useRef(null);
 
   useEffect(() => {
-    axios.get("https://api-iwork.onrender.com/users")
+    const token = Cookies.get("accessToken");
+    axios.get("https://api-iwork.onrender.com/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         setUsers(response.data);
         // console.log(response.data);
@@ -25,10 +30,14 @@ const BotonAdmin = () => {
       .catch((error) => {
         // console.log("Error al traer los datos de usuarios", error);
       });
-    axios.get("https://api-iwork.onrender.com/profesional")
+    axios.get("https://api-iwork.onrender.com/profesional", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         setProfesionales(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         // console.log("Error al traer los datos de profesionales", error);

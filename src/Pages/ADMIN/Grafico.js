@@ -43,10 +43,7 @@ const Grafico = () => {
                   const calificaciones = resenas.map(
                     (resena) => resena.calificacion
                   );
-                  const sumCalificaciones = calificaciones.reduce(
-                    (a, b) => a + b,
-                    0
-                  );
+                  const sumCalificaciones = calificaciones.reduce((a, b) => a + b, 0);
                   const promedio = sumCalificaciones / calificaciones.length;
                   return promedio;
                 } else {
@@ -101,7 +98,7 @@ const Grafico = () => {
           optionLabel="nombre_profesion"
           placeholder="Seleccionar profesión"
         />
-        {selectedProfesion && selectedProfesion.profesionales.length === 0 &&(
+        {selectedProfesion && selectedProfesion.profesionales.length === 0 && (
           <p className={styles.message}>La profesion elegida no posee profesionales asociados.</p>
         )}
       </div>

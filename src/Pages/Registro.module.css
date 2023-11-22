@@ -118,6 +118,10 @@
   z-index: 1;
   margin: 1rem;
 }
+.errorMessage {
+  color: #d32828;
+  margin: 0.5rem;
+}
 
 @media (min-width: 768px) {
   .registerData,

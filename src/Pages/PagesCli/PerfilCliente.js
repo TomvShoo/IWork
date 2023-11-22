@@ -19,12 +19,11 @@ const PerfilCliente = () => {
     if (token) {
       const decodedToken = parseJwt(token);
       const userId = decodedToken.id;
-      axios
-        .get("https://api-iwork.onrender.com/auth/perfil", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+      axios.get("https://api-iwork.onrender.com/auth/perfil", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((response) => {
           setUsuario(response.data);
         })
@@ -105,9 +104,8 @@ const PerfilCliente = () => {
             <h5>Historial de Reseñas</h5>
           </div>
           <div
-            className={`${styles.dataResena} ${
-              totalResenas > 10 ? styles.scrollableResenas : ""
-            }`}
+            className={`${styles.dataResena} ${totalResenas > 10 ? styles.scrollableResenas : ""
+              }`}
             ref={resenasContainerRef}
           >
             <div className={styles.resenas}>

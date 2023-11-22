@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import BotonRegistro from "../components/BotonRegistro";
+import React, { useRef, useState } from "react";
+import BotonTerminos from "../components/BotonRegistro";
 import { InputText } from "primereact/inputtext";
+import { InputNumber } from 'primereact/inputnumber';
+import { Checkbox } from 'primereact/checkbox';
 import { Button } from "primereact/button";
 import { SelectButton } from "primereact/selectbutton";
 import { Message } from "primereact/message";
 import { useForm } from "react-hook-form";
+import { Toast } from 'primereact/toast';
 import axios from "axios";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -15,7 +18,9 @@ import styles from "./Registro.module.css";
 export const Registro = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const toast = useRef(null);
   const {
     register,
     formState: { errors },
@@ -33,23 +38,60 @@ export const Registro = () => {
     tipoCuenta: "",
   });
 
+  const handleCheckboxChange = (e) => {
+    setAcceptTerms(e.checked);
+    setButtonDisabled(!e.checked);
+  }
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "nroTelefono" && value.length !== 8) {
-      setError("nroTelefono", {
-        type: "manual",
-        message: "El número de teléfono debe tener 8 dígitos",
-      });
-    } else {
-      setValue("nroTelefono", value);
+    const { name, value } = e.target || e;
+    if (name === "nroTelefono") {
+      if (isNaN(value) || value.includes('.') || value.includes('-') || value.includes('+')) {
+        setError("nroTelefono", {
+          type: "manual",
+          message: "Este campo solo acepta numeros"
+        });
+        return;
+      } else if (name === "nroTelefono" && value.length === 8) {
+        setError("nroTelefono", null);
+      }
     }
-
     setformData({ ...formData, [name]: value });
   };
 
+  const whiteSpace = (value) => {
+    return value.trim().length === 0;
+  }
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    //validaciones del form
+    if (whiteSpace(formData.nombre) ||
+      whiteSpace(formData.apellido) ||
+      whiteSpace(formData.correo) ||
+      whiteSpace(formData.nroTelefono) ||
+      whiteSpace(formData.contrasena) ||
+      whiteSpace(formData.confirmarContrasena) ||
+      whiteSpace(formData.tipoCuenta)) {
+      if (toast.current) {
+        toast.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: "No se puede ingresar espacios en blanco en los campos"
+        })
+        return;
+      }
+    }
+
+    if (!acceptTerms) {
+      console.log("debes aceptar los terminos y condiciones para registrarse");
+      setError("acceptTerms", {
+        type: "manual",
+        message: "Debe aceptar los terminos y condiciones para registrarse"
+      })
+    }
+
     if (formData.contrasena !== formData.confirmarContrasena) {
       setError("confirmarContrasena", {
         type: "manual",
@@ -58,10 +100,18 @@ export const Registro = () => {
       return;
     }
 
+    if (formData.nroTelefono && formData.nroTelefono.length !== 8) {
+      setError("nroTelefono", {
+        type: "manual",
+        message: "El número de teléfono debe tener 8 dígitos",
+      });
+      return;
+    }
+
+
     const strongRegex = new RegExp(
       "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"
     );
-
     if (!strongRegex.test(formData.contrasena)) {
       setError("contrasena", {
         type: "manual",
@@ -70,8 +120,8 @@ export const Registro = () => {
       });
       return;
     }
+
     try {
-      // dejar asi los links!!!
       const response = await axios.post(
         "https://api-iwork.onrender.com/auth/register",
         {
@@ -84,15 +134,31 @@ export const Registro = () => {
         }
       );
       if (response.data.success) {
-        // console.log("Registro exitoso :D");
-        // console.log(response.data);
-        navigate("/");
+        console.log("Registro exitoso :D");
+        console.log(response.data);
+        if (toast.current) {
+          toast.current.show({
+            severity: "success",
+            summary: "Excelente",
+            detail: "Se a registrado con exito"
+          })
+        }
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
         // console.log("Registro fallido");
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // console.log("Solicitud incorrecta: Verifica los datos ingresados");
+        if (toast.current) {
+          toast.current.show({
+            severity: "error",
+            summary: "Error",
+            detail: "Ha ocurrido un error o el correo ya existe :C"
+          })
+        }
       } else {
         // console.log("error en el registro", error);
       }
@@ -140,6 +206,15 @@ export const Registro = () => {
             <div className={styles.registerNum}>
               <div className={styles.numberPhone}>
                 <span className={styles.number}>+56 9</span>
+                {/* <InputNumber
+                  useGrouping={false}
+                  className={styles.inputPhone}
+                  placeholder="Numero de Teléfono"
+                  name="nroTelefono"
+                  value={formData.nroTelefono}
+                  onChange={handleInputChange}
+                  maxLength={8}
+                ></InputNumber> */}
                 <InputText
                   className={styles.inputPhone}
                   placeholder="Numero de Teléfono"
@@ -149,7 +224,7 @@ export const Registro = () => {
                   maxLength={8}
                 ></InputText>
               </div>
-              {errors.nroTelefono && <span>{errors.nroTelefono.message}</span>}
+              {errors.nroTelefono && <span className={styles.errorMessage}>{errors.nroTelefono.message}</span>}
             </div>
 
             <div className={styles.registerEmailPass}>
@@ -160,7 +235,7 @@ export const Registro = () => {
                 {...register("correo", { required: true })}
                 onChange={handleInputChange}
               ></InputText>
-              {errors.correo && <span>Correo es requerido</span>}
+              {errors.correo && <span className={styles.errorMessage}>Correo es requerido</span>}
               <div className={styles.registerContrasena}>
                 <InputText
                   className={styles.contrasena}
@@ -213,18 +288,16 @@ export const Registro = () => {
                 </div>
               </div>
               {errors.confirmarContrasena && (
-                <span>{errors.confirmarContrasena.message}</span>
+                <span className={styles.errorMessage}>{errors.confirmarContrasena.message}</span>
               )}
-
-              <div className={styles.errorContainer}>
-                {errors.contrasena && (
-                  <Message
-                    className={styles.error}
-                    severity="error"
-                    text={errors.contrasena.message}
-                  ></Message>
-                )}
-              </div>
+              {errors.contrasena && (
+                // <Message
+                //   className={styles.error}
+                //   severity="error"
+                //   text={errors.contrasena.message}
+                // ></Message>
+                <span className={styles.errorMessage}>{errors.contrasena.message}</span>
+              )}
             </div>
           </div>
 
@@ -245,9 +318,25 @@ export const Registro = () => {
               </div>
             </div>
 
-            <div className={styles.registerButton}>
-              <BotonRegistro />
+            <div>
+              <BotonTerminos />
             </div>
+
+            <div>
+              <Checkbox
+                onChange={handleCheckboxChange}
+                checked={acceptTerms}
+              />
+              <span>Acepto los terminos y condiciones</span>
+            </div>
+            {errors.acceptTerms && (
+              <span className={styles.errorMessage}>{errors.acceptTerms.message}</span>
+            )}
+
+            <div className={styles.registerButton}>
+              <Button label="Registrarse" type="submit" rounded disabled={buttonDisabled}></Button>
+            </div>
+            <Toast ref={toast} />
           </div>
         </form>
       </div>

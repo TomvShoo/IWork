@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import "primeicons/primeicons.css";
 import styles from "./BotonRegistro.module.css";
 
-export default function BotonRegistro() {
+export default function BotonTerminos() {
   const [visible, setVisible] = useState(false);
   const [accepted, setAccepted] = useState(false);
 
@@ -17,19 +16,23 @@ export default function BotonRegistro() {
   const footerContent = (
     <div>
       <Button
-        label="Cancelar"
+        label="Atras"
         onClick={() => setVisible(false)}
         className="p-button-text"
       />
-      <Link to="/">
-        <Button label="Aceptar" onClick={handleAccept} autoFocus />
-      </Link>
+      {/* <Button label="Aceptar" onClick={handleAccept} autoFocus /> */}
     </div>
   );
 
   return (
     <div className={styles.botonRegistroComponent}>
-      <Button label="Registrarse" onClick={() => setVisible(true)} rounded />
+      <Button
+        label="Leer terminos y condiciones"
+        onClick={() => setVisible(true)}
+        rounded
+        severity="info"
+        type="button" 
+        link/>
       <Dialog
         className={styles.dialogoTerCon}
         header="Nuestras Políticas de Privacidad y Condiciones de Uso"
