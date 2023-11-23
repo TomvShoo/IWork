@@ -6,6 +6,7 @@ import styles from "./MenuCli.module.css";
 import axios from "axios";
 import { Chip } from "primereact/chip";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 
 export const MenuCli = () => {
   const navigate = useNavigate();
@@ -69,6 +70,12 @@ export const MenuCli = () => {
         <div className={styles.titleSection}>
           <h3>Profesionales mejor calificados</h3>
         </div>
+
+        <div>
+        <Helmet>
+          <script type="text/javascript" async defer src="https://cdn.survio.com/static/widgets/web-widget.js" data-backgroundColor="#88E2FF" data-color="#000000" data-text="Dejanos tu comentario" data-url="https://www.survio.com/survey/d/C2W7I7F7X3E6I1B4K"></script>
+        </Helmet>
+      </div>
 
         <div className={styles.cartaContainer}>
           {mejoresProfesionales.map((profesional, index) => (

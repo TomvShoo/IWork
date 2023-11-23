@@ -13,6 +13,7 @@ import { Toast } from 'primereact/toast';
 import axios from "axios";
 import styles from "./PerfilProfesional.module.css";
 import Cookies from "js-cookie";
+import { Helmet } from 'react-helmet';
 
 export const PerfilPro = () => {
   const [portafolio, setPortafolio] = useState(null);
@@ -139,6 +140,12 @@ export const PerfilPro = () => {
     <div className={styles.perfilProfesionalContainer}>
       <div className={styles.navMenu}>
         <BarraMenuPro />
+      </div>
+
+      <div>
+        <Helmet>
+          <script type="text/javascript" async defer src="https://cdn.survio.com/static/widgets/web-widget.js" data-backgroundColor="#88E2FF" data-color="#000000" data-text="Dejanos tu comentario" data-url="https://www.survio.com/survey/d/H7G6V4W8S1X1C9W5F"></script>
+        </Helmet>
       </div>
 
       <div className={styles.vistaPerfilProfesional}>
