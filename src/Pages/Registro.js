@@ -58,6 +58,7 @@ export const Registro = () => {
     }
     setformData({ ...formData, [name]: value });
   };
+  
 
   const whiteSpace = (value) => {
     return value.trim().length === 0;
