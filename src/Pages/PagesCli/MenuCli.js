@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Rating } from "primereact/rating";
+import { Dropdown } from "primereact/dropdown";
+import { Button } from "primereact/button";
 import BarraMenuCli from "../../components/BarraMenuCli";
 import Footer from "../../components/Footer";
 import styles from "./MenuCli.module.css";
@@ -12,58 +14,143 @@ import logo from "../../Images/logo.png";
 export const MenuCli = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
+  const [profesiones, setProfesiones] = useState([]);
+  const [selectedProfesion, setSelectedProfesion] = useState(null);
+  const [profesionElegida, setProfesionElegida] = useState([]);
 
   useEffect(() => {
     axios.get("https://api-iwork.onrender.com/profesion").then((response) => {
       setData(response.data);
+      const opcionesProfesiones = response.data.map((item) => ({
+        label: item.nombre_profesion,
+        value: item.nombre_profesion,
+      }));
+      opcionesProfesiones.sort((a, b) => a.label.localeCompare(b.label));
+      setProfesiones(opcionesProfesiones);
     });
   }, []);
+
+  const filtrarProfesion = (profesion) => {
+    setSelectedProfesion(profesion);
+  };
+
+  const limpiarFiltro = () => {
+    setSelectedProfesion(null);
+  };
 
   const redirigirPerfilProfesional = (idProfesional) => {
     navigate(`/perfil-profesional/${idProfesional}`);
   };
 
-  const mejoresProfesionales = [];
-  if (data) {
-    const profesiones = data
-      .map((item) => {
-        if (item.profesionales && item.profesionales.length > 0) {
-          return {
-            nombre_profesion: item.nombre_profesion,
-            profesional: {
-              nombre: item.profesionales[0].nombre,
-              apellido: item.profesionales[0].apellido,
-              id: item.profesionales[0].id,
-            },
-            resena: item.profesionales[0].resena,
-          };
-        }
-        return null;
-      })
-      .filter(Boolean);
+  useEffect(() => {
+    if (data) {
+      if (selectedProfesion) {
+        const profesionalesFiltrados = data
+          .filter((item) => item.nombre_profesion === selectedProfesion)
+          .map((item) => {
+            const profesional = item.profesionales && item.profesionales[0];
+            const calificaciones =
+              profesional && profesional.resena
+                ? profesional.resena.map((resena) => resena.calificacion)
+                : [];
+            const promedioCalificaciones =
+              calificaciones.length > 0
+                ? calificaciones.reduce(
+                    (total, calificacion) => total + calificacion,
+                    0
+                  ) / calificaciones.length
+                : 0;
 
-    profesiones.forEach((profesion) => {
-      const promedioCalificaciones = profesion.resena.reduce(
-        (total, res) => total + res.calificacion,
-        0
-      );
-      const promedio = promedioCalificaciones / profesion.resena.length;
+            return {
+              nombre_profesion: item.nombre_profesion,
+              profesional: {
+                nombre: profesional ? profesional.nombre : "",
+                apellido: profesional ? profesional.apellido : "",
+                id: profesional ? profesional.id : null,
+              },
+              resena:
+                profesional && profesional.resena ? profesional.resena : [],
+              calificacion: promedioCalificaciones,
+            };
+          });
+        setProfesionElegida(profesionalesFiltrados);
+      } else {
+        const profesionales = data
+          .map((item) => {
+            if (item.profesionales && item.profesionales.length > 0) {
+              const profesional = item.profesionales[0];
+              const calificaciones = profesional.resena.map(
+                (resena) => resena.calificacion
+              );
+              const promedioCalificaciones =
+                calificaciones.length > 0
+                  ? calificaciones.reduce(
+                      (total, calificacion) => total + calificacion,
+                      0
+                    ) / calificaciones.length
+                  : 0;
 
-      const mejorResena = profesion.resena.find(
-        (res) => res.calificacion > promedio
-      );
+              return {
+                nombre_profesion: item.nombre_profesion,
+                profesional: {
+                  nombre: profesional ? profesional.nombre : "No asignado",
+                  apellido: profesional ? profesional.apellido : "No asignado",
+                  id: profesional ? profesional.id : null,
+                },
+                resena: profesional ? profesional.resena : [],
+                calificacion: promedioCalificaciones,
+              };
+            }
+            return null;
+          })
+          .filter(Boolean);
 
-      if (mejorResena) {
-        mejoresProfesionales.push({
-          nombre_profesion: profesion.nombre_profesion,
-          nombre_profesional: profesion.profesional.nombre,
-          apellido_profesional: profesion.profesional.apellido,
-          calificacion: mejorResena.calificacion,
-          id: profesion.profesional.id,
-        });
+        setProfesionElegida(profesionales);
       }
-    });
-  }
+    }
+  }, [selectedProfesion, data]);
+
+  // const mejoresProfesionales = [];
+  // if (data) {
+  //   const profesiones = data
+  //     .map((item) => {
+  //       if (item.profesionales && item.profesionales.length > 0) {
+  //         return {
+  //           nombre_profesion: item.nombre_profesion,
+  //           profesional: {
+  //             nombre: item.profesionales[0].nombre,
+  //             apellido: item.profesionales[0].apellido,
+  //             id: item.profesionales[0].id,
+  //           },
+  //           resena: item.profesionales[0].resena,
+  //         };
+  //       }
+  //       return null;
+  //     })
+  //     .filter(Boolean);
+
+  //   profesiones.forEach((profesion) => {
+  //     const promedioCalificaciones = profesion.resena.reduce(
+  //       (total, res) => total + res.calificacion,
+  //       0
+  //     );
+  //     const promedio = promedioCalificaciones / profesion.resena.length;
+
+  //     const mejorResena = profesion.resena.find(
+  //       (res) => res.calificacion > promedio
+  //     );
+
+  //     if (mejorResena) {
+  //       mejoresProfesionales.push({
+  //         nombre_profesion: profesion.nombre_profesion,
+  //         nombre_profesional: profesion.profesional.nombre,
+  //         apellido_profesional: profesion.profesional.apellido,
+  //         calificacion: mejorResena.calificacion,
+  //         id: profesion.profesional.id,
+  //       });
+  //     }
+  //   });
+  // }
 
   return (
     <div className={styles.menuContainer}>
@@ -89,7 +176,7 @@ export const MenuCli = () => {
                 <h3>Contratación</h3>
               </div>
               <p className={styles.parrafo}>
-                Descrubre a tus futuros colaboradores a traves de perfiles
+                Descubre a tus futuros colaboradores a traves de perfiles
                 detallados, con calificacion, portafolios y certificaciones.
               </p>
             </div>
@@ -107,8 +194,25 @@ export const MenuCli = () => {
         </section>
 
         <section className={styles.cartasSection}>
-          <div className={styles.titleSection}>
+          <div className={styles.filterSection}>
             <h3>Profesionales mejor calificados</h3>
+            <div className={styles.filter}>
+              <Button
+                icon="pi pi-times"
+                size="small"
+                rounded
+                outlined
+                severity="danger"
+                onClick={limpiarFiltro}
+                aria-label="Cancel"
+              />
+              <Dropdown
+                value={selectedProfesion}
+                options={profesiones}
+                onChange={(e) => setSelectedProfesion(e.value)}
+                placeholder="Filtrar por profesión"
+              />
+            </div>
           </div>
 
           <div>
@@ -127,35 +231,46 @@ export const MenuCli = () => {
           </div>
 
           <div className={styles.cartaContainer}>
-            {mejoresProfesionales.map((profesional, index) => (
-              <div
-                className={styles.cartaProfesional}
-                key={index}
-                onClick={() => redirigirPerfilProfesional(profesional.id)}
-              >
-                {/* <img src={SheshoImage} alt="Shesho" className={styles.imagen} /> */}
-                <div className={styles.cartaDatos}>
+            {profesionElegida.length === 0 ? (
+              <div className={styles.cartaProfesional}>
+                <span>Esta profesión no tiene profesionales asignados :C</span>
+              </div>
+            ) : (
+              profesionElegida.map((profesional, index) => (
+                <div
+                  className={styles.cartaProfesional}
+                  key={index}
+                  onClick={() =>
+                    redirigirPerfilProfesional(profesional.profesional.id)
+                  }
+                >
                   {profesional &&
-                  profesional.nombre_profesional &&
-                  profesional.apellido_profesional ? (
-                    <span>{`${profesional.nombre_profesional} ${profesional.apellido_profesional}`}</span>
-                  ) : null}
+                  profesional.profesional &&
+                  profesional.profesional.nombre ? (
+                    <div className={styles.cartaDatos}>
+                      <span>{`${profesional.profesional.nombre} ${profesional.profesional.apellido}`}</span>
 
-                  {profesional && profesional.calificacion ? (
-                    <Rating
-                      value={profesional.calificacion}
-                      readOnly
-                      cancel={false}
-                    />
-                  ) : null}
-                  {profesional && profesional.nombre_profesion ? (
-                    <div>
-                      <Chip key={index} label={profesional.nombre_profesion} />
+                      {profesional && profesional.calificacion ? (
+                        <Rating
+                          value={profesional.calificacion}
+                          readOnly
+                          cancel={false}
+                        />
+                      ) : null}
+
+                      {profesional && profesional.nombre_profesion ? (
+                        <div>
+                          <Chip
+                            key={index}
+                            label={profesional.nombre_profesion}
+                          />
+                        </div>
+                      ) : null}
                     </div>
                   ) : null}
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </section>
       </div>
