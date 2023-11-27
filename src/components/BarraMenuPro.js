@@ -24,26 +24,12 @@ const BarraMenuPro = () => {
 
   const menu = [
     {
-      label: "Perfil",
+      label: (
+        <Link to="/PerfilProfesional" className={styles.link}>
+          Mi Perfil
+        </Link>
+      ),
       icon: "pi pi-fw pi-user",
-      items: [
-        {
-          label: (
-            <Link to="/EditarPerfilPro" className={styles.link}>
-              Editar Perfil
-            </Link>
-          ),
-          icon: "pi pi-pencil",
-        },
-        {
-          label: (
-            <Link to="/AgregarPortfolio" className={styles.link}>
-              Agregar Portafolio
-            </Link>
-          ),
-          icon: "pi pi-plus",
-        },
-      ],
     },
     {
       label: (

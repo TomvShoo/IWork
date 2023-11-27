@@ -82,6 +82,11 @@
   justify-content: center;
   flex-direction: column;
 }
+.checkBox {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
 .registerProfession {
   flex: 1;
   display: flex-start;

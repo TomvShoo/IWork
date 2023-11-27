@@ -38,26 +38,12 @@ export default function BarraMenuCli() {
       icon: "pi pi-home",
     },
     {
-      label: "Perfil",
+      label: (
+        <Link to="/PerfilCliente" className={styles.link}>
+          Mi Perfil
+        </Link>
+      ),
       icon: "pi pi-fw pi-user",
-      items: [
-        {
-          label: (
-            <Link to="/PerfilCliente" className={styles.link}>
-              Ver Perfil
-            </Link>
-          ),
-          icon: "pi pi-eye",
-        },
-        {
-          label: (
-            <Link to="/EditarPerfilCli" className={styles.link}>
-              Editar Perfil
-            </Link>
-          ),
-          icon: "pi pi-pencil",
-        },
-      ],
     },
     {
       label: (

@@ -323,12 +323,13 @@ export const Registro = () => {
               <BotonTerminos />
             </div>
 
-            <div>
+            <div className={styles.checkBox}>
               <Checkbox
+              className={styles.box}
                 onChange={handleCheckboxChange}
                 checked={acceptTerms}
               />
-              <span>Acepto los terminos y condiciones</span>
+              <span>Acepto los términos y condiciones</span>
             </div>
             {errors.acceptTerms && (
               <span className={styles.errorMessage}>{errors.acceptTerms.message}</span>

@@ -5,14 +5,17 @@ import styles from "./Footer.module.css";
 const Footer = () => {
   return (
     <footer className={styles.footerContainer}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
         <div style={{ textAlign: "left" }}>
           <h5>Contacto</h5>
           <p>Nrtdevops@gmail.com</p>
         </div>
         <div style={{ textAlign: "center" }}>
           <Link className={styles.link} to="/PreguntasFrecuentes">
-            <h5>Preguntas Frecuentes</h5>
+            <h5>
+              Preguntas Frecuentes{" "}
+              <i className={`pi pi-link ${styles.redes}`}></i>
+            </h5>
           </Link>
         </div>
         <div style={{ textAlign: "right" }}>

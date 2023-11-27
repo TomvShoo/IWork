@@ -27,7 +27,7 @@ export default function BotonTerminos() {
   return (
     <div className={styles.botonRegistroComponent}>
       <Button
-        label="Leer terminos y condiciones"
+        label="Leer términos y condiciones"
         onClick={() => setVisible(true)}
         rounded
         severity="info"
