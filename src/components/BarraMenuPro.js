@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { Menubar } from "primereact/menubar";
-import { Button } from "primereact/button";
 import styles from "./BarraMenuPro.module.css";
 import Cookies from "js-cookie";
 
 const BarraMenuPro = () => {
-
   const cerrarSesion = () => {
     confirmDialog({
       message: "Estás a punto de cerrar sesión, ¿seguro que quieres salir?",
@@ -41,13 +39,21 @@ const BarraMenuPro = () => {
     },
     {
       label: (
-        <Button
-          severity="info"
-          text raised
+        <Link
+          className={styles.linkLogout}
           onClick={cerrarSesion}
-          icon="pi pi-fw pi-power-off"
-          label="Cerrar Sesión"
-        ></Button>
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+          }}
+        >
+          <i
+            className="pi pi-fw pi-power-off"
+            style={{ fontWeight: "bold", marginRight: "5px" }}
+          />
+          <span style={{ fontWeight: "bold" }}>Cerrar Sesión</span>
+        </Link>
       ),
     },
   ];

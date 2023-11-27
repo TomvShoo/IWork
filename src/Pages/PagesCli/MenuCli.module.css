@@ -85,7 +85,7 @@
   align-items: center;
   cursor: pointer;
   background-color: #f8f9fa;
-  border-left: 1px solid #e1e4e8;
+  border: 1px solid #e1e4e8;
   box-shadow: 3px 3px 10px #dddddd;
   transition: transform 0.1s ease, background-color 0.3s ease;
 }

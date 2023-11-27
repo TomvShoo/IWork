@@ -30,6 +30,8 @@ export const MenuCli = () => {
     });
   }, []);
 
+  // eslint-disable-next-line no-unused-vars
+  // El codigo de arriba es para desactivar los warning en caso de que eslint no realice bien la pega (solo haria falta borrar este comentario para que funcione)
   const filtrarProfesion = (profesion) => {
     setSelectedProfesion(profesion);
   };
@@ -176,8 +178,8 @@ export const MenuCli = () => {
                 <h3>Contratación</h3>
               </div>
               <p className={styles.parrafo}>
-                Descubre a tus futuros colaboradores a traves de perfiles
-                detallados, con calificacion, portafolios y certificaciones.
+                Descubre a tus futuros colaboradores a través de perfiles
+                detallados, con calificaciones, portafolios y certificaciones.
               </p>
             </div>
 
@@ -195,13 +197,13 @@ export const MenuCli = () => {
 
         <section className={styles.cartasSection}>
           <div className={styles.filterSection}>
-            <h3>Profesionales mejor calificados</h3>
+            <h3>Profesionales Mejor Calificados</h3>
             <div className={styles.filter}>
               <Button
                 icon="pi pi-times"
                 size="small"
                 rounded
-                outlined
+                // outlined
                 severity="danger"
                 onClick={limpiarFiltro}
                 aria-label="Cancel"
@@ -224,7 +226,7 @@ export const MenuCli = () => {
                 src="https://cdn.survio.com/static/widgets/web-widget.js"
                 data-backgroundColor="#88E2FF"
                 data-color="#000000"
-                data-text="Dejanos tu comentario"
+                data-text="Déjanos tu comentario"
                 data-url="https://www.survio.com/survey/d/C2W7I7F7X3E6I1B4K"
               ></script>
             </Helmet>
@@ -233,7 +235,7 @@ export const MenuCli = () => {
           <div className={styles.cartaContainer}>
             {profesionElegida.length === 0 ? (
               <div className={styles.cartaProfesional}>
-                <span>Esta profesión no tiene profesionales asignados :C</span>
+                <span>Cargando profesionales...</span>
               </div>
             ) : (
               profesionElegida.map((profesional, index) => (

@@ -4,7 +4,6 @@ import Busqueda from "./resultadoBusqueda";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { InputText } from "primereact/inputtext";
 import { Menubar } from "primereact/menubar";
-import { Button } from "primereact/button";
 import axios from "axios";
 import styles from "./BarraMenuCli.module.css";
 import Cookies from "js-cookie";
@@ -55,13 +54,14 @@ export default function BarraMenuCli() {
     },
     {
       label: (
-        <Button 
-          severity="info" 
-          text raised
+        <Link
+          className={styles.linkLogout}
           onClick={cerrarSesion}
-          icon="pi pi-fw pi-power-off"
-          label="Cerrar Sesión"
-        ></Button>
+          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+        >
+          <i className="pi pi-fw pi-power-off" style={{ fontWeight: 'bold', marginRight: '5px' }} />
+          <span style={{ fontWeight: 'bold' }}>Cerrar Sesión</span>
+        </Link>
       ),
     },
   ];
